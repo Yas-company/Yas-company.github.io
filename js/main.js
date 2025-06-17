@@ -1,0 +1,241 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // Feature Cards Animation
+  const featureObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains("feature-fade-in")) {
+            entry.target.style.animation = "fadeIn 0.8s ease forwards";
+            entry.target.style.opacity = "1";
+          } else {
+            entry.target.style.animation = "fadeInUp 0.6s ease forwards";
+            entry.target.style.opacity = "1";
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -10% 0px",
+    }
+  );
+
+  document.querySelectorAll(".feature-card").forEach((card, index) => {
+    card.style.transitionDelay = index * 100 + "ms";
+    featureObserver.observe(card);
+  });
+
+  document.querySelectorAll(".feature-fade-in").forEach((element) => {
+    featureObserver.observe(element);
+  });
+
+  // Work Steps Animation
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "fadeInUp 0.6s ease forwards";
+          entry.target.style.opacity = "1";
+          const index = Array.from(
+            document.querySelectorAll(".work-step")
+          ).indexOf(entry.target);
+          const progress = document.querySelector(".work-progress");
+          if (progress) {
+            progress.style.width = (index + 1) * (100 / 6) + "%";
+            progress.style.transition = "width 0.6s ease";
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll(".work-step").forEach((step, index) => {
+    step.style.opacity = "0";
+    step.style.animationDelay = index * 200 + "ms";
+    observer.observe(step);
+  });
+
+  // FAQ Accordion
+  const faqButtons = document.querySelectorAll(".faq-button");
+  faqButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const content = this.nextElementSibling;
+      const icon = this.querySelector(".faq-icon");
+      if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        icon.classList.remove("ri-add-line");
+        icon.classList.add("ri-subtract-line");
+      } else {
+        content.classList.add("hidden");
+        icon.classList.remove("ri-subtract-line");
+        icon.classList.add("ri-add-line");
+      }
+    });
+  });
+
+  // Animated Tabs for Policies Section
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  const underline = document.getElementById('tab-underline');
+  function updateUnderline() {
+    const activeBtn = document.querySelector('.tab-btn.active');
+    if (activeBtn && underline) {
+      underline.style.width = activeBtn.offsetWidth + 'px';
+      underline.style.left = activeBtn.offsetLeft + 'px';
+    }
+  }
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      // console.log('clicked');
+      tabBtns.forEach(b => b.classList.remove('active', 'text-primary', 'border-primary'));
+      this.classList.add('active', 'text-primary', 'border-primary');
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+      document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+      updateUnderline();
+    });
+  });
+  window.addEventListener('resize', updateUnderline);
+  updateUnderline();
+
+  // Fix underline on horizontal scroll
+  const policyTabs = document.getElementById('policy-tabs');
+  if (policyTabs) {
+    policyTabs.addEventListener('scroll', updateUnderline);
+  }
+
+  // AI Assistant Chatbot
+  const knowledgeBase = {
+    'ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟': 'تختلف مدة تنفيذ المشروع حسب حجمه وتعقيده، ولكن بشكل عام تتراوح مدة تطوير موقع إلكتروني بسيط من 2-4 أسابيع، بينما قد تستغرق المواقع المتوسطة والكبيرة من 6-12 أسبوع. نقوم بتحديد جدول زمني دقيق بعد دراسة متطلبات المشروع.',
+    'هل تقدمون خدمات الصيانة والدعم الفني بعد إطلاق الموقع؟': 'نعم، نقدم خدمات صيانة ودعم فني شاملة بعد إطلاق الموقع. لدينا باقات دعم فني مختلفة تشمل تحديثات دورية، إصلاح الأخطاء، تحسينات الأداء، والمساعدة الفنية على مدار الساعة. نضمن استمرارية عمل موقعك بكفاءة وأمان.',
+    'كيف يمكنني قياس نجاح حملات التسويق الرقمي؟': 'نقدم تقارير تحليلية دورية مفصلة تتضمن مؤشرات الأداء الرئيسية مثل عدد الزيارات، معدل التحويل، معدل الارتداد، تكلفة الاستحواذ على العميل، والعائد على الاستثمار. نستخدم أدوات تحليلية متقدمة لقياس أداء الحملات وتقديم رؤى قيمة لتحسينها باستمرار.',
+    'ما هي مميزات الحلول السحابية التي تقدمونها؟': 'تتميز حلولنا السحابية بالمرونة العالية، حيث يمكن توسيعها أو تقليصها حسب احتياجات عملك. توفر مستوى عالٍ من الأمان مع تشفير البيانات ونسخ احتياطية منتظمة. كما أنها توفر إمكانية الوصول من أي مكان وأي جهاز، وتقلل من تكاليف البنية التحتية وتحسن الأداء والكفاءة.',
+    'هل يمكنكم تطوير حلول مخصصة حسب احتياجات شركتنا؟': 'نعم، نحن متخصصون في تطوير حلول مخصصة تلبي الاحتياجات الفريدة لكل عميل. نبدأ بتحليل متطلبات عملك وتحدياته، ثم نصمم ونطور حلولاً مبتكرة تناسب طبيعة نشاطك وأهدافك. سواء كنت تحتاج إلى نظام إدارة مخصص، تطبيق جوال، أو منصة متكاملة، يمكننا تقديم الحل المناسب لك.',
+    'ما هي خدماتكم؟': 'نقدم مجموعة متنوعة من الخدمات تشمل: تطوير تطبيقات الجوال، تطوير المواقع والأنظمة، تطوير الأنظمة الخلفية، خدمات التكامل، تصميم واجهات المستخدم، والدعم والاستشارات.',
+    'كيف يمكنني التواصل معكم؟': 'يمكنك التواصل معنا عبر:\nالبريد الإلكتروني: yascontact@gmail.com\nالهاتف: <span dir="ltr">+966 50 195 0787</span>\nأو يمكنك ملء نموذج التواصل في موقعنا وسنعاود الاتصال بك.',
+    'ما هي تكلفة الخدمات؟': 'تختلف التكلفة حسب نوع وحجم المشروع. يمكنك التواصل معنا للحصول على عرض سعر مفصل يناسب احتياجاتك ومتطلبات مشروعك.',
+    'هل تقدمون خدمات للشركات الناشئة؟': 'نعم، نحن ندعم الشركات الناشئة في رحلة نموها التقني ونقدم حلولاً مخصصة تناسب ميزانياتها واحتياجاتها مع نماذج عمل مرنة.',
+    'ما هي نماذج العمل في YAS؟': 'نقدم 5 نماذج عمل: التنفيذ الكامل بدون التزام مستقبلي، التنفيذ والدعم الفني المستمر، شراكة تشغيلية مع مشاركة الأرباح، شراكة ستراتيجية بملكية مشتركة، واستثمار مباشر من YAS بملكية مسيطرة.',
+    'خدمات': 'نقدم خدمات: تطوير تطبيقات الجوال، تطوير المواقع والأنظمة، تطوير الأنظمة الخلفية، خدمات التكامل، تصميم واجهات المستخدم، والدعم والاستشارات.',
+    'تواصل': 'يمكنك التواصل معنا عبر:\nالبريد الإلكتروني: yascontact@gmail.com\nالهاتف: <span dir="ltr">+966 50 195 0787</span>',
+    'سعر': 'تختلف التكلفة حسب نوع وحجم المشروع. تواصل معنا للحصول على عرض سعر مفصل.',
+    'وقت': 'المدة تختلف حسب حجم المشروع: المواقع البسيطة 2-4 أسابيع، والمتوسطة 6-12 أسبوع.',
+    'دعم': 'نقدم دعم فني شامل 24/7 يشمل الصيانة والتحديثات وحل المشاكل.'
+  };
+
+  const toggleChat = document.getElementById('toggle-chat');
+  const closeChat = document.getElementById('close-chat');
+  const chatWindow = document.getElementById('chat-window');
+  const chatMessages = document.getElementById('chat-messages');
+  const userInput = document.getElementById('user-input');
+  const sendMessage = document.getElementById('send-message');
+
+  // Debug logging
+  console.log('🤖 Chatbot Debug Info:');
+  console.log('toggleChat element:', toggleChat);
+  console.log('chatWindow element:', chatWindow);
+  console.log('chatMessages element:', chatMessages);
+
+  function addMessage(message, isUser = false) {
+    if (!chatMessages) return;
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'}`;
+    messageDiv.innerHTML = `
+      <div class="max-w-[80%] ${isUser ? 'bg-primary text-white' : 'bg-gray-100 text-gray-800'} rounded-lg px-4 py-2">
+        ${message.split('\n').join('<br>')}
+      </div>
+    `;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function processUserInput(input) {
+    const question = input.trim();
+    let answer = 'عذراً، لم أجد إجابة محددة لسؤالك. يمكنك التواصل معنا مباشرة عبر نموذج الاتصال أو الهاتف: <span dir="ltr">+966 50 195 0787</span> للحصول على المساعدة المطلوبة.';
+    
+    // Check for exact matches or partial matches
+    for (const [key, value] of Object.entries(knowledgeBase)) {
+      if (question.toLowerCase().includes(key.toLowerCase()) ||
+          key.toLowerCase().includes(question.toLowerCase()) ||
+          containsKeywords(question, key)) {
+        answer = value;
+        break;
+      }
+    }
+    
+    addMessage(question, true);
+    setTimeout(() => addMessage(answer), 500);
+  }
+
+  function containsKeywords(userInput, faqQuestion) {
+    const userWords = userInput.toLowerCase().split(' ');
+    const faqWords = faqQuestion.toLowerCase().split(' ');
+    
+    // Check if at least 2 key words match
+    let matchCount = 0;
+    for (const word of userWords) {
+      if (word.length > 2 && faqWords.some(faqWord => faqWord.includes(word) || word.includes(faqWord))) {
+        matchCount++;
+      }
+    }
+    return matchCount >= 2;
+  }
+
+  // Event listeners with null checks
+  if (toggleChat && chatWindow) {
+    console.log('✅ Adding click event listener to toggle button');
+    toggleChat.addEventListener('click', function() {
+      console.log('🖱️ Toggle button clicked!');
+      chatWindow.classList.toggle('hidden');
+      console.log('Chat window hidden class:', chatWindow.classList.contains('hidden'));
+    });
+  } else {
+    console.log('❌ Toggle button or chat window not found');
+    console.log('Available elements with IDs:', document.querySelectorAll('[id]'));
+  }
+  
+  if (closeChat && chatWindow) {
+    closeChat.addEventListener('click', () => chatWindow.classList.add('hidden'));
+  }
+  
+  if (sendMessage && userInput) {
+    sendMessage.addEventListener('click', () => {
+      const message = userInput.value.trim();
+      if (message) {
+        processUserInput(message);
+        userInput.value = '';
+      }
+    });
+  }
+
+  if (userInput) {
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && userInput.value.trim()) {
+        processUserInput(userInput.value);
+        userInput.value = '';
+      }
+    });
+  }
+
+  // Add welcome message
+  setTimeout(() => {
+    addMessage('مرحباً! أنا المساعد الذكي لشركة YAS. كيف يمكنني مساعدتك اليوم؟ يمكنك سؤالي عن خدماتنا، مدة التنفيذ، التكلفة، أو أي استفسار آخر.');
+  }, 1000);
+
+  // Manual test function accessible from console
+  window.testChatbot = function() {
+    console.log('🧪 Testing chatbot manually...');
+    const btn = document.getElementById('toggle-chat');
+    const window = document.getElementById('chat-window');
+    if (btn && window) {
+      btn.click();
+      console.log('✅ Chatbot test successful!');
+    } else {
+      console.log('❌ Chatbot elements not found');
+    }
+  };
+
+  console.log('💡 You can test the chatbot manually by typing: testChatbot() in the console');
+}); 
