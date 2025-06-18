@@ -30,32 +30,46 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Work Steps Animation
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = "fadeInUp 0.6s ease forwards";
-          entry.target.style.opacity = "1";
-          const index = Array.from(
-            document.querySelectorAll(".work-step")
-          ).indexOf(entry.target);
-          const progress = document.querySelector(".work-progress");
-          if (progress) {
-            progress.style.width = (index + 1) * (100 / 6) + "%";
+  const workSteps = document.querySelectorAll('.work-step');
+  
+  // Set initial state for all work steps
+  workSteps.forEach((step, index) => {
+    step.style.opacity = '0';
+    step.style.transform = 'translateY(32px)';
+    step.style.transition = 'all 0.6s ease-out';
+  });
+  
+  const workObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        // Add a small delay based on the step index for staggered animation
+        const stepIndex = Array.from(workSteps).indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, stepIndex * 150); // 150ms delay between each step
+        
+        // Update progress bar if it exists
+        const progress = document.querySelector(".work-progress");
+        if (progress) {
+          setTimeout(() => {
+            progress.style.width = (stepIndex + 1) * (100 / 6) + "%";
             progress.style.transition = "width 0.6s ease";
-          }
+          }, stepIndex * 150);
         }
-      });
-    },
-    {
-      threshold: 0.1,
-    }
-  );
-
-  document.querySelectorAll(".work-step").forEach((step, index) => {
-    step.style.opacity = "0";
-    step.style.animationDelay = index * 200 + "ms";
-    observer.observe(step);
+      } else {
+        // Reset animation when out of view (optional - for re-triggering)
+        entry.target.style.opacity = '0';
+        entry.target.style.transform = 'translateY(32px)';
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  workSteps.forEach((step, index) => {
+    workObserver.observe(step);
   });
 
   // FAQ Accordion
@@ -238,4 +252,47 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   console.log('💡 You can test the chatbot manually by typing: testChatbot() in the console');
+
+  // Service Selection Functionality
+  document.querySelectorAll('a[data-service]').forEach(button => {
+    button.addEventListener('click', function(e) {
+      const serviceValue = this.getAttribute('data-service');
+      
+      // Store the selected service in sessionStorage to persist it
+      if (serviceValue) {
+        sessionStorage.setItem('selectedService', serviceValue);
+      }
+      
+      // Small delay to ensure the page has scrolled to the form
+      setTimeout(() => {
+        const serviceDropdown = document.getElementById('service');
+        if (serviceDropdown && serviceValue) {
+          serviceDropdown.value = serviceValue;
+          
+          // Add a visual indication that the service was selected
+          serviceDropdown.style.borderColor = '#00CCFF';
+          serviceDropdown.style.boxShadow = '0 0 0 2px rgba(0, 204, 255, 0.2)';
+          
+          // Reset the visual indication after 2 seconds
+          setTimeout(() => {
+            serviceDropdown.style.borderColor = '';
+            serviceDropdown.style.boxShadow = '';
+          }, 2000);
+        }
+      }, 100);
+    });
+  });
+
+  // Check if there's a stored service selection when page loads
+  window.addEventListener('load', () => {
+    const storedService = sessionStorage.getItem('selectedService');
+    if (storedService) {
+      const serviceDropdown = document.getElementById('service');
+      if (serviceDropdown) {
+        serviceDropdown.value = storedService;
+        // Clear the stored service after using it
+        sessionStorage.removeItem('selectedService');
+      }
+    }
+  });
 }); 
