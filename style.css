@@ -157,14 +157,14 @@ body {
 }
 
 .tab-pane {
-  display: none;
+  display: none !important;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .tab-pane.active {
-  display: block;
+  display: block !important;
   opacity: 1;
   transform: translateY(0);
 }
@@ -173,9 +173,17 @@ body {
 /* Why YAS Section Specific Styles */
 /* =============================================== */
 
+#why-yas .tab-content .tab-pane {
+  display: none !important;
+}
+
+#why-yas .tab-content .tab-pane.active {
+  display: block !important;
+}
+
 #why-yas .tab-button.active {
-  background-color: var(--primary);
-  color: var(--background);
+  background-color: var(--primary) !important;
+  color: var(--background) !important;
   box-shadow: 0 4px 14px 0 rgba(0, 204, 255, 0.3);
   transform: translateY(-2px);
 }
@@ -184,14 +192,22 @@ body {
 /* Policies & Models Section Specific Styles */
 /* =============================================== */
 
+#policies-models .tab-content .tab-pane {
+  display: none !important;
+}
+
+#policies-models .tab-content .tab-pane.active {
+  display: block !important;
+}
+
 #policies-models .tab-btn {
   border-bottom: 4px solid transparent;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 #policies-models .tab-btn.active {
-  color: var(--primary);
-  border-color: var(--primary);
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
 }
 
 @media (max-width: 768px) {

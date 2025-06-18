@@ -1049,9 +1049,11 @@
           <script>
             document.addEventListener("DOMContentLoaded", function () {
               const tabButtons = document.querySelectorAll(".tab-button");
-              const tabPanes = document.querySelectorAll(".tab-pane");
+              // const tabPanes = document.querySelectorAll(".tab-pane"); // DISABLED: Causes conflicts
 
               function switchTab(tabId) {
+                // DISABLED: This function causes cross-section tab conflicts
+                /*
                 // Remove active class from all buttons and reset their styles
                 tabButtons.forEach((btn) => {
                   btn.classList.remove("active");
@@ -1080,6 +1082,7 @@
                     activePane.classList.add("active");
                   }, 50);
                 }
+                */
               }
 
               tabButtons.forEach((button) => {
@@ -1906,7 +1909,7 @@
           <script>
             document.addEventListener("DOMContentLoaded", function () {
               const tabButtons = document.querySelectorAll("#policy-tabs .tab-btn");
-              const tabPanes = document.querySelectorAll(".tab-pane");
+              // const tabPanes = document.querySelectorAll(".tab-pane"); // DISABLED: Causes conflicts
 
               function switchTab(tabId) {
                 // Remove active class from all buttons and reset their styles
@@ -1915,25 +1918,25 @@
                   btn.classList.remove("text-primary", "border-primary");
                   btn.classList.add("text-gray-500", "border-transparent");
                 });
-                tabPanes.forEach((pane) => {
-                  pane.classList.add("hidden");
-                  pane.classList.remove("active");
-                });
+                // tabPanes.forEach((pane) => {
+                //   pane.classList.add("hidden");
+                //   pane.classList.remove("active");
+                // });
 
                 // Add active class to clicked button and set active styles
                 const activeButton = document.querySelector(
                   `[data-tab="${tabId}"]`
                 );
-                const activePane = document.getElementById(tabId);
+                // const activePane = document.getElementById(tabId);
 
-                if (activeButton && activePane) {
+                if (activeButton) {
                   activeButton.classList.add("active");
                   activeButton.classList.remove("text-gray-500", "border-transparent");
                   activeButton.classList.add("text-primary", "border-primary");
                   
-                  activePane.classList.remove("hidden");
+                  // activePane.classList.remove("hidden");
                   setTimeout(() => {
-                    activePane.classList.add("active");
+                    // activePane.classList.add("active");
                   }, 50);
                 }
               }

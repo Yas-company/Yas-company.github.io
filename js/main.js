@@ -104,17 +104,43 @@ document.addEventListener("DOMContentLoaded", function () {
     if (tabButtons.length === 0 || tabPanes.length === 0) return;
 
     const switchTab = (targetId) => {
-      // Deactivate all in this group
-      tabPanes.forEach(pane => pane.classList.remove('active'));
-      tabButtons.forEach(button => button.classList.remove('active'));
+      // Only deactivate tabs within THIS specific container
+      tabPanes.forEach(pane => {
+        pane.classList.remove('active');
+        pane.style.display = 'none';
+      });
+      
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+        // Reset button styles based on section
+        if (containerSelector === '#why-yas') {
+          // Reset Why YAS button styles
+          button.className = "tab-button px-6 py-3 rounded-xl bg-accent/10 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-accent/20";
+        } else if (containerSelector === '#policies-models') {
+          // Reset Policies button styles
+          button.classList.remove("text-primary", "border-primary");
+          button.classList.add("text-gray-500", "border-transparent");
+        }
+      });
 
-      // Activate the target
+      // Activate the target within THIS container only
       const targetPane = tabContent.querySelector(`#${targetId}`);
       const targetButton = container.querySelector(`[data-tab="${targetId}"]`);
 
       if (targetPane && targetButton) {
         targetPane.classList.add('active');
+        targetPane.style.display = 'block';
         targetButton.classList.add('active');
+        
+        // Apply section-specific active styles
+        if (containerSelector === '#why-yas') {
+          // Why YAS active button styles
+          targetButton.className = "tab-button active px-6 py-3 rounded-xl bg-primary text-background shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300";
+        } else if (containerSelector === '#policies-models') {
+          // Policies active button styles
+          targetButton.classList.remove("text-gray-500", "border-transparent");
+          targetButton.classList.add("text-primary", "border-primary");
+        }
       }
     };
 
@@ -125,8 +151,15 @@ document.addEventListener("DOMContentLoaded", function () {
         switchTab(tabId);
       });
     });
+
+    // Initialize the first tab as active for each section
+    if (tabButtons.length > 0) {
+      const firstTabId = tabButtons[0].getAttribute('data-tab');
+      switchTab(firstTabId);
+    }
   }
 
+  // Initialize each tab group independently
   initializeTabGroup('#why-yas');
   initializeTabGroup('#policies-models');
   // --- END NEW UNIFIED TAB SYSTEM ---
