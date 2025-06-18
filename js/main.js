@@ -90,35 +90,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Animated Tabs for Policies Section
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanes = document.querySelectorAll('.tab-pane');
-  const underline = document.getElementById('tab-underline');
-  function updateUnderline() {
-    const activeBtn = document.querySelector('.tab-btn.active');
-    if (activeBtn && underline) {
-      underline.style.width = activeBtn.offsetWidth + 'px';
-      underline.style.left = activeBtn.offsetLeft + 'px';
-    }
-  }
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-      // console.log('clicked');
-      tabBtns.forEach(b => b.classList.remove('active', 'text-primary', 'border-primary'));
-      this.classList.add('active', 'text-primary', 'border-primary');
-      tabPanes.forEach(pane => pane.classList.remove('active'));
-      document.getElementById(this.getAttribute('data-tab')).classList.add('active');
-      updateUnderline();
-    });
-  });
-  window.addEventListener('resize', updateUnderline);
-  updateUnderline();
+  // --- START NEW UNIFIED TAB SYSTEM ---
+  function initializeTabGroup(containerSelector) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
 
-  // Fix underline on horizontal scroll
-  const policyTabs = document.getElementById('policy-tabs');
-  if (policyTabs) {
-    policyTabs.addEventListener('scroll', updateUnderline);
+    const tabButtons = container.querySelectorAll('[data-tab]');
+    const tabContent = container.querySelector('.tab-content');
+    
+    if (!tabContent) return;
+    const tabPanes = tabContent.querySelectorAll('.tab-pane');
+
+    if (tabButtons.length === 0 || tabPanes.length === 0) return;
+
+    const switchTab = (targetId) => {
+      // Deactivate all in this group
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+      tabButtons.forEach(button => button.classList.remove('active'));
+
+      // Activate the target
+      const targetPane = tabContent.querySelector(`#${targetId}`);
+      const targetButton = container.querySelector(`[data-tab="${targetId}"]`);
+
+      if (targetPane && targetButton) {
+        targetPane.classList.add('active');
+        targetButton.classList.add('active');
+      }
+    };
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tabId = button.getAttribute('data-tab');
+        switchTab(tabId);
+      });
+    });
   }
+
+  initializeTabGroup('#why-yas');
+  initializeTabGroup('#policies-models');
+  // --- END NEW UNIFIED TAB SYSTEM ---
 
   // AI Assistant Chatbot
   const knowledgeBase = {
