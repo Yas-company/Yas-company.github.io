@@ -64,7 +64,7 @@ body {
 }
 
 :root {
-  --primary: #00CCFF;
+primary: #00CCFF;
   --secondary: #007FFF;
   --accent: #194CE5;
   --background: #000033;
