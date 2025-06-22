@@ -64,7 +64,7 @@ body {
 }
 
 :root {
-primary: #00CCFF;
+  --primary: #00CCFF;
   --secondary: #007FFF;
   --accent: #194CE5;
   --background: #000033;
@@ -203,11 +203,32 @@ primary: #00CCFF;
 #policies-models .tab-btn {
   border-bottom: 4px solid transparent;
   transition: color 0.3s ease, border-color 0.3s ease;
+  /* Ensure minimum visibility */
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #policies-models .tab-btn.active {
-  color: var(--primary) !important;
-  border-color: var(--primary) !important;
+  color: #00CCFF !important;
+  border-color: #00CCFF !important;
+  font-weight: bold !important;
+  /* Additional visibility styles */
+  background-color: rgba(0, 204, 255, 0.05) !important;
+}
+
+/* Ensure text remains visible */
+#policies-models .tab-btn:not(.active) {
+  color: #6b7280 !important;
+  border-color: transparent !important;
+}
+
+/* Force visibility on hover */
+#policies-models .tab-btn:hover {
+  color: #00CCFF !important;
+  background-color: rgba(0, 204, 255, 0.1) !important;
 }
 
 @media (max-width: 768px) {
