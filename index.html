@@ -2405,284 +2405,263 @@
                 في الحقوق والواجبات.
               </p>
             </div>
-            <!-- Animated Tabs -->
-            <div>
-              <div
-                class="mb-8 border-b-2 border-accent/20 relative overflow-x-auto"
-                id="policy-tabs"
-              >
-                <!-- Mobile: Horizontal scroll, Desktop: Centered flex -->
-                <div class="flex md:justify-center gap-2 md:gap-4 min-w-max md:min-w-0">
-                <button
-                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-primary border-b-4 border-primary transition-all duration-300 active whitespace-nowrap"
-                  data-tab="tab1"
-                  style="color: #00CCFF !important; border-color: #00CCFF !important; background-color: rgba(0, 204, 255, 0.05);"
-                >
-                  التنفيذ الكامل بدون التزام مستقبلي
-                </button>
-                <button
-                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
-                  data-tab="tab2"
-                  style="color: #6b7280 !important;"
-                >
-                  التنفيذ والدعم الفني المستمر
-                </button>
-                <button
-                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
-                  data-tab="tab3"
-                  style="color: #6b7280 !important;"
-                >
-                  شراكة تشغيلية مع مشاركة الأرباح
-                </button>
-                <button
-                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
-                  data-tab="tab4"
-                  style="color: #6b7280 !important;"
-                >
-                  شراكة ستراتيجية بملكية مشتركة
-                </button>
-                <button
-                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
-                  data-tab="tab5"
-                  style="color: #6b7280 !important;"
-                >
-                  استثمار مباشر من YAS بملكية مسيطرة
-                </button>
+            <!-- Responsive Tabs - Redesigned -->
+            <div class="policies-tabs-container">
+              <!-- Mobile Tab Selector -->
+              <div class="lg:hidden mb-6">
+                <div class="relative">
+                  <select id="mobile-tab-select" class="w-full p-4 rounded-xl border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none appearance-none">
+                    <option value="tab1">التنفيذ الكامل بدون التزام مستقبلي</option>
+                    <option value="tab2">التنفيذ والدعم الفني المستمر</option>
+                    <option value="tab3">شراكة تشغيلية مع مشاركة الأرباح</option>
+                    <option value="tab4">شراكة ستراتيجية بملكية مشتركة</option>
+                    <option value="tab5">استثمار مباشر من YAS بملكية مسيطرة</option>
+                  </select>
+                  <div class="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <i class="ri-arrow-down-s-line text-xl text-gray-500"></i>
+                  </div>
                 </div>
-                <span
-                  id="tab-underline"
-                  class="absolute bottom-0 left-0 h-1 bg-primary transition-all duration-300"
-                  style="width: 0"
-                ></span>
               </div>
-              <div class="relative min-h-[320px] tab-content">
+
+              <!-- Desktop Tab Navigation -->
+              <div class="hidden lg:block mb-8">
+                <div class="flex flex-wrap justify-center gap-2">
+                  <button class="desktop-tab-btn active px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-primary text-white shadow-lg" data-tab="tab1">
+                    التنفيذ الكامل بدون التزام مستقبلي
+                  </button>
+                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab2">
+                    التنفيذ والدعم الفني المستمر
+                  </button>
+                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab3">
+                    شراكة تشغيلية مع مشاركة الأرباح
+                  </button>
+                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab4">
+                    شراكة ستراتيجية بملكية مشتركة
+                  </button>
+                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab5">
+                    استثمار مباشر من YAS بملكية مسيطرة
+                  </button>
+                </div>
+              </div>
+              <!-- Tab Content Cards -->
+              <div class="tab-content-container">
                 <!-- Tab 1 Content -->
-                <div class="tab-pane fade-in active" id="tab1">
-                  <div class="bg-gray-25 rounded-2xl shadow-xl p-10 border border-accent/20">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div
-                        class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center"
-                      >
-                        <i class="ri-shield-check-line text-3xl text-primary"></i>
+                <div class="tab-card active" id="tab1">
+                  <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-blue-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <i class="ri-shield-check-line text-2xl sm:text-3xl text-primary"></i>
                       </div>
-                      <h3 class="text-2xl font-bold text-primary">
+                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
                         التنفيذ الكامل بدون التزام مستقبلي
                       </h3>
                     </div>
-                    <p class="text-lg text-gray-600 mb-4">
-                      تسليم المشروع للعميل مع الكود المصدري دون أي التزام دعم
-                      مستقبلي.
+                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
+                      تسليم المشروع للعميل مع الكود المصدري دون أي التزام دعم مستقبلي.
                     </p>
-                    <div class="space-y-3 text-base text-gray-600">
-                      <div>
-                        <span class="font-bold text-gray-900">الوصف:</span> تنفيذ المشروع بناءً
-                        على المواصفات المطلوبة وتسليمه للعميل دون أي التزام.
+                    <div class="grid gap-4 sm:gap-5">
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الوصف:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">تنفيذ المشروع بناءً على المواصفات المطلوبة وتسليمه للعميل دون أي التزام.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الملكية:</span> ملكية كاملة للعميل.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الملكية:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">ملكية كاملة للعميل.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الالتزامات:</span>
-                        <ul class="list-disc pr-6">
-                          <li>
-                            تسليم الكود المصدري والتأكد من بناء التطبيق وفق متطلبات
-                            العميل
-                          </li>
-                          <li>لا يشمل أي دعم فني لاحق.</li>
-                        </ul>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
+                        <div class="text-gray-600 text-sm sm:text-base">
+                          <ul class="list-disc list-inside space-y-1">
+                            <li>تسليم الكود المصدري والتأكد من بناء التطبيق وفق متطلبات العميل</li>
+                            <li>لا يشمل أي دعم فني لاحق.</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">التكلفة:</span> قيمة التطوير حسب
-                        الاتفاق.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">قيمة التطوير حسب الاتفاق.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">مناسب لـ:</span> الجهات التي لديها
-                        فريق تقني داخلي أو ترغب بالاستقلال الكامل بعد التسليم.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">الجهات التي لديها فريق تقني داخلي أو ترغب بالاستقلال الكامل بعد التسليم.</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- Tab 2 Content -->
-                <div class="tab-pane fade-in" id="tab2">
-                  <div class="bg-gray-25 rounded-2xl shadow-xl p-10 border border-accent/20">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div
-                        class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center"
-                      >
-                        <i
-                          class="ri-customer-service-2-line text-3xl text-primary"
-                        ></i>
+                <div class="tab-card" id="tab2">
+                  <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-green-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <i class="ri-customer-service-2-line text-2xl sm:text-3xl text-primary"></i>
                       </div>
-                      <h3 class="text-2xl font-bold text-primary">
+                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
                         التنفيذ والدعم الفني المستمر
                       </h3>
                     </div>
-                    <p class="text-lg text-gray-700 mb-4">
-                      تسليم التطبيق مع عقد دعم فني مستمر بعد الإطلاق (أعطال،
-                      تحديثات، مراقبة أداء).
+                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
+                      تسليم التطبيق مع عقد دعم فني مستمر بعد الإطلاق (أعطال، تحديثات، مراقبة أداء).
                     </p>
-                    <div class="space-y-3 text-base text-gray-700">
-                      <div>
-                        <span class="font-bold text-gray-900">الوصف:</span> تنفيذ التطبيق،
-                        بالإضافة إلى عقد دعم فني لضمان استمرارية الأداء وحل المشاكل
-                        بعد الإطلاق.
+                    <div class="grid gap-4 sm:gap-5">
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الوصف:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">تنفيذ التطبيق، بالإضافة إلى عقد دعم فني لضمان استمرارية الأداء وحل المشاكل بعد الإطلاق.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الملكية:</span> ملكية كاملة للعميل.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الملكية:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">ملكية كاملة للعميل.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الالتزامات:</span>
-                        <ul class="list-disc pr-6">
-                          <li>دعم فني (أعطال، تحديثات، مراقبة أداء).</li>
-                          <li>مدة الدعم حسب الاتفاق.</li>
-                        </ul>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
+                        <div class="text-gray-600 text-sm sm:text-base">
+                          <ul class="list-disc list-inside space-y-1">
+                            <li>دعم فني (أعطال، تحديثات، مراقبة أداء).</li>
+                            <li>مدة الدعم حسب الاتفاق.</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">التكلفة:</span>
-                        <ol class="list-decimal pr-6">
-                          <li>تكلفة تطوير التطبيق.</li>
-                          <li>رسوم دعم فني دورية.</li>
-                        </ol>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
+                        <div class="text-gray-600 text-sm sm:text-base">
+                          <ol class="list-decimal list-inside space-y-1">
+                            <li>تكلفة تطوير التطبيق.</li>
+                            <li>رسوم دعم فني دورية.</li>
+                          </ol>
+                        </div>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">مناسب لـ:</span> الجهات غير التقنية
-                        التي ترغب في تفويض الدعم لشريك موثوق.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">الجهات غير التقنية التي ترغب في تفويض الدعم لشريك موثوق.</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- Tab 3 Content -->
-                <div class="tab-pane fade-in" id="tab3">
-                  <div class="bg-gray-25 rounded-2xl shadow-xl p-10 border border-accent/20">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div
-                        class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center"
-                      >
-                        <i class="ri-hand-coin-line text-3xl text-primary"></i>
+                <div class="tab-card" id="tab3">
+                  <div class="bg-gradient-to-br from-yellow-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-yellow-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <i class="ri-hand-coin-line text-2xl sm:text-3xl text-primary"></i>
                       </div>
-                      <h3 class="text-2xl font-bold text-primary">
+                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
                         شراكة تشغيلية مع مشاركة الأرباح
                       </h3>
                     </div>
-                    <p class="text-lg text-gray-700 mb-4">
-                      تطوير المشروع والدخول في شراكة تشغيلية يتم فيها تقديم الخدمة
-                      باسم YAS مقابل نسبة أرباح.
+                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
+                      تطوير المشروع والدخول في شراكة تشغيلية يتم فيها تقديم الخدمة باسم YAS مقابل نسبة أرباح.
                     </p>
-                    <div class="space-y-3 text-base text-gray-700">
-                      <div>
-                        <span class="font-bold text-gray-900">الوصف:</span> تطوير المشروع والدخول
-                        في شراكة تشغيلية يتم فيها تقديم الخدمة باسم YAS مقابل نسبة
-                        أرباح.
+                    <div class="grid gap-4 sm:gap-5">
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الوصف:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">تطوير المشروع والدخول في شراكة تشغيلية يتم فيها تقديم الخدمة باسم YAS مقابل نسبة أرباح.</span>
                       </div>
-                      <div><span class="font-bold text-gray-900">الملكية:</span> ملك للعميل.</div>
-                      <div>
-                        <span class="font-bold text-gray-900">الالتزامات:</span>
-                        <ul class="list-disc pr-6">
-                          <li>YAS مسؤولة عن التشغيل والدعم والخبرة التقنية.</li>
-                          <li>
-                            يتم تحديد نسبة مشاركة الأرباح (مثال: YAS 20% - الشريك
-                            80%).
-                          </li>
-                        </ul>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الملكية:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">ملك للعميل.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">التكلفة:</span> تتحمل YAS تكلفة
-                    تطوير التطبيق والدعم الفني مقابل نسبتها في الشركة.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
+                        <div class="text-gray-600 text-sm sm:text-base">
+                          <ul class="list-disc list-inside space-y-1">
+                            <li>YAS مسؤولة عن التشغيل والدعم والخبرة التقنية.</li>
+                            <li>يتم تحديد نسبة مشاركة الأرباح (مثال: YAS 20% - الشريك 80%).</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">مناسب لـ:</span> رواد الأعمال الذين
-                        يملكون فكرة قابلة للتطبيق ولكن بميزانية محدودة.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">تتحمل YAS تكلفة تطوير التطبيق والدعم الفني مقابل نسبتها في الشركة.</span>
+                      </div>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">رواد الأعمال الذين يملكون فكرة قابلة للتطبيق ولكن بميزانية محدودة.</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- Tab 4 Content -->
-                <div class="tab-pane fade-in" id="tab4">
-                  <div class="bg-gray-25 rounded-2xl shadow-xl p-10 border border-accent/20">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div
-                        class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center"
-                      >
-                        <i class="ri-hand-heart-line text-3xl text-primary"></i>
+                <div class="tab-card" id="tab4">
+                  <div class="bg-gradient-to-br from-purple-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-purple-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <i class="ri-hand-heart-line text-2xl sm:text-3xl text-primary"></i>
                       </div>
-                      <h3 class="text-2xl font-bold text-primary">
+                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
                         شراكة ستراتيجية بملكية مشتركة
                       </h3>
                     </div>
-                    <p class="text-lg text-gray-700 mb-4">
+                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
                       شراكة متكاملة تتقاسم فيها YAS والشريك المسؤوليات والملكية.
                     </p>
-                    <div class="space-y-3 text-base text-gray-700">
-                      <div>
-                        <span class="font-bold text-gray-900">الوصف:</span> شراكة متكاملة تتقاسم
-                        فيها YAS والشريك المسؤوليات والملكية.
+                    <div class="grid gap-4 sm:gap-5">
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الوصف:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">شراكة متكاملة تتقاسم فيها YAS والشريك المسؤوليات والملكية.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الملكية:</span> مشتركة حسب الاتفاق
-                        (مثال: YAS 50% - الشريك 50%).
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الملكية:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">مشتركة حسب الاتفاق (مثال: YAS 50% - الشريك 50%).</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الالتزامات:</span>
-                        <ul class="list-disc pr-6">
-                          <li>YAS مسؤولة عن التطوير التقني.</li>
-                          <li>
-                            يتم الاتفاق على الجانب الإداري والتسويقي ضمن بنود
-                            الشراكة.
-                          </li>
-                        </ul>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
+                        <div class="text-gray-600 text-sm sm:text-base">
+                          <ul class="list-disc list-inside space-y-1">
+                            <li>YAS مسؤولة عن التطوير التقني.</li>
+                            <li>يتم الاتفاق على الجانب الإداري والتسويقي ضمن بنود الشراكة.</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">التكلفة:</span> YAS تتحمل تكلفة
-                        التطوير.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">YAS تتحمل تكلفة التطوير.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">مناسب لـ:</span> المشاريع الطموحة
-                        التي تحتاج إلى تكامل بين التقنية والإدارة.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">المشاريع الطموحة التي تحتاج إلى تكامل بين التقنية والإدارة.</span>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <!-- Tab 5 Content -->
-                <div class="tab-pane fade-in" id="tab5">
-                  <div class="bg-gray-25 rounded-2xl shadow-xl p-10 border border-accent/20">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div
-                        class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center"
-                      >
-                        <i
-                          class="ri-bar-chart-grouped-line text-3xl text-primary"
-                        ></i>
+                <div class="tab-card" id="tab5">
+                  <div class="bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-red-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <i class="ri-bar-chart-grouped-line text-2xl sm:text-3xl text-primary"></i>
                       </div>
-                      <h3 class="text-2xl font-bold text-primary">
+                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
                         استثمار مباشر من YAS بملكية مسيطرة
                       </h3>
                     </div>
-                    <p class="text-lg text-gray-700 mb-4">
+                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
                       تتبنى YAS المشروع وتتحمل تكلفته مقابل ملكية أكبر وتحكم أعلى.
                     </p>
-                    <div class="space-y-3 text-base text-gray-700">
-                      <div>
-                        <span class="font-bold text-gray-900">الوصف:</span> تتبنى YAS المشروع
-                        وتتحمل تكلفته مقابل ملكية أكبر وتحكم أعلى.
+                    <div class="grid gap-4 sm:gap-5">
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الوصف:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">تتبنى YAS المشروع وتتحمل تكلفته مقابل ملكية أكبر وتحكم أعلى.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الملكية:</span> YAS تمتلك النسبة
-                        الأكبر (مثال: YAS 80% - الشريك 20%).
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الملكية:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">YAS تمتلك النسبة الأكبر (مثال: YAS 80% - الشريك 20%).</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">الالتزامات:</span>
-                        <ul class="list-disc pr-6">
-                          <li>YAS مسؤولة عن التطوير والإدارة التقنية.</li>
-                          <li>الشريك يساهم في التمويل أو التسويق.</li>
-                        </ul>
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
+                        <div class="text-gray-600 text-sm sm:text-base">
+                          <ul class="list-disc list-inside space-y-1">
+                            <li>YAS مسؤولة عن التطوير والإدارة التقنية.</li>
+                            <li>الشريك يساهم في التمويل أو التسويق.</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">التكلفة:</span> توزيع التكاليف حسب
-                        نسبة التملك.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">توزيع التكاليف حسب نسبة التملك.</span>
                       </div>
-                      <div>
-                        <span class="font-bold text-gray-900">مناسب لـ:</span> الأفكار التي ترى
-                        YAS فيها فرصة استثمارية ترغب بتبنيها كمنتج رئيسي.
+                      <div class="flex flex-col sm:flex-row sm:items-start gap-2">
+                        <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
+                        <span class="text-gray-600 text-sm sm:text-base">الأفكار التي ترى YAS فيها فرصة استثمارية ترغب بتبنيها كمنتج رئيسي.</span>
                       </div>
                     </div>
                   </div>
@@ -2691,51 +2670,84 @@
             </div>
           </div>
 
-          <!--
+          <!-- Tab Functionality Script -->
           <script>
             document.addEventListener("DOMContentLoaded", function () {
-              const tabButtons = document.querySelectorAll("#policy-tabs .tab-btn");
-              // const tabPanes = document.querySelectorAll(".tab-pane"); // DISABLED: Causes conflicts
+              const mobileSelect = document.getElementById('mobile-tab-select');
+              const desktopTabs = document.querySelectorAll('.desktop-tab-btn');
+              const tabCards = document.querySelectorAll('.tab-card');
 
               function switchTab(tabId) {
-                // Remove active class from all buttons and reset their styles
-                tabButtons.forEach((btn) => {
-                  btn.classList.remove("active");
-                  btn.classList.remove("text-primary", "border-primary");
-                  btn.classList.add("text-gray-500", "border-transparent");
+                // Hide all tab cards
+                tabCards.forEach(card => {
+                  card.classList.remove('active');
                 });
-                // tabPanes.forEach((pane) => {
-                //   pane.classList.add("hidden");
-                //   pane.classList.remove("active");
-                // });
-
-                // Add active class to clicked button and set active styles
-                const activeButton = document.querySelector(
-                  `[data-tab="${tabId}"]`
-                );
-                // const activePane = document.getElementById(tabId);
-
-                if (activeButton) {
-                  activeButton.classList.add("active");
-                  activeButton.classList.remove("text-gray-500", "border-transparent");
-                  activeButton.classList.add("text-primary", "border-primary");
-                  
-                  // activePane.classList.remove("hidden");
-                  setTimeout(() => {
-                    // activePane.classList.add("active");
-                  }, 50);
-                }
+                
+                // Show selected tab card
+                document.getElementById(tabId).classList.add('active');
+                
+                // Update desktop tabs
+                desktopTabs.forEach(btn => {
+                  if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.remove('bg-gray-100', 'text-gray-700');
+                    btn.classList.add('bg-primary', 'text-white', 'shadow-lg');
+                  } else {
+                    btn.classList.remove('bg-primary', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-gray-100', 'text-gray-700');
+                  }
+                });
+                
+                // Update mobile select
+                mobileSelect.value = tabId;
               }
 
-              tabButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                  const tabId = button.getAttribute("data-tab");
+              // Desktop tab click handlers
+              desktopTabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                  const tabId = btn.getAttribute('data-tab');
                   switchTab(tabId);
                 });
               });
+
+              // Mobile select change handler
+              mobileSelect.addEventListener('change', (e) => {
+                switchTab(e.target.value);
+              });
             });
           </script>
-          -->
+
+          <style>
+            .policies-tabs-container {
+              direction: rtl;
+            }
+            
+            .tab-card {
+              display: none;
+              opacity: 0;
+              transform: translateY(20px);
+              transition: all 0.3s ease;
+            }
+            
+            .tab-card.active {
+              display: block;
+              opacity: 1;
+              transform: translateY(0);
+            }
+            
+            .desktop-tab-btn {
+              white-space: nowrap;
+              max-width: 280px;
+              text-align: center;
+            }
+            
+            @media (max-width: 1024px) {
+              .desktop-tab-btn {
+                font-size: 0.8rem;
+                padding: 0.75rem 1rem;
+                max-width: 200px;
+              }
+            }
+          </style>
         </section>
 
     <!-- General Principles Section -->
