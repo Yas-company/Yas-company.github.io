@@ -37,50 +37,37 @@
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="assets/yass logo-05.png" as="image" />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
-      as="style"
-    />
 
-    <!-- Font Loading Optimization -->
+    <!-- Google Fonts - Direct Load -->
+    <link rel="preconnect" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
     <link
-      rel="preload"
-      href="https://fonts.googleapis.com"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
-      as="style"
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css2?family=IBM%20Plex%20Sans%20Arabic:wght@300;400;500;600;700&display=swap"
     />
 
     <!-- Remix Icon with Preload -->
     <link
       rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      href="//cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
       as="style"
     />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      href="//cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
       rel="stylesheet"
     />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script src="//cdn.tailwindcss.com/3.4.16"></script>
+    
     <script>
       tailwind.config = {
         theme: {
           extend: {
+            fontFamily: {
+              'sans': ['IBM Plex Sans Arabic', 'system-ui', 'sans-serif'],
+              'arabic': ['IBM Plex Sans Arabic', 'system-ui', 'sans-serif'],
+            },
             colors: {
               background: "#000033",
               primary: "#91C8E4",
@@ -116,12 +103,8 @@
         },
       };
     </script>
-    <link
-      rel="stylesheet"
-      href="style.css"
-      media="print"
-      onload="this.media='all'"
-    />
+    
+
     
     <!-- Social Media Hover Styles -->
     <style>
@@ -157,6 +140,1050 @@
       }
       a[href*="snapchat"]:hover .ri-snapchat-line {
         color: #000000 !important;
+      }
+      
+      /* TikTok hover */
+      a[href*="tiktok"]:hover {
+        background-color: #000000 !important;
+      }
+      a[href*="tiktok"]:hover .ri-tiktok-line {
+        color: white !important;
+      }
+      
+      /* Policy Tabs Mobile Scrolling */
+      #policy-tabs {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 204, 255, 0.3) transparent;
+      }
+      
+      #policy-tabs::-webkit-scrollbar {
+        height: 4px;
+      }
+      
+      #policy-tabs::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      #policy-tabs::-webkit-scrollbar-thumb {
+        background: rgba(0, 204, 255, 0.3);
+        border-radius: 2px;
+      }
+      
+      #policy-tabs::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 204, 255, 0.5);
+      }
+      
+      /* Smooth scroll behavior for policy tabs */
+      @media (max-width: 768px) {
+        #policy-tabs {
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        .tab-btn {
+          font-size: 0.875rem !important;
+          line-height: 1.25rem !important;
+        }
+      }
+    </style>
+    <!-- Modern Why YAS Section Styles -->
+    <style>
+      /* Modern Why YAS Section Styles */
+      .feature-card {
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .feature-card.opacity-100 {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      
+      .feature-card.opacity-0 {
+        transform: translateY(2rem) scale(0.95);
+        opacity: 0;
+      }
+      
+      .progress-dot {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .progress-dot:hover {
+        transform: scale(1.2);
+      }
+      
+      .progress-dot.active {
+        transform: scale(1.3);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+      }
+      
+      /* Enhanced card hover effects */
+      .feature-card:hover .bg-white {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      
+      /* Gradient animation for titles */
+      .gradient-text {
+        background: linear-gradient(-45deg, #1f2937, #3b82f6, #6366f1, #1f2937);
+        background-size: 400% 400%;
+        animation: gradient-shift 8s ease infinite;
+      }
+      
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      /* Enhanced floating animations */
+      @keyframes float-gentle {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-10px) rotate(1deg); }
+        66% { transform: translateY(-5px) rotate(-1deg); }
+      }
+      
+      .animate-float-gentle {
+        animation: float-gentle 6s ease-in-out infinite;
+      }
+      
+      /* Smooth fade transitions */
+      .fade-transition {
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      
+      /* Card entrance animations */
+      @keyframes slideInFromRight {
+        0% {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      @keyframes slideInFromLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      .slide-in-right {
+        animation: slideInFromRight 0.8s ease-out forwards;
+      }
+      
+      .slide-in-left {
+        animation: slideInFromLeft 0.8s ease-out forwards;
+      }
+      
+      /* Orientation-Based Layout */
+      .orientation-container {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      
+      /* Portrait: Horizontal layout */
+      @media (orientation: portrait) {
+        .orientation-container {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        
+        .cards-container {
+          width: 100%;
+          order: 1;
+        }
+        
+        .slider-pagination {
+          width: 100%;
+          order: 2;
+        }
+      }
+      
+      /* Landscape: Vertical layout */
+      @media (orientation: landscape) {
+        .orientation-container {
+          flex-direction: row;
+          gap: 2rem;
+          align-items: stretch;
+        }
+        
+        .cards-container {
+          flex: 1;
+          order: 1;
+        }
+        
+        .slider-pagination {
+          width: 250px;
+          order: 2;
+          height: fit-content;
+        }
+      }
+      
+      /* Cards Container */
+      .cards-container {
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+      }
+      
+      .card-slide {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0;
+        display: none;
+        align-items: stretch;
+        justify-content: center;
+      }
+      
+      .card-slide.active {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .card-slide .card-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: 20px;
+        overflow: visible;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+        max-height: calc(100% - 2rem);
+      }
+      
+      /* Card Header */
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem 2rem 1rem 2rem;
+        flex-shrink: 0;
+      }
+      
+      .icon-container {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      
+      .icon-container i {
+        font-size: 2rem;
+      }
+      
+      .header-content {
+        flex: 1;
+      }
+      
+      .card-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+      }
+      
+      .title-underline {
+        width: 4rem;
+        height: 0.25rem;
+        border-radius: 0.125rem;
+      }
+      
+      /* Card Body */
+      .card-body {
+        flex: 1;
+        padding: 0 2rem 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        overflow-y: auto;
+      }
+      
+      .card-description {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: #4b5563;
+      }
+      
+      .features-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f9fafb;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+      }
+      
+      .feature-item:hover {
+        background: #f3f4f6;
+        transform: translateY(-2px);
+      }
+      
+      .feature-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      
+      .feature-icon i {
+        font-size: 1.25rem;
+      }
+      
+      .feature-content {
+        flex: 1;
+      }
+      
+      .feature-title {
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+      }
+      
+      .feature-desc {
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+      
+      /* Card Visual */
+      .card-visual {
+        flex-shrink: 0;
+        height: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .visual-circle {
+        width: 5rem;
+        height: 5rem;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .visual-circle i {
+        font-size: 2.5rem;
+      }
+      
+      /* Responsive Card Design */
+      @media (max-width: 768px) {
+        .card-content {
+          margin: 0.5rem;
+          max-width: calc(100% - 1rem);
+          max-height: calc(100% - 1rem);
+        }
+        
+        .card-header {
+          padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+          gap: 1rem;
+        }
+        
+        .icon-container {
+          width: 3rem;
+          height: 3rem;
+        }
+        
+        .icon-container i {
+          font-size: 1.5rem;
+        }
+        
+        .card-title {
+          font-size: 1.5rem;
+        }
+        
+        .title-underline {
+          width: 3rem;
+          height: 0.2rem;
+        }
+        
+        .card-body {
+          padding: 0 1.5rem 1.5rem 1.5rem;
+          gap: 1rem;
+        }
+        
+        .card-description {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+        
+        .feature-item {
+          padding: 0.75rem;
+          gap: 0.75rem;
+        }
+        
+        .feature-icon {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        
+        .feature-icon i {
+          font-size: 1rem;
+        }
+        
+        .feature-title {
+          font-size: 0.9rem;
+        }
+        
+        .feature-desc {
+          font-size: 0.8rem;
+        }
+        
+        .card-visual {
+          height: 6rem;
+        }
+        
+        .visual-circle {
+          width: 4rem;
+          height: 4rem;
+        }
+        
+        .visual-circle i {
+          font-size: 2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .cards-container {
+          min-height: 400px;
+        }
+        
+        .card-header {
+          padding: 1rem 1rem 0.5rem 1rem;
+          flex-direction: column;
+          text-align: center;
+          gap: 0.75rem;
+        }
+        
+        .card-title {
+          font-size: 1.25rem;
+        }
+        
+        .card-body {
+          padding: 0 1rem 1rem 1rem;
+          gap: 0.75rem;
+        }
+        
+        .card-description {
+          font-size: 0.9rem;
+        }
+        
+        .feature-item {
+          padding: 0.5rem;
+          gap: 0.5rem;
+        }
+        
+        .feature-icon {
+          width: 2rem;
+          height: 2rem;
+        }
+        
+        .feature-icon i {
+          font-size: 0.875rem;
+        }
+        
+        .feature-title {
+          font-size: 0.8rem;
+        }
+        
+        .feature-desc {
+          font-size: 0.75rem;
+        }
+      }
+      
+      /* Landscape orientation card adjustments */
+      @media (orientation: landscape) and (max-height: 600px) {
+        .cards-container {
+          min-height: 300px;
+        }
+        
+        .card-content {
+          margin: 0.5rem;
+        }
+        
+        .card-header {
+          padding: 1rem 1.5rem 0.5rem 1.5rem;
+          gap: 0.75rem;
+        }
+        
+        .icon-container {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        
+        .icon-container i {
+          font-size: 1.25rem;
+        }
+        
+        .card-title {
+          font-size: 1.25rem;
+        }
+        
+        .card-body {
+          padding: 0 1.5rem 1rem 1.5rem;
+          gap: 0.75rem;
+        }
+        
+        .card-description {
+          font-size: 0.9rem;
+          line-height: 1.5;
+        }
+        
+        .features-list {
+          gap: 0.5rem;
+        }
+        
+        .feature-item {
+          padding: 0.5rem;
+          gap: 0.5rem;
+        }
+        
+        .feature-icon {
+          width: 2rem;
+          height: 2rem;
+        }
+        
+        .feature-title {
+          font-size: 0.8rem;
+        }
+        
+        .feature-desc {
+          font-size: 0.7rem;
+        }
+        
+        .card-visual {
+          height: 4rem;
+        }
+        
+        .visual-circle {
+          width: 3rem;
+          height: 3rem;
+        }
+        
+        .visual-circle i {
+          font-size: 1.5rem;
+        }
+      }
+      
+      /* Responsive card content */
+      @media (max-width: 1024px) {
+        .cards-container {
+          min-height: 280px;
+        }
+        
+        .card-slide .grid {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+        
+        .card-slide .p-8 {
+          padding: 1.25rem !important;
+        }
+        
+        .card-slide .lg\\:p-12 {
+          padding: 1.25rem !important;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .cards-container {
+          min-height: 250px;
+        }
+        
+        .card-slide .p-6 {
+          padding: 1rem !important;
+        }
+        
+        .card-slide .p-8 {
+          padding: 1rem !important;
+        }
+        
+        .card-slide .text-3xl {
+          font-size: 1.4rem !important;
+        }
+        
+        .card-slide .text-lg {
+          font-size: 1rem !important;
+        }
+        
+        .card-slide .mb-8 {
+          margin-bottom: 0.75rem !important;
+        }
+        
+        .card-slide .mb-6 {
+          margin-bottom: 0.5rem !important;
+        }
+      }
+      
+      /* Landscape orientation fixes - Card Height Optimization */
+      @media (max-height: 600px) and (orientation: landscape) {
+        .cards-container {
+          min-height: 200px !important;
+        }
+        
+        /* Make cards more compact */
+        .card-slide .bg-white {
+          max-height: 300px !important;
+        overflow: hidden;
+      }
+      
+        .card-slide .grid {
+          gap: 0.75rem !important;
+          align-items: center !important;
+        }
+        
+        .card-slide .p-6,
+        .card-slide .p-8,
+        .card-slide .lg\\:p-12 {
+          padding: 0.75rem 1rem !important;
+        }
+        
+        .card-slide .text-3xl {
+          font-size: 1.25rem !important;
+          line-height: 1.3 !important;
+        }
+        
+        .card-slide .text-lg {
+          font-size: 0.9rem !important;
+          line-height: 1.4 !important;
+        }
+        
+        .card-slide .text-base {
+          font-size: 0.85rem !important;
+          line-height: 1.3 !important;
+        }
+        
+        .card-slide .mb-8,
+        .card-slide .mb-6,
+        .card-slide .mb-4 {
+          margin-bottom: 0.5rem !important;
+        }
+        
+        .card-slide .space-y-4 > * + *,
+        .card-slide .space-y-3 > * + *,
+        .card-slide .space-y-2 > * + * {
+          margin-top: 0.25rem !important;
+        }
+        
+        /* Compact list items */
+        .card-slide .flex.items-center {
+          padding: 0.5rem !important;
+        }
+        
+        /* Hide or compress decorative elements */
+        .card-slide .w-80.h-80,
+        .card-slide .w-40.h-40,
+        .card-slide .w-32.h-32 {
+          width: 120px !important;
+          height: 120px !important;
+        }
+        
+        /* Compress icon containers */
+        .card-slide .w-20.h-20 {
+          width: 3rem !important;
+          height: 3rem !important;
+        }
+        
+        .card-slide .w-16.h-16 {
+          width: 2.5rem !important;
+          height: 2.5rem !important;
+        }
+        
+        .card-slide .w-14.h-14 {
+          width: 2rem !important;
+          height: 2rem !important;
+        }
+        
+        .card-slide .w-12.h-12 {
+          width: 1.75rem !important;
+          height: 1.75rem !important;
+        }
+      }
+      
+      @media (max-height: 500px) and (orientation: landscape) {
+        .cards-container {
+          min-height: 180px !important;
+        }
+        
+        /* Even more compact cards for very short screens */
+        .card-slide .bg-white {
+          max-height: 250px !important;
+        }
+        
+        .card-slide .p-6,
+        .card-slide .p-8,
+        .card-slide .lg\\:p-12 {
+          padding: 0.5rem 0.75rem !important;
+        }
+        
+        .card-slide .text-3xl {
+          font-size: 1.1rem !important;
+        }
+        
+        .card-slide .text-lg {
+          font-size: 0.8rem !important;
+        }
+        
+        .card-slide .grid {
+          gap: 0.5rem !important;
+        }
+        
+        /* Hide large decorative images on very short screens */
+        .card-slide .w-80.h-80,
+        .card-slide .w-40.h-40 {
+          display: none !important;
+        }
+      }
+      
+      /* Slider Pagination Base */
+      .slider-pagination {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+      
+      /* Portrait Orientation - Horizontal Pagination */
+      @media (orientation: portrait) {
+        .slider-pagination {
+          margin-top: 2rem;
+        }
+        
+        .nav-controls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+        
+        .page-indicators {
+          display: flex;
+          gap: 0.25rem;
+          flex-wrap: wrap;
+          justify-content: center;
+          flex-grow: 1;
+          max-width: 500px;
+        }
+        
+        .page-indicator {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.2rem;
+          padding: 0.5rem 1.25rem;
+          border-radius: 10px;
+          border: 2px solid transparent;
+          background: rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          min-width: 70px;
+        }
+        
+
+      }
+      
+      /* Landscape Orientation - Vertical Pagination */
+      @media (orientation: landscape) {
+        .slider-pagination {
+          margin-top: 0;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          justify-content: space-between;
+          padding: 0.75rem;
+        }
+        
+        .nav-controls {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.75rem;
+        }
+        
+        .page-indicators {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          flex-grow: 1;
+          justify-content: center;
+        }
+        
+        .page-indicator {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+          border: 2px solid transparent;
+          background: rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          width: 100%;
+          justify-content: flex-start;
+          position: relative;
+        }
+        
+
+      }
+      
+      /* Common Styles */
+      .nav-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: rgba(0, 204, 255, 0.9);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+      
+      .nav-btn:hover:not(:disabled) {
+        background: rgba(0, 204, 255, 1);
+        transform: scale(1.1);
+      }
+      
+      .nav-btn:disabled {
+        background: rgba(0, 0, 0, 0.3);
+        cursor: not-allowed;
+        transform: scale(1);
+      }
+      
+      .page-indicator:hover {
+        background: rgba(0, 204, 255, 0.1);
+        border-color: rgba(0, 204, 255, 0.3);
+        transform: translateY(-2px);
+      }
+      
+      .page-indicator.active {
+        background: rgba(0, 204, 255, 0.15);
+        border-color: #00CCFF;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 204, 255, 0.2);
+      }
+      
+      .page-number {
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #00CCFF;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: rgba(0, 204, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+      
+      .page-indicator.active .page-number {
+        background: #00CCFF;
+        color: white;
+      }
+      
+      .page-title {
+        font-size: 0.75rem;
+        color: #666;
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: center;
+      }
+      
+      @media (orientation: landscape) {
+        .page-title {
+          text-align: right;
+          flex-grow: 1;
+        }
+        
+        .page-number {
+          position: absolute;
+          top: -0.25rem;
+          right: -0.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          font-size: 0.75rem;
+          border: 2px solid white;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          z-index: 10;
+        }
+        
+        .nav-btn {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+      
+      .page-indicator.active .page-title {
+        color: #00CCFF;
+        font-weight: 600;
+      }
+      
+      .progress-text {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      
+      /* Mobile Responsive Design */
+      @media (max-width: 768px) {
+        .orientation-container {
+          flex-direction: column !important;
+          gap: 1.5rem !important;
+        }
+        
+        .slider-pagination {
+          width: 100% !important;
+          order: 2 !important;
+          padding: 1rem !important;
+        }
+        
+        .cards-container {
+          order: 1 !important;
+        }
+        
+        .nav-controls {
+          flex-direction: column !important;
+          gap: 1rem !important;
+        }
+        
+        .page-indicators {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 0.5rem !important;
+          order: -1 !important;
+        }
+        
+        .page-indicator {
+          flex-direction: column !important;
+          min-width: unset !important;
+          width: 100% !important;
+          padding: 0.4rem 0.75rem !important;
+        }
+        
+        .nav-btn {
+          width: 2rem !important;
+          height: 2rem !important;
+        }
+        
+        .page-number {
+          width: 1.5rem !important;
+          height: 1.5rem !important;
+          font-size: 0.85rem !important;
+        }
+        
+        .page-title {
+          font-size: 0.65rem !important;
+          text-align: center !important;
+        }
+        
+
+      }
+      
+      @media (max-width: 480px) {
+        .slider-pagination {
+          padding: 0.75rem !important;
+        }
+        
+        .cards-container {
+          /* height: 50vh !important; */
+        }
+        
+        .page-indicator {
+          min-width: unset !important;
+          width: 100% !important;
+          padding: 0.3rem 0.6rem !important;
+        }
+        
+        .page-number {
+          width: 1.25rem !important;
+          height: 1.25rem !important;
+          font-size: 0.75rem !important;
+        }
+        
+        .page-title {
+          font-size: 0.6rem !important;
+        }
+        
+        .progress-text {
+          font-size: 0.8rem !important;
+        }
+      }
+      
+      /* Ensure text content is properly sized */
+      .card-slide .text-3xl {
+        font-size: clamp(1.2rem, 4vw, 3rem);
+      }
+      
+      .card-slide .text-lg {
+        font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+      }
+      
+      /* Additional landscape fixes for browsers without landscape: modifier */
+      @media screen and (max-height: 600px) and (min-width: 768px) {
+        #why-yas .py-12 {
+          padding-top: 1.5rem !important;
+          padding-bottom: 1.5rem !important;
+        }
+        
+        #why-yas .mb-4,
+        #why-yas .mb-6,
+        #why-yas .mb-8 {
+          margin-bottom: 0.75rem !important;
+        }
+        
+        #why-yas h2 {
+          font-size: 2rem !important;
+        }
+        
+        #why-yas p {
+          font-size: 1rem !important;
+          line-height: 1.4 !important;
+        }
       }
     </style>
   </head>
@@ -471,667 +1498,379 @@
 
 
         <!-- Why YAS Section -->
-        <section id="why-yas" class="py-20 px-6 bg-white">
-          <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-              <!-- <span class="text-primary font-medium text-lg">لماذا نحن؟</span> -->
-              <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-6 text-primary">لماذا نحن؟</h2>
-              <p class="text-gray-700 max-w-2xl mx-auto text-xl">
-                نحن شريكك الموثوق في رحلة التحول الرقمي
+        <section id="why-yas" class="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+          <!-- Background Elements -->
+          <div class="absolute inset-0 opacity-30 pointer-events-none">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl"></div>
+          </div>
+          
+          <!-- Header Section -->
+          <div class="py-12 md:py-16 lg:py-20 px-6 text-center relative z-10">
+            <div class="max-w-7xl mx-auto">
+              <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4 md:mb-6">
+                <i class="ri-star-line"></i>
+                <span>لماذا نحن؟</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 text-black">
+                نحن شريكك الموثوق
+              </h2>
+              <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed mb-6 md:mb-8">
+                في رحلة التحول الرقمي، نقدم حلولاً مبتكرة تجمع بين الخبرة العملية والتقنيات المتطورة
               </p>
             </div>
+          </div>
 
-            <!-- Interactive Tab Navigation -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12" role="tablist">
-              <button
-                class="tab-button active px-6 py-3 rounded-xl bg-primary text-background shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
-                data-tab="market"
-              >
-                <i class="ri-map-pin-user-line ri-lg mb-2"></i>
-                <span class="block">فهم السوق</span>
-              </button>
-              <button
-                class="tab-button px-6 py-3 rounded-xl bg-gray-25 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200"
-                data-tab="quality"
-              >
-                <i class="ri-award-line ri-lg mb-2"></i>
-                <span class="block">جودة التنفيذ</span>
-              </button>
-              <button
-                class="tab-button px-6 py-3 rounded-xl bg-gray-25 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200"
-                data-tab="commitment"
-              >
-                <i class="ri-time-line ri-lg mb-2"></i>
-                <span class="block">الالتزام</span>
-              </button>
-              <button
-                class="tab-button px-6 py-3 rounded-xl bg-gray-25 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200"
-                data-tab="passion"
-              >
-                <i class="ri-heart-line ri-lg mb-2"></i>
-                <span class="block">الشغف</span>
-              </button>
-              <button
-                class="tab-button px-6 py-3 rounded-xl bg-gray-25 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200"
-                data-tab="support"
-              >
-                <i class="ri-customer-service-2-line ri-lg mb-2"></i>
-                <span class="block">الدعم</span>
-              </button>
-              <button
-                class="tab-button px-6 py-3 rounded-xl bg-gray-25 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200"
-                data-tab="team"
-              >
-                <i class="ri-team-line ri-lg mb-2"></i>
-                <span class="block">الفريق</span>
-              </button>
-            </div>
-
-            <!-- Tab Content -->
-            <div class="tab-content relative">
-              <!-- Market Understanding Tab -->
-              <div class="tab-pane active" id="market">
-                <div
-                  class="rounded-3xl p-8 md:p-12 border border-primary/20"
-                >
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <div class="flex items-center gap-4 mb-6">
-                        <div
-                          class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center"
-                        >
-                          <i class="ri-map-pin-user-line ri-2x text-primary"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">فهم عميق للسوق</h3>
-                      </div>
-                      <p class="text-gray-900/80 text-lg leading-relaxed mb-8">
-                        نمتلك فهماً عميقاً للسوق المحلي واحتياجات المستخدمين، مما
-                        يمكننا من تقديم حلول مناسبة وفعالة
-                      </p>
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-gray-25 rounded-xl p-4 shadow-md border border-gray-200">
-                          <div class="flex items-center gap-3 mb-2">
-                            <div
-                              class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center"
-                            >
-                              <i class="ri-line-chart-line text-primary"></i>
-                            </div>
-                            <h4 class="font-bold text-gray-900">دراسات السوق</h4>
+          <!-- Cards Container -->
+          <div class="relative">
+            <div class="max-w-7xl mx-auto px-6">
+              <!-- Main Content Area with Orientation-Based Layout -->
+              <div class="orientation-container">
+                <!-- Cards Container -->
+                <div class="cards-container" id="cards-container">
+                    
+                    <!-- Card 1: Market Understanding -->
+                    <div class="card-slide active" data-step="0">
+                      <div class="card-content">
+                        <!-- Header -->
+                        <div class="card-header">
+                          <div class="icon-container bg-gradient-to-br from-primary/20 to-primary/10">
+                            <i class="ri-map-pin-user-line text-primary"></i>
                           </div>
-                          <p class="text-gray-900/70">تحليل شامل لاتجاهات السوق</p>
-                        </div>
-                        <div class="bg-gray-25 rounded-xl p-4 shadow-md border border-accent/20">
-                          <div class="flex items-center gap-3 mb-2">
-                            <div
-                              class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center"
-                            >
-                              <i class="ri-focus-3-line text-primary"></i>
-                            </div>
-                            <h4 class="font-bold text-gray-900">تحليل المنافسين</h4>
-                          </div>
-                          <p class="text-gray-900/70">دراسة متعمقة للمنافسة</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-center">
-                      <div class="relative w-80 h-80">
-                        <div
-                          class="absolute inset-0 bg-primary/10 rounded-full animate-spin-slow"
-                        ></div>
-                        <div
-                          class="absolute inset-4 bg-primary/20 rounded-full animate-spin-slow-reverse"
-                        ></div>
-                        <div
-                          class="absolute inset-8 bg-gray-25 rounded-full flex items-center justify-center border border-accent/20"
-                        >
-                          <i class="ri-map-pin-user-line ri-4x text-primary"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quality Tab -->
-              <div class="tab-pane hidden" id="quality">
-                <div
-                  class="rounded-3xl p-8 md:p-12 border border-primary/20"
-                >
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <div class="flex items-center gap-4 mb-6">
-                        <div
-                          class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center"
-                        >
-                          <i class="ri-award-line ri-2x text-primary"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">جودة تنفيذ عالية</h3>
-                      </div>
-                      <p class="text-gray-900/80 text-lg leading-relaxed mb-8">
-                        نقدم جودة تنفيذ عالية، مع مرونة تناسب كل مشروع وتلبي
-                        متطلباته الخاصة
-                      </p>
-                      <div class="space-y-4">
-                        <div class="bg-gray-25 rounded-xl p-4 shadow-md border border-accent/20">
-                          <h4 class="font-bold mb-2 text-gray-900">معايير عالمية</h4>
-                          <div class="w-full bg-accent/20 rounded-full h-2">
-                            <div
-                              class="bg-primary rounded-full h-2"
-                              style="width: 95%"
-                            ></div>
+                          <div class="header-content">
+                            <h3 class="card-title">فهم عميق للسوق</h3>
+                            <div class="title-underline bg-gradient-to-r from-primary to-blue-400"></div>
                           </div>
                         </div>
-                        <div class="bg-gray-25 rounded-xl p-4 shadow-md border border-accent/20">
-                          <h4 class="font-bold mb-2 text-gray-900">اختبارات شاملة</h4>
-                          <div class="w-full bg-accent/20 rounded-full h-2">
-                            <div
-                              class="bg-primary rounded-full h-2"
-                              style="width: 90%"
-                            ></div>
-                          </div>
-                        </div>
-                        <div class="bg-gray-25 rounded-xl p-4 shadow-md border border-accent/20">
-                          <h4 class="font-bold mb-2 text-gray-900">تطوير مستمر</h4>
-                          <div class="w-full bg-accent/20 rounded-full h-2">
-                            <div
-                              class="bg-primary rounded-full h-2"
-                              style="width: 85%"
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-center">
-                      <div class="relative w-80 h-80">
-                        <div
-                          class="absolute inset-0 bg-primary/10 rounded-full animate-spin-slow"
-                        ></div>
-                        <div
-                          class="absolute inset-4 bg-primary/20 rounded-full animate-spin-slow-reverse"
-                        ></div>
-                        <div
-                          class="absolute inset-8 bg-gray-25 rounded-full flex items-center justify-center border border-accent/20"
-                        >
-                          <i class="ri-award-line ri-4x text-primary"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Commitment Tab -->
-              <div class="tab-pane hidden" id="commitment">
-                <div
-                  class="rounded-3xl p-8 md:p-12 border border-primary/20"
-                >
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <div class="flex items-center gap-4 mb-6">
-                        <div
-                          class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center"
-                        >
-                          <i class="ri-time-line ri-2x text-primary"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">التزام بالمواعيد</h3>
-                      </div>
-                      <p class="text-gray-900/80 text-lg leading-relaxed mb-8">
-                        نلتزم بالوقت دون التفريط في جودة العمل، مع ضمان تسليم
-                        المشاريع في موعدها
-                      </p>
-                      <div class="space-y-4">
-                        <div class="bg-gray-25 rounded-xl p-6 shadow-md border border-accent/20">
-                          <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-bold text-gray-900">نسبة الالتزام بالمواعيد</h4>
-                            <span class="text-primary font-bold">98%</span>
-                          </div>
-                          <div class="w-full bg-accent/20 rounded-full h-2">
-                            <div
-                              class="bg-primary rounded-full h-2"
-                              style="width: 98%"
-                            ></div>
-                          </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                          <div
-                            class="bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20"
-                          >
-                            <div class="text-3xl font-bold text-primary mb-2">
-                              +500
-                            </div>
-                            <p class="text-gray-900/70">مشروع مكتمل</p>
-                          </div>
-                          <div
-                            class="bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20"
-                          >
-                            <div class="text-3xl font-bold text-primary mb-2">
-                              100%
-                            </div>
-                            <p class="text-gray-900/70">رضا العملاء</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-center">
-                      <div class="relative w-80 h-80">
-                        <div
-                          class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full animate-pulse"
-                        ></div>
-                        <div
-                          class="absolute inset-4 bg-gray-25 rounded-full flex items-center justify-center border border-accent/20"
-                        >
-                          <div class="text-center">
-                            <i class="ri-timer-line ri-4x text-primary mb-4"></i>
-                            <div class="text-2xl font-bold text-gray-900">
-                              دقة في المواعيد
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Passion Tab -->
-              <div class="tab-pane hidden" id="passion">
-                <div
-                  class="rounded-3xl p-8 md:p-12 border border-primary/20"
-                >
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <div class="flex items-center gap-4 mb-6">
-                        <div
-                          class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center"
-                        >
-                          <i class="ri-heart-line ri-2x text-primary"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">شغف وتفاني</h3>
-                      </div>
-                    <p class="text-gray-900/80 text-lg leading-relaxed mb-8">
-                        نتعامل مع كل مشروع وكأنه مشروعنا الخاص، ونضع كل خبراتنا
-                        وإمكانياتنا لإنجاءه
-                      </p>
-                      <div class="grid grid-cols-1 gap-4">
-                        <div class="bg-gray-25 rounded-xl p-6 shadow-md border border-accent/20">
-                          <div class="flex items-center gap-4 mb-3">
-                            <div
-                              class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
-                            >
-                              <i class="ri-focus-3-line text-primary"></i>
-                            </div>
-                            <h4 class="font-bold text-gray-900">تركيز على التفاصيل</h4>
-                          </div>
-                          <p class="text-gray-900/70">
-                            نهتم بأدق التفاصيل في كل مشروع لضمان أفضل النتائج
+                        
+                        <!-- Content -->
+                        <div class="card-body">
+                          <p class="card-description">
+                            نمتلك فهماً عميقاً للسوق المحلي واحتياجات المستخدمين، مما يمكننا من تقديم حلول مناسبة وفعالة تلبي توقعات العملاء وتتماشى مع الثقافة المحلية.
                           </p>
-                        </div>
-                        <div class="bg-gray-25 rounded-xl p-6 shadow-md border border-accent/20">
-                          <div class="flex items-center gap-4 mb-3">
-                            <div
-                              class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
-                            >
-                              <i class="ri-shield-star-line text-primary"></i>
+                          
+                          <div class="features-list">
+                            <div class="feature-item">
+                              <div class="feature-icon bg-primary/10">
+                                <i class="ri-line-chart-line text-primary"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">دراسات السوق الشاملة</h4>
+                                <p class="feature-desc">تحليل عميق لاتجاهات السوق والفرص</p>
+                              </div>
                             </div>
-                            <h4 class="font-bold text-gray-900">التزام بالجودة</h4>
+                            
+                            <div class="feature-item">
+                              <div class="feature-icon bg-primary/10">
+                                <i class="ri-focus-3-line text-primary"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">تحليل المنافسين</h4>
+                                <p class="feature-desc">دراسة متعمقة للمنافسة والتميز</p>
+                              </div>
+                            </div>
                           </div>
-                          <p class="text-gray-900/70">
-                            نسعى دائماً لتقديم أعلى مستويات الجودة في كل ما نقوم به
+                        </div>
+                        
+                        <!-- Visual -->
+                        <div class="card-visual bg-gradient-to-br from-primary/5 to-blue-50">
+                          <div class="visual-circle">
+                            <i class="ri-map-pin-user-line text-primary"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  <!-- Card 2: Quality Execution -->
+                    <div class="card-slide" data-step="1">
+                      <div class="card-content">
+                        <div class="card-header">
+                          <div class="icon-container bg-gradient-to-br from-yellow-200/20 to-yellow-100/10">
+                            <i class="ri-award-line text-yellow-600"></i>
+                          </div>
+                          <div class="header-content">
+                            <h3 class="card-title">جودة تنفيذ عالية</h3>
+                            <div class="title-underline bg-gradient-to-r from-yellow-400 to-orange-400"></div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-description">
+                            نقدم جودة تنفيذ عالية مع مرونة تناسب كل مشروع وتلبي متطلباته الخاصة، باستخدام أحدث التقنيات وأفضل الممارسات العالمية.
                           </p>
+                          <div class="features-list">
+                            <div class="feature-item">
+                              <div class="feature-icon bg-yellow-100">
+                                <i class="ri-global-line text-yellow-600"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">معايير عالمية</h4>
+                                <p class="feature-desc">نتبع أفضل المعايير العالمية في التطوير والبرمجة</p>
+                              </div>
+                            </div>
+                            <div class="feature-item">
+                              <div class="feature-icon bg-yellow-100">
+                                <i class="ri-test-tube-line text-yellow-600"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">اختبارات شاملة</h4>
+                                <p class="feature-desc">نجري اختبارات مكثفة لضمان جودة المنتج النهائي</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-visual bg-gradient-to-br from-yellow-50 to-orange-50">
+                          <div class="visual-circle">
+                            <i class="ri-award-line text-yellow-600"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="flex justify-center">
-                      <div class="relative w-80 h-80">
-                        <div
-                          class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full animate-pulse"
-                        ></div>
-                        <div
-                          class="absolute inset-4 bg-gray-25 rounded-full flex items-center justify-center border border-accent/20"
-                        >
-                          <i class="ri-heart-fill ri-4x text-red-500"></i>
+
+                  <!-- Card 3: Commitment -->
+                    <div class="card-slide" data-step="2">
+                      <div class="card-content">
+                        <div class="card-header">
+                          <div class="icon-container bg-gradient-to-br from-green-200/20 to-green-100/10">
+                            <i class="ri-time-line text-green-600"></i>
+                          </div>
+                          <div class="header-content">
+                            <h3 class="card-title">التزام بالمواعيد</h3>
+                            <div class="title-underline bg-gradient-to-r from-green-400 to-emerald-400"></div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-description">
+                            نلتزم بالوقت دون التفريط في جودة العمل، مع ضمان تسليم المشاريع في موعدها المحدد والحفاظ على أعلى معايير الجودة.
+                          </p>
+                          <div class="features-list">
+                            <div class="feature-item">
+                              <div class="feature-icon bg-green-100">
+                                <i class="ri-calendar-check-line text-green-600"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">التزامنا بالمواعيد</h4>
+                                <p class="feature-desc">نحرص على الالتزام بالمواعيد المحددة دون التفريط في جودة العمل</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-visual bg-gradient-to-br from-green-50 to-emerald-50">
+                          <div class="visual-circle">
+                            <i class="ri-timer-line text-green-600"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+
+                  <!-- Card 4: Passion -->
+                    <div class="card-slide" data-step="3">
+                      <div class="card-content">
+                        <div class="card-header">
+                          <div class="icon-container bg-gradient-to-br from-red-200/20 to-red-100/10">
+                            <i class="ri-heart-line text-red-500"></i>
+                          </div>
+                          <div class="header-content">
+                            <h3 class="card-title">شغف وتفاني</h3>
+                            <div class="title-underline bg-gradient-to-r from-red-400 to-pink-400"></div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-description">
+                            نتعامل مع كل مشروع وكأنه مشروعنا الخاص، ونضع كل خبراتنا وإمكانياتنا لإنجازه بأفضل شكل ممكن.
+                          </p>
+                          <div class="features-list">
+                            <div class="feature-item">
+                              <div class="feature-icon bg-red-100">
+                                <i class="ri-focus-3-line text-red-500"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">تركيز على التفاصيل</h4>
+                                <p class="feature-desc">نهتم بأدق التفاصيل في كل مشروع لضمان أفضل النتائج</p>
+                              </div>
+                            </div>
+                            <div class="feature-item">
+                              <div class="feature-icon bg-red-100">
+                                <i class="ri-shield-star-line text-red-500"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">التزام بالجودة</h4>
+                                <p class="feature-desc">نسعى دائماً لتقديم أعلى مستويات الجودة في كل ما نقوم به</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-visual bg-gradient-to-br from-red-50 to-pink-50">
+                          <div class="visual-circle">
+                            <i class="ri-heart-fill text-red-500"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  <!-- Card 5: Support -->
+                    <div class="card-slide" data-step="4">
+                      <div class="card-content">
+                        <div class="card-header">
+                          <div class="icon-container bg-gradient-to-br from-purple-200/20 to-purple-100/10">
+                            <i class="ri-customer-service-2-line text-purple-600"></i>
+                          </div>
+                          <div class="header-content">
+                            <h3 class="card-title">دعم مستمر</h3>
+                            <div class="title-underline bg-gradient-to-r from-purple-400 to-indigo-400"></div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-description">
+                            نواصل دعم عملائنا بعد الإطلاق وننمو معهم باستمرار، ونقدم خدمات متابعة وتطوير مستمرة.
+                          </p>
+                          <div class="features-list">
+                            <div class="feature-item">
+                              <div class="feature-icon bg-purple-100">
+                                <i class="ri-24-hours-line text-purple-600"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">دعم فني متواصل</h4>
+                                <p class="feature-desc">نقدم الدعم الفني والمساعدة عند الحاجة</p>
+                              </div>
+                            </div>
+                            <div class="feature-item">
+                              <div class="feature-icon bg-purple-100">
+                                <i class="ri-refresh-line text-purple-600"></i>
+                              </div>
+                              <div class="feature-content">
+                                <h4 class="feature-title">تحديثات دورية</h4>
+                                <p class="feature-desc">نحافظ على تحديث الأنظمة وتطويرها باستمرار</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-visual bg-gradient-to-br from-purple-50 to-indigo-50">
+                          <div class="visual-circle">
+                            <i class="ri-customer-service-2-line text-purple-600"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  <!-- Card 6: Team -->
+                    <div class="card-slide" data-step="5">
+                      <div class="card-content">
+                        <div class="card-header">
+                          <div class="icon-container bg-gradient-to-br from-blue-200/20 to-blue-100/10">
+                            <i class="ri-team-line text-blue-600"></i>
+                          </div>
+                          <div class="header-content">
+                            <h3 class="card-title">فريق متكامل</h3>
+                            <div class="title-underline bg-gradient-to-r from-blue-400 to-cyan-400"></div>
+                          </div>
+                        </div>
+                        <div class="card-body p-4 md:p-6">
+                          <p class="card-description text-sm md:text-base mb-4 text-center">
+                            نضم نخبة من الخبراء المتخصصين في مختلف المجالات التقنية لضمان تقديم حلول متكاملة ومبتكرة.
+                          </p>
+                          <h4 class="text-xl font-bold text-gray-900 mb-2 text-center">تخصصاتنا المتنوعة</h4>
+                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                            <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-code-s-slash-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">مطورو الواجهات</h5>
+                            </div>
+                            <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-server-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">مطورو الخادم</h5>
+                            </div>
+                            <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-layout-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">مصممو التجربة</h5>
+                            </div>
+                            <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-smartphone-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">مطورو الجوال</h5>
+                            </div>
+                            <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-database-2-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">علماء البيانات</h5>
+                            </div>
+                            <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-settings-3-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">مهندسو التشغيل</h5>
+                            </div>
+                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-bug-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">مهندسو الجودة</h5>
+                            </div>
+                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
+                              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-customer-service-2-line text-blue-600 text-xl"></i></div>
+                              <h5 class="font-bold text-gray-900 text-xs">الدعم الفني</h5>
+                            </div>
+                          </div>
+                          <div class="mt-4">
+                            <h5 class="text-lg font-bold text-gray-900 mb-3 text-center">التقنيات التي نستخدمها</h5>
+                            <div class="flex flex-wrap justify-center gap-2">
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">React</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">Node.js</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">Python</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">Flutter</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">AWS</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">Docker</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">MongoDB</span>
+                              <span class="px-3 py-1 bg-blue-100 rounded-full text-xs text-gray-800 border border-blue-200">PostgreSQL</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-visual bg-gradient-to-br from-blue-50 to-cyan-50">
+                          <div class="visual-circle">
+                            <i class="ri-team-line text-blue-600"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                 </div>
-              </div>
-
-              <!-- Support Tab -->
-              <div class="tab-pane hidden" id="support">
-                <div
-                  class="rounded-3xl p-8 md:p-12 border border-primary/20"
-                >
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <div class="flex items-center gap-4 mb-6">
-                        <div
-                          class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center"
-                        >
-                          <i
-                            class="ri-customer-service-2-line ri-2x text-primary"
-                          ></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900">دعم مستمر</h3>
-                      </div>
-                      <p class="text-gray-900/80 text-lg leading-relaxed mb-8">
-                        نواصل دعم عملائنا بعد الإطلاق وننمو معهم باستمرار، ونقدم
-                        خدمات متابعة وتطوير مستمرة
-                      </p>
-                      <div class="space-y-6">
-                        <div class="bg-gray-25 rounded-xl p-6 shadow-md border border-accent/20">
-                          <h4 class="font-bold mb-4 text-gray-900">خدمات الدعم المتوفرة</h4>
-                          <div class="space-y-3">
-                            <div class="flex items-center gap-3">
-                              <i class="ri-24-hours-line text-primary"></i>
-                              <span class="text-gray-900/80">دعم فني على مدار الساعة</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                              <i class="ri-bug-line text-primary"></i>
-                              <span class="text-gray-900/80">حل المشكلات الفورية</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                              <i class="ri-update-line text-primary"></i>
-                              <span class="text-gray-900/80">تحديثات دورية</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="bg-gray-25 rounded-xl p-6 shadow-md border border-accent/20">
-                          <div class="text-center">
-                            <div class="text-3xl font-bold text-primary mb-2">
-                              24/7
-                            </div>
-                            <p class="text-gray-900/70">دعم متواصل</p>
-                          </div>
-                        </div>
-                      </div>
+                
+                <!-- Slider Pagination -->
+                <div class="slider-pagination">
+                  <!-- Navigation Controls -->
+                  <div class="nav-controls">
+                    <button id="prev-card" class="nav-btn">
+                      <i class="ri-arrow-right-line text-xl"></i>
+                    </button>
+                    
+                    <!-- Page Indicators -->
+                    <div class="page-indicators">
+                      <button class="page-indicator active" data-page="0">
+                        <span class="page-number">1</span>
+                        <span class="page-title">فهم السوق</span>
+                      </button>
+                      <button class="page-indicator" data-page="1">
+                        <span class="page-number">2</span>
+                        <span class="page-title">جودة التنفيذ</span>
+                      </button>
+                      <button class="page-indicator" data-page="2">
+                        <span class="page-number">3</span>
+                        <span class="page-title">الالتزام</span>
+                      </button>
+                      <button class="page-indicator" data-page="3">
+                        <span class="page-number">4</span>
+                        <span class="page-title">الشغف</span>
+                      </button>
+                      <button class="page-indicator" data-page="4">
+                        <span class="page-number">5</span>
+                        <span class="page-title">الدعم</span>
+                      </button>
+                      <button class="page-indicator" data-page="5">
+                        <span class="page-number">6</span>
+                        <span class="page-title">الفريق</span>
+                      </button>
                     </div>
-                    <div class="flex justify-center">
-                      <div class="relative w-80 h-80">
-                        <div
-                          class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full animate-pulse"
-                        ></div>
-                        <div
-                          class="absolute inset-4 bg-gray-25 rounded-full flex items-center justify-center border border-accent/20"
-                        >
-                          <i
-                            class="ri-customer-service-2-line ri-4x text-green-500"
-                          ></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Team Tab -->
-              <div class="tab-pane hidden" id="team">
-                <div
-                  class="rounded-3xl p-8 md:p-12 border border-primary/20"
-                >
-                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-                    <!-- Team Overview -->
-                    <div class="lg:col-span-1">
-                      <div class="flex items-center gap-4 mb-6">
-                        <div
-                          class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center"
-                        >
-                          <i class="ri-team-line ri-2x text-primary"></i>
-                        </div>
-                    <h3 class="text-2xl font-bold text-gray-900">فريق متكامل</h3>
-                      </div>
-                      <p class="text-gray-900/80 text-lg leading-relaxed mb-8">
-                        نضم نخبة من الخبراء المتخصصين في مختلف المجالات التقنية
-                        لضمان تقديم حلول متكاملة ومبتكرة
-                      </p>
-                      
-                      <!-- Team Stats -->
-                      <div class="space-y-4 mb-8">
-                        <div class="bg-gray-25 rounded-xl p-4 border border-accent/20">
-                          <div class="flex items-center justify-between">
-                            <span class="text-gray-900/80">إجمالي الخبراء</span>
-                            <span class="text-2xl font-bold text-primary">25+</span>
-                          </div>
-                        </div>
-                        <div class="bg-gray-25 rounded-xl p-4 border border-accent/20">
-                          <div class="flex items-center justify-between">
-                            <span class="text-gray-900/80">سنوات الخبرة</span>
-                            <span class="text-2xl font-bold text-primary">15+</span>
-                          </div>
-                        </div>
-                        <div class="bg-gray-25 rounded-xl p-4 border border-accent/20">
-                          <div class="flex items-center justify-between">
-                            <span class="text-gray-900/80">التخصصات</span>
-                            <span class="text-2xl font-bold text-primary">8</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Team Specializations Grid -->
-                    <div class="lg:col-span-2">
-                      <h4 class="text-xl font-bold text-gray-900 mb-6 text-center">تخصصاتنا المتنوعة</h4>
-                      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <!-- Frontend Developers -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-code-s-slash-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">مطورو الواجهات</h5>
-                          <p class="text-xs text-gray-900/70">Frontend</p>
-                        </div>
-
-                        <!-- Backend Developers -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-server-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">مطورو الخادم</h5>
-                          <p class="text-xs text-gray-900/70">Backend</p>
-                        </div>
-
-                        <!-- UI/UX Designers -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-layout-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">مصممو التجربة</h5>
-                          <p class="text-xs text-gray-900/70">UI/UX</p>
-                        </div>
-
-                        <!-- Mobile Developers -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-smartphone-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">مطورو الجوال</h5>
-                          <p class="text-xs text-gray-900/70">Mobile</p>
-                        </div>
-
-                        <!-- Data Scientists -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-database-2-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">علماء البيانات</h5>
-                          <p class="text-xs text-gray-900/70">Data Science</p>
-                        </div>
-
-                        <!-- DevOps Engineers -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-settings-3-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">مهندسو التشغيل</h5>
-                          <p class="text-xs text-gray-900/70">DevOps</p>
-                        </div>
-
-                        <!-- QA Engineers -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-bug-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">مهندسو الجودة</h5>
-                          <p class="text-xs text-gray-900/70">QA/Testing</p>
-                        </div>
-
-                        <!-- Technical Support -->
-                        <div class="group bg-gray-25 rounded-xl p-4 shadow-md text-center border border-accent/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                          <div
-                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors duration-300"
-                          >
-                            <i class="ri-customer-service-2-line text-primary text-xl group-hover:scale-110 transition-transform duration-300"></i>
-                          </div>
-                          <h5 class="font-bold mb-1 text-gray-900 text-sm">الدعم الفني</h5>
-                          <p class="text-xs text-gray-900/70">24/7</p>
-                        </div>
-                      </div>
-
-                      <!-- Team Achievements -->
-                      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-primary/10 rounded-xl p-4 text-center border border-primary/20">
-                          <div class="text-2xl font-bold text-primary mb-1">500+</div>
-                          <p class="text-sm text-gray-900/80">مشروع مكتمل</p>
-                        </div>
-                        <div class="bg-primary/10 rounded-xl p-4 text-center border border-primary/20">
-                          <div class="text-2xl font-bold text-primary mb-1">99%</div>
-                          <p class="text-sm text-gray-900/80">رضا العملاء</p>
-                        </div>
-                        <div class="bg-primary/10 rounded-xl p-4 text-center border border-primary/20">
-                          <div class="text-2xl font-bold text-primary mb-1">50+</div>
-                          <p class="text-sm text-gray-900/80">شريك موثوق</p>
-                        </div>
-                        <div class="bg-primary/10 rounded-xl p-4 text-center border border-primary/20">
-                          <div class="text-2xl font-bold text-primary mb-1">24/7</div>
-                          <p class="text-sm text-gray-900/80">دعم متواصل</p>
-                        </div>
-                      </div>
-
-                      <!-- Technologies We Use -->
-                      <div class="mt-8">
-                        <h5 class="text-lg font-bold text-gray-900 mb-4 text-center">التقنيات التي نستخدمها</h5>
-                        <div class="flex flex-wrap justify-center gap-3">
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">React</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">Node.js</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">Python</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">Flutter</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">AWS</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">Docker</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">MongoDB</span>
-                          <span class="px-3 py-1 bg-accent/20 rounded-full text-sm text-gray-900/80 border border-accent/30">PostgreSQL</span>
-                        </div>
-                      </div>
-                    </div>
+                    
+                    <button id="next-card" class="nav-btn">
+                      <i class="ri-arrow-left-line text-xl"></i>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <style>
-            @keyframes spin-slow {
-              from {
-                transform: rotate(0deg);
-              }
-              to {
-                transform: rotate(360deg);
-              }
-            }
-            @keyframes spin-slow-reverse {
-              from {
-                transform: rotate(360deg);
-              }
-              to {
-                transform: rotate(0deg);
-              }
-            }
-            .animate-spin-slow {
-              animation: spin-slow 20s linear infinite;
-            }
-            .animate-spin-slow-reverse {
-              animation: spin-slow-reverse 15s linear infinite;
-            }
-            .tab-button.active {
-              background-color: var(--primary-color, #1748fc);
-              color: white;
-            }
-            .tab-pane {
-              transition: all 0.3s ease-in-out;
-            }
-            .tab-pane.hidden {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            .tab-pane.active {
-              opacity: 1;
-              transform: translateY(0);
-              display: block !important;
-            }
-          </style>
-
-          <!--
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const tabButtons = document.querySelectorAll(".tab-button");
-              // const tabPanes = document.querySelectorAll(".tab-pane"); // DISABLED: Causes conflicts
-
-              function switchTab(tabId) {
-                // DISABLED: This function causes cross-section tab conflicts
-                /*
-                // Remove active class from all buttons and reset their styles
-                tabButtons.forEach((btn) => {
-                  btn.classList.remove("active");
-                  // Reset to inactive state
-                  btn.className = "tab-button px-6 py-3 rounded-xl bg-gray-25 text-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200";
-                });
-                
-                // Hide all tab panes
-                tabPanes.forEach((pane) => {
-                  pane.classList.add("hidden");
-                  pane.classList.remove("active");
-                });
-
-                // Add active class to clicked button and set active styles
-                const activeButton = document.querySelector(
-                  `[data-tab="${tabId}"]`
-                );
-                const activePane = document.getElementById(tabId);
-
-                if (activeButton && activePane) {
-                  activeButton.classList.add("active");
-                  activeButton.className = "tab-button active px-6 py-3 rounded-xl bg-primary text-background shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300";
-                  
-                  activePane.classList.remove("hidden");
-                  setTimeout(() => {
-                    activePane.classList.add("active");
-                  }, 50);
-                }
-                */
-              }
-
-              tabButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                  const tabId = button.getAttribute("data-tab");
-                  switchTab(tabId);
-                });
-              });
-            });
-          </script>
-          -->
         </section>
 
         <!-- How We Work Section -->
@@ -1669,44 +2408,47 @@
             <!-- Animated Tabs -->
             <div>
               <div
-                class="flex justify-center gap-4 mb-8 border-b-2 border-accent/20 relative"
+                class="mb-8 border-b-2 border-accent/20 relative overflow-x-auto"
                 id="policy-tabs"
               >
+                <!-- Mobile: Horizontal scroll, Desktop: Centered flex -->
+                <div class="flex md:justify-center gap-2 md:gap-4 min-w-max md:min-w-0">
                 <button
-                  class="tab-btn min-w-[170px] px-6 py-3 text-lg font-bold text-primary border-b-4 border-primary transition-all duration-300 active"
+                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-primary border-b-4 border-primary transition-all duration-300 active whitespace-nowrap"
                   data-tab="tab1"
                   style="color: #00CCFF !important; border-color: #00CCFF !important; background-color: rgba(0, 204, 255, 0.05);"
                 >
                   التنفيذ الكامل بدون التزام مستقبلي
                 </button>
                 <button
-                  class="tab-btn min-w-[170px] px-6 py-3 text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300"
+                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
                   data-tab="tab2"
                   style="color: #6b7280 !important;"
                 >
                   التنفيذ والدعم الفني المستمر
                 </button>
                 <button
-                  class="tab-btn min-w-[170px] px-6 py-3 text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300"
+                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
                   data-tab="tab3"
                   style="color: #6b7280 !important;"
                 >
                   شراكة تشغيلية مع مشاركة الأرباح
                 </button>
                 <button
-                  class="tab-btn min-w-[170px] px-6 py-3 text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300"
+                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
                   data-tab="tab4"
                   style="color: #6b7280 !important;"
                 >
                   شراكة ستراتيجية بملكية مشتركة
                 </button>
                 <button
-                  class="tab-btn min-w-[170px] px-6 py-3 text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300"
+                    class="tab-btn flex-shrink-0 min-w-[120px] md:min-w-[170px] px-3 md:px-6 py-3 text-sm md:text-lg font-bold text-gray-500 border-b-4 border-transparent transition-all duration-300 whitespace-nowrap"
                   data-tab="tab5"
                   style="color: #6b7280 !important;"
                 >
                   استثمار مباشر من YAS بملكية مسيطرة
                 </button>
+                </div>
                 <span
                   id="tab-underline"
                   class="absolute bottom-0 left-0 h-1 bg-primary transition-all duration-300"
@@ -2214,29 +2956,7 @@
             </div>
           </div>
         </section>
-        <!-- Stats Section -->
-        <!-- <section class="py-16 px-6 bg-primary">
-          <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div class="text-4xl font-bold text-white mb-2">+250</div>
-                <p class="text-white/80">مشروع ناجح</p>
-              </div>
-              <div>
-                <div class="text-4xl font-bold text-white mb-2">+120</div>
-                <p class="text-white/80">عميل سعيد</p>
-              </div>
-              <div>
-                <div class="text-4xl font-bold text-white mb-2">+15</div>
-                <p class="text-white/80">سنة خبرة</p>
-              </div>
-              <div>
-                <div class="text-4xl font-bold text-white mb-2">+30</div>
-                <p class="text-white/80">خبير متخصص</p>
-              </div>
-            </div>
-          </div>
-        </section> -->
+
         <!-- Partners Section -->
         <section class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
@@ -2400,28 +3120,44 @@
                 </div>
                 <div class="flex gap-4">
                   <a
-                    href="#"
+                    href="https://x.com/YASTechSA"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors"
                   >
                     <i class="ri-twitter-x-line ri-lg"></i>
                   </a>
                   <a
-                    href="#"
-                    class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors"
+                    href="https://www.linkedin.com/company/yas-tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hidden w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors"
                   >
                     <i class="ri-linkedin-line ri-lg"></i>
                   </a>
                   <a
-                    href="#"
+                    href="https://www.snapchat.com/add/yastechsa"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors"
                   >
                     <i class="ri-snapchat-line ri-lg"></i>
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/yastechsa/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors"
                   >
                     <i class="ri-instagram-line ri-lg"></i>
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@yastechsa?lang=ar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors"
+                  >
+                    <i class="ri-tiktok-line ri-lg"></i>
                   </a>
                 </div>
               </div>
@@ -2626,7 +3362,7 @@
                 </p>
                 <div class="flex gap-4">
                   <a
-                    href="https://twitter.com/yas_tech"
+                    href="https://x.com/YASTechSA"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
@@ -2637,12 +3373,12 @@
                     href="https://linkedin.com/company/yas-tech"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+                    class="hidden w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
                   >
                     <i class="ri-linkedin-line ri-lg"></i>
                   </a>
                   <a
-                    href="https://snapchat.com/add/yas_tech"
+                    href="https://www.snapchat.com/add/yastechsa"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
@@ -2650,12 +3386,20 @@
                     <i class="ri-snapchat-line ri-lg"></i>
                   </a>
                   <a
-                    href="https://instagram.com/yas_tech"
+                    href="https://www.instagram.com/yastechsa/"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
                   >
                     <i class="ri-instagram-line ri-lg"></i>
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@yastechsa?lang=ar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-tiktok-line ri-lg"></i>
                   </a>
                 </div>
               </div>
@@ -2741,8 +3485,9 @@
                     <a
                       href="#achievements"
                       class="text-gray-400 hover:text-primary transition-colors text-lg"
-                      >إنجازاتنا</a
-                    >
+                      >
+                      مشاريعنا
+                      </a>
                   </li>
                   <li>
                     <a
@@ -2823,345 +3568,106 @@
         </div>
         
         <script src="js/main.js"></script>
-        <script>
-          // Add smooth scrolling behavior
-          document.addEventListener("DOMContentLoaded", function () {
-            // Get all navigation links
-            const navLinks = document.querySelectorAll('a[href^="#"]');
-
-            navLinks.forEach((link) => {
-              link.addEventListener("click", function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute("href");
-                if (targetId === "#") return; // Skip if it's just "#"
-
-                const targetElement = document.querySelector(targetId);
-                const navHeight = document.getElementById("mainNav").offsetHeight;
-
-                if (targetElement) {
-                  const targetPosition = targetElement.offsetTop - navHeight;
-                  window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth",
-                  });
-                }
-              });
-            });
-
-            // Highlight active section in navigation
-            const sections = document.querySelectorAll("section[id]");
-            const navItems = document.querySelectorAll(
-              ".nav-link, .nav-link-mobile"
-            );
-
-            function highlightNavigation() {
-              const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-              sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                const sectionId = section.getAttribute("id");
-
-                if (
-                  scrollPosition >= sectionTop &&
-                  scrollPosition < sectionBottom
-                ) {
-                  navItems.forEach((item) => {
-                    item.classList.remove("text-primary");
-                    if (item.getAttribute("href") === `#${sectionId}`) {
-                      item.classList.add("text-primary");
-                    }
-                  });
-                }
-              });
-            }
-
-            // Initial highlight check
-            highlightNavigation();
-
-            // Update highlight on scroll
-            window.addEventListener("scroll", highlightNavigation);
-          });
-        </script>
-        <!-- Achievements Section -->
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            // Open modal
-            document.querySelectorAll(".details-btn").forEach((btn) => {
-              btn.addEventListener("click", function () {
-                const modelId = this.getAttribute("data-model") + "-modal";
-                document.getElementById(modelId).classList.remove("hidden");
-                document.body.classList.add("overflow-hidden");
-              });
-            });
-            // Close modal
-            document.querySelectorAll(".close-modal").forEach((btn) => {
-              btn.addEventListener("click", function () {
-                this.closest(".model-modal").classList.add("hidden");
-                document.body.classList.remove("overflow-hidden");
-              });
-            });
-            // Close modal on background click
-            document.querySelectorAll(".model-modal").forEach((modal) => {
-              modal.addEventListener("click", function (e) {
-                if (e.target === modal) {
-                  modal.classList.add("hidden");
-                  document.body.classList.remove("overflow-hidden");
-                }
-              });
-            });
-          });
-        </script>
-        <!-- Achievements Section -->
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".flip-card").forEach((card) => {
-              card.addEventListener("click", function (e) {
-                // Prevent click-to-flip on desktop (only allow on mobile/tablet)
-                if (window.innerWidth < 1024) {
-                  this.classList.toggle("flipped");
-                }
-              });
-            });
-          });
-        </script>
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const form = document.getElementById("contact-form");
-          const modal = document.getElementById("status-modal");
-          const modalContent = document.getElementById("modal-content");
-          const closeModal = document.getElementById("close-modal");
-
-          function showModal(status, message) {
-            const iconClass = status === 'success' ? 'ri-check-double-line text-primary' : 'ri-error-warning-line text-red-500';
-            const title = status === 'success' ? 'نجاح!' : 'خطأ!';
-            
-            modalContent.innerHTML = `
-              <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <i class="${iconClass} text-4xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-3 text-white">${title}</h3>
-              <p class="text-gray-300">${message}</p>
-            `;
-            
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-          }
-
-          closeModal.addEventListener('click', () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-          });
-
-          // Close modal when clicking outside
-          modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-              modal.classList.add('hidden');
-              modal.classList.remove('flex');
-            }
-          });
-
-          function validateField(field) {
-            const fieldName = field.id;
-            let isValid = true;
-            let errorMessage = '';
-            
-            // Clear previous error for this field
-            const existingError = field.parentNode.querySelector('.error-message');
-            if (existingError) {
-              existingError.remove();
-            }
-            field.classList.remove('border-red-500', 'border-green-500');
-            
-            // Validate based on field type
-            switch(fieldName) {
-              case 'name':
-                if (!field.value.trim()) {
-                  errorMessage = 'الاسم مطلوب';
-                  isValid = false;
-                } else if (field.value.trim().length < 2) {
-                  errorMessage = 'الاسم يجب أن يكون أكثر من حرف واحد';
-                  isValid = false;
-                }
-                break;
-                
-              case 'email':
-                if (!field.value.trim()) {
-                  errorMessage = 'البريد الإلكتروني مطلوب';
-                  isValid = false;
-                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-                  errorMessage = 'يرجى إدخال بريد إلكتروني صحيح (مثال: user@example.com)';
-                  isValid = false;
-                }
-                break;
-                
-              case 'service':
-                if (!field.value) {
-                  errorMessage = 'يرجى اختيار الخدمة المطلوبة';
-                  isValid = false;
-                }
-                break;
-                
-              case 'message':
-                if (field.value.trim() && field.value.trim().length < 10) {
-                  errorMessage = 'الرسالة يجب أن تكون 10 أحرف على الأقل';
-                  isValid = false;
-                }
-                break;
-            }
-            
-            // Show error or success styling
-            if (!isValid) {
-              showFieldError(field, errorMessage);
-            } else if (field.value.trim()) {
-              field.classList.add('border-green-500');
-            }
-            
-            return isValid;
-          }
-          
-          function validateForm() {
-            const name = document.getElementById("name");
-            const email = document.getElementById("email");
-            const service = document.getElementById("service");
-            const message = document.getElementById("message");
-            
-            const nameValid = validateField(name);
-            const emailValid = validateField(email);
-            const serviceValid = validateField(service);
-            const messageValid = validateField(message);
-            
-            return nameValid && emailValid && serviceValid && messageValid;
-          }
-          
-          function showFieldError(field, message) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message text-red-500 text-sm mt-1 flex items-center gap-1';
-            errorDiv.innerHTML = `
-              <i class="ri-error-warning-line text-red-500"></i>
-              <span>${message}</span>
-            `;
-            field.parentNode.appendChild(errorDiv);
-            field.classList.add('border-red-500');
-          }
-          
-          function setupRealTimeValidation() {
-            const fields = ['name', 'email', 'service', 'message'];
-            
-            fields.forEach(fieldId => {
-              const field = document.getElementById(fieldId);
-              if (field) {
-                // Validate on blur (when user leaves the field)
-                field.addEventListener('blur', () => {
-                  if (field.value.trim() || fieldId === 'name' || fieldId === 'email' || fieldId === 'service') {
-                    validateField(field);
-                  }
-                });
-                
-                // Clear errors on focus
-                field.addEventListener('focus', () => {
-                  const existingError = field.parentNode.querySelector('.error-message');
-                  if (existingError) {
-                    existingError.remove();
-                  }
-                  field.classList.remove('border-red-500');
-                });
-                
-                // Real-time validation for email
-                if (fieldId === 'email') {
-                  field.addEventListener('input', () => {
-                    if (field.value.includes('@')) {
-                      setTimeout(() => validateField(field), 500);
-                    }
-                  });
-                }
-              }
-            });
-          }
-          
-          if (form) {
-            // Setup real-time validation
-            setupRealTimeValidation();
-            
-            form.addEventListener("submit", async function (e) {
-              e.preventDefault();
-              
-              // Validate all fields on submit
-              if (!validateForm()) {
-                // Show general error message
-                const submitButton = form.querySelector('button[type="submit"]');
-                submitButton.style.backgroundColor = '#ef4444';
-                submitButton.textContent = 'يرجى تصحيح الأخطاء أولاً';
-                
-                setTimeout(() => {
-                  submitButton.style.backgroundColor = '';
-                  submitButton.textContent = 'إرسال الطلب';
-                }, 3000);
-                
-                return; // Stop submission if validation fails
-              }
-              
-              const name = document.getElementById("name").value;
-              const email = document.getElementById("email").value;
-              const service = document.getElementById("service").value;
-              const message = document.getElementById("message").value;
-              let phone = "";
-              const phoneInput = document.getElementById("phone");
-              if (phoneInput) phone = phoneInput.value;
-              const data = { name, email, service, message, phone };
-              
-              // Show loading state
-              const submitButton = form.querySelector('button[type="submit"]');
-              const originalText = submitButton.textContent;
-              submitButton.disabled = true;
-              submitButton.style.backgroundColor = '#6b7280';
-              submitButton.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> جاري الإرسال...';
-              
-              try {
-                const res = await fetch("http://localhost:8000/api/request", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(data),
-                });
-                if (res.ok) {
-                  showModal('success', 'تم الإرسال بنجاح! شكرًا لتواصلك معنا، سنتواصل معك قريبًا.');
-                  form.reset();
-                  // Clear validation styling after reset
-                  document.querySelectorAll('input, select, textarea').forEach(field => {
-                    field.classList.remove('border-green-500', 'border-red-500');
-                  });
-                } else {
-                  showModal('error', 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة لاحقاً.');
-                }
-              } catch (err) {
-                showModal('error', 'تعذر الاتصال بالخادم. يرجى التأكد من الاتصال والمحاولة مجدداً.');
-              } finally {
-                // Reset button state
-                submitButton.disabled = false;
-                submitButton.style.backgroundColor = '';
-                submitButton.textContent = originalText;
-              }
-            });
-          }
-        });
-        </script>
         
-        <!-- Status Modal -->
-        <div id="status-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[10000]">
-          <div class="bg-gray-900 border border-primary/20 rounded-lg p-8 max-w-md w-full mx-4 relative shadow-2xl text-white">
-            <div id="modal-content" class="text-center">
-              <!-- Content will be dynamically inserted here -->
-            </div>
-            <button id="close-modal" class="absolute top-4 left-4 text-gray-400 hover:text-white">
-              <i class="ri-close-line ri-lg"></i>
-            </button>
-          </div>
-        </div>
-      </body>
-    </html>
+        <!-- Simple Card Switcher -->
+        <script>
+                     // Why YAS Section - Slider with Pagination
+          document.addEventListener("DOMContentLoaded", function () {
+            const whyYasSection = document.getElementById("why-yas");
+             const cardsContainer = document.getElementById("cards-container");
+             const cardSlides = document.querySelectorAll(".card-slide");
+             const pageIndicators = document.querySelectorAll(".page-indicator");
+            const prevButton = document.getElementById("prev-card");
+            const nextButton = document.getElementById("next-card");
 
-    </footer>
+             
+             let currentIndex = 0;
+             const totalCards = cardSlides.length;
+             
+             // Show specific card
+             function showCard(index) {
+               // Hide all cards
+               cardSlides.forEach((card, i) => {
+                 if (i === index) {
+                   card.classList.add("active");
+                } else {
+                   card.classList.remove("active");
+                 }
+               });
+               
+               currentIndex = index;
+               updatePagination();
+               updateNavigationButtons();
+             }
+             
+             // Update page indicators
+             function updatePagination() {
+               pageIndicators.forEach((indicator, index) => {
+                 if (index === currentIndex) {
+                   indicator.classList.add("active");
+                 } else {
+                   indicator.classList.remove("active");
+                 }
+               });
+               
+
+             }
+             
+
+             
+             // Update navigation buttons
+            function updateNavigationButtons() {
+               if (prevButton) {
+                 prevButton.disabled = currentIndex === 0;
+               }
+               if (nextButton) {
+                 nextButton.disabled = currentIndex === totalCards - 1;
+               }
+             }
+             
+             // Page indicator clicks
+             pageIndicators.forEach((indicator, index) => {
+               indicator.addEventListener("click", () => {
+                 showCard(index);
+              });
+            });
+            
+            // Navigation button clicks
+             if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                 if (currentIndex > 0) {
+                   showCard(currentIndex - 1);
+              }
+            });
+             }
+            
+             if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                 if (currentIndex < totalCards - 1) {
+                   showCard(currentIndex + 1);
+                 }
+               });
+             }
+             
+             // Keyboard navigation (RTL)
+            document.addEventListener("keydown", (e) => {
+              if (whyYasSection.getBoundingClientRect().top < window.innerHeight && 
+                  whyYasSection.getBoundingClientRect().bottom > 0) {
+                 if (e.key === "ArrowLeft" && currentIndex < totalCards - 1) {
+                   e.preventDefault();
+                   showCard(currentIndex + 1);
+                 } else if (e.key === "ArrowRight" && currentIndex > 0) {
+                   e.preventDefault();
+                   showCard(currentIndex - 1);
+                }
+              }
+            });
+            
+            // Initialize
+             updatePagination();
+             updateNavigationButtons();
+          });
+        </script>
     
     <!-- Status Modal -->
     <div id="status-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[10000]">
@@ -3176,3 +3682,6 @@
     </div>
   </body>
 </html>
+
+
+
