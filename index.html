@@ -3511,10 +3511,10 @@
         </footer>
         
         <!-- AI Assistant Section -->
-        <div id="ai-assistant-button" class="fixed bottom-0 right-0 z-[9999] translate-x-[25%] translate-y-[25%] md:translate-x-[50%] md:translate-y-[50%]">
+        <div id="ai-assistant-button" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999]">
           <div class="relative flex items-center">
             <!-- Chip -->
-            <div class="absolute top-1/2 -translate-y-1/2 right-14 bg-white text-gray-900 text-sm font-semibold px-4 py-2 rounded-full shadow-lg transition-opacity duration-300 whitespace-nowrap">
+            <div class="absolute -bottom-[24px] -translate-y-1/2 right-10 bg-white text-gray-900 text-xs font-semibold px-4 py-2 rounded-full shadow-lg transition-opacity duration-300 whitespace-nowrap">
               اسألنا
             </div>
             <!-- Button -->
@@ -3522,7 +3522,8 @@
               <i class="ri-chat-3-line ri-xl"></i>
             </button>
           </div>
-        <div id="chat-window" class="hidden absolute bottom-[80px] right-0 w-[calc(100vw-32px)] md:w-96 rounded-2xl shadow-2xl bg-white overflow-hidden flex flex-col max-h-[70vh]">
+        </div>
+        <div id="chat-window" class="hidden fixed bottom-[72px] right-4 md:bottom-[88px] md:right-8 w-[calc(100vw-32px)] md:w-96 rounded-2xl shadow-2xl bg-white overflow-hidden flex flex-col max-h-[70vh] z-[9998]">
           <!-- Header -->
           <div class="p-4 bg-primary text-white flex justify-between items-center flex-shrink-0">
             <div class="flex items-center gap-2">
@@ -3543,10 +3544,10 @@
             </div>
           </div>
           <!-- Input -->
-          <div class="p-4 border-t border-gray-100 flex-shrink-0 bg-white">
-            <div class="flex gap-2">
-              <input type="text" id="user-input" class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-black" placeholder="اكتب سؤالك هنا...">
-              <button id="send-message" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors !rounded-button whitespace-nowrap cursor-pointer">
+          <div class="p-2 md:p-4 border-t border-gray-100 flex-shrink-0 bg-white">
+            <div class="flex items-center gap-2">
+              <input type="text" id="user-input" class="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-black text-sm" placeholder="اكتب سؤالك...">
+              <button id="send-message" class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors !rounded-button cursor-pointer">
                 <i class="ri-send-plane-line"></i>
               </button>
             </div>
