@@ -60,6 +60,9 @@
     <!-- Tailwind CSS -->
     <script src="//cdn.tailwindcss.com/3.4.16"></script>
     
+    <!-- Floating UI -->
+    <script src="//cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.1"></script>
+    
     <!-- Alpine.js -->
     <script defer src="//cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
@@ -2168,39 +2171,78 @@
             <!-- Responsive Tabs - Redesigned -->
             <div class="policies-tabs-container">
               <!-- Mobile Tab Selector -->
-              <div class="lg:hidden mb-6">
+              <div class="lg:hidden mb-6" x-data="policiesDropdown()">
+                <!-- Hidden Native Select -->
+                <select
+                  id="mobile-tab-select"
+                  class="sr-only"
+                  x-model="selectedValue"
+                >
+                  <option value="tab1">التنفيذ الكامل بدون التزام مستقبلي</option>
+                  <option value="tab2">التنفيذ والدعم الفني المستمر</option>
+                  <option value="tab3">شراكة تشغيلية مع مشاركة الأرباح</option>
+                  <option value="tab4">شراكة ستراتيجية بملكية مشتركة</option>
+                  <option value="tab5">استثمار مباشر من YAS بملكية مسيطرة</option>
+                </select>
+
+                <!-- Custom Dropdown -->
                 <div class="relative">
-                  <select id="mobile-tab-select" class="w-full p-4 rounded-xl border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none appearance-none">
-                    <option value="tab1">التنفيذ الكامل بدون التزام مستقبلي</option>
-                    <option value="tab2">التنفيذ والدعم الفني المستمر</option>
-                    <option value="tab3">شراكة تشغيلية مع مشاركة الأرباح</option>
-                    <option value="tab4">شراكة ستراتيجية بملكية مشتركة</option>
-                    <option value="tab5">استثمار مباشر من YAS بملكية مسيطرة</option>
-                  </select>
-                  <div class="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                    <i class="ri-arrow-down-s-line text-xl text-gray-500"></i>
+                  <!-- Dropdown Button -->
+                  <button
+                    type="button"
+                    x-ref="button"
+                    @click="toggleDropdown()"
+                    @blur="handleBlur()"
+                    class="w-full p-4 rounded-xl border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-right flex items-center justify-between"
+                  >
+                    <span x-text="selectedText" class="flex-1 text-right">
+                      التنفيذ الكامل بدون التزام مستقبلي
+                    </span>
+                    <i 
+                      :class="isOpen ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" 
+                      class="text-xl text-gray-500 transition-transform duration-200 flex-shrink-0"
+                    ></i>
+                  </button>
+
+                  <!-- Dropdown Menu -->
+                  <div
+                    x-ref="dropdown"
+                    x-show="isOpen"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95"
+                    class="absolute z-50 w-full bg-white border border-gray-300 rounded-xl shadow-lg max-h-60 overflow-y-auto"
+                    style="display: none;"
+                    @click.outside="closeDropdown()"
+                  >
+                    <template x-for="option in options" :key="option.value">
+                      <button
+                        type="button"
+                        @click="selectOption(option)"
+                        :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
+                        class="w-full p-4 text-right text-gray-900 transition-colors duration-150 first:rounded-t-xl last:rounded-b-xl"
+                        x-text="option.text"
+                      ></button>
+                    </template>
                   </div>
                 </div>
               </div>
 
               <!-- Desktop Tab Navigation -->
-              <div class="hidden lg:block mb-8">
+              <div class="hidden lg:block mb-8" x-data="policiesDropdown()">
                 <div class="flex flex-wrap justify-center gap-2">
-                  <button class="desktop-tab-btn active px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-900 text-white shadow-lg" data-tab="tab1">
-                  التنفيذ الكامل بدون التزام مستقبلي
-                </button>
-                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab2">
-                  التنفيذ والدعم الفني المستمر
-                </button>
-                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab3">
-                  شراكة تشغيلية مع مشاركة الأرباح
-                </button>
-                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab4">
-                  شراكة ستراتيجية بملكية مشتركة
-                </button>
-                  <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab5">
-                  استثمار مباشر من YAS بملكية مسيطرة
-                </button>
+                  <template x-for="option in options" :key="option.value">
+                    <button 
+                      type="button"
+                      @click="selectOption(option)"
+                      :class="selectedValue === option.value ? 'bg-gray-900 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+                      class="px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300"
+                      x-text="option.text"
+                    ></button>
+                  </template>
                 </div>
               </div>
               <!-- Tab Content Cards -->
@@ -2212,7 +2254,7 @@
                       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <i class="ri-shield-check-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
-                                              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
                           التنفيذ الكامل بدون التزام مستقبلي
                         </h3>
                     </div>
@@ -2852,66 +2894,124 @@
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label for="name" class="block text-gray-900 mb-2 font-medium"
-                        >الاسم</label
+                        >الاسم <span class="text-red-500">*</span></label
                       >
                       <input
                         type="text"
                         id="name"
+                        name="name"
+                        required
+                        minlength="2"
                         class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-500"
                         placeholder="أدخل اسمك"
                       />
+                      <div id="name-error" class="text-red-500 text-sm mt-1 hidden"></div>
                     </div>
                     <div>
                       <label for="email" class="block text-gray-900 mb-2 font-medium"
-                        >البريد الإلكتروني</label
+                        >البريد الإلكتروني <span class="text-red-500">*</span></label
                       >
                       <input
                         type="email"
                         id="email"
+                        name="email"
+                        required
                         class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-500"
                         placeholder="أدخل بريدك الإلكتروني"
                       />
+                      <div id="email-error" class="text-red-500 text-sm mt-1 hidden"></div>
                     </div>
                   </div>
-                  <div class="mb-6">
+                  <div class="mb-6" x-data="customDropdown()">
                     <label for="service" class="block text-gray-900 mb-2 font-medium"
-                      >الخدمة المطلوبة</label
+                      >الخدمة المطلوبة <span class="text-red-500">*</span></label
                     >
+                    
+                    <!-- Hidden Native Select -->
+                    <select
+                      id="service"
+                      name="service"
+                      required
+                      class="sr-only"
+                      x-model="selectedValue"
+                    >
+                      <option value="">اختر الخدمة</option>
+                      <option value="mobile-app">تطوير تطبيقات الجوال</option>
+                      <option value="web-development">تطوير المواقع والأنظمة</option>
+                      <option value="backend">تطوير الأنظمة الخلفية</option>
+                      <option value="integration">خدمات التكامل</option>
+                      <option value="ui-ux">تصميم واجهات المستخدم</option>
+                      <option value="support">الدعم والاستشارات</option>
+                      <option value="other">أخرى</option>
+                    </select>
+
+                    <!-- Custom Dropdown -->
                     <div class="relative">
-                      <select
-                        id="service"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none pr-8"
+                      <!-- Dropdown Button -->
+                      <button
+                        type="button"
+                        x-ref="button"
+                        @click="toggleDropdown()"
+                        @blur="handleBlur()"
+                        :class="{'border-red-500': hasError, 'border-green-500': isValid && selectedValue, 'border-gray-300': !hasError && (!isValid || !selectedValue)}"
+                        class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-right flex items-center justify-between"
                       >
-                        <option value="" class="text-gray-500">اختر الخدمة</option>
-                        <option value="mobile-app" class="text-gray-900">تطوير تطبيقات الجوال</option>
-                        <option value="web-development" class="text-gray-900">تطوير المواقع والأنظمة</option>
-                        <option value="backend" class="text-gray-900">تطوير الأنظمة الخلفية</option>
-                        <option value="integration" class="text-gray-900">خدمات التكامل</option>
-                        <option value="ui-ux" class="text-gray-900">تصميم واجهات المستخدم</option>
-                        <option value="support" class="text-gray-900">الدعم والاستشارات</option>
-                        <option value="other" class="text-gray-900">أخرى</option>
-                      </select>
+                        <span x-text="selectedText" :class="{'text-gray-500': !selectedValue}" class="flex-1 text-right">
+                          اختر الخدمة
+                        </span>
+                        <i 
+                          :class="isOpen ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" 
+                          class="ri-lg text-gray-500 transition-transform duration-200 flex-shrink-0"
+                        ></i>
+                      </button>
+
+                      <!-- Dropdown Menu -->
                       <div
-                        class="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                        x-ref="dropdown"
+                        x-show="isOpen"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute z-50 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+                        style="display: none;"
+                        @click.outside="closeDropdown()"
                       >
-                        <i class="ri-arrow-down-s-line ri-lg text-gray-500"></i>
+                        <template x-for="option in options" :key="option.value">
+                          <button
+                            type="button"
+                            @click="selectOption(option)"
+                            :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
+                            class="w-full px-4 py-3 text-right text-gray-900 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
+                            x-text="option.text"
+                          ></button>
+                        </template>
                       </div>
                     </div>
+                    
+                    <div id="service-error" class="text-red-500 text-sm mt-1 hidden"></div>
                   </div>
                   <div class="mb-6">
                     <label for="message" class="block text-gray-900 mb-2 font-medium"
-                      >الرسالة</label
+                      >الرسالة <span class="text-gray-400 text-xs">(اختياري)</span></label
                     >
                     <textarea
                       id="message"
+                      name="message"
                       rows="4"
+                      required
+                      minlength="10"
                       class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-500"
                       placeholder="اكتب رسالتك هنا..."
                     ></textarea>
+                    <div id="message-error" class="text-red-500 text-sm mt-1 hidden"></div>
                   </div>
                   <button
                     type="submit"
-                    class="w-full py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors duration-300 hover:bg-gray-800 !rounded-button whitespace-nowrap font-medium"
+                    id="submit-btn"
+                    class="w-full py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors duration-300 hover:bg-gray-800 !rounded-button whitespace-nowrap font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     إرسال الطلب
                   </button>
@@ -3475,6 +3575,211 @@
             }
           }
           
+          window.customDropdown = function() {
+            return {
+              isOpen: false,
+              selectedValue: '',
+              selectedText: 'اختر الخدمة',
+              hasError: false,
+              isValid: false,
+              
+              options: [
+                { value: 'mobile-app', text: 'تطوير تطبيقات الجوال' },
+                { value: 'web-development', text: 'تطوير المواقع والأنظمة' },
+                { value: 'backend', text: 'تطوير الأنظمة الخلفية' },
+                { value: 'integration', text: 'خدمات التكامل' },
+                { value: 'ui-ux', text: 'تصميم واجهات المستخدم' },
+                { value: 'support', text: 'الدعم والاستشارات' },
+                { value: 'other', text: 'أخرى' }
+              ],
+              
+              init() {
+                // Initialize Floating UI when component mounts
+                this.$nextTick(() => {
+                  this.setupFloating();
+                });
+              },
+              
+              setupFloating() {
+                const button = this.$refs.button;
+                const dropdown = this.$refs.dropdown;
+                
+                if (button && dropdown) {
+                  // Use Floating UI to position the dropdown
+                  FloatingUIDOM.computePosition(button, dropdown, {
+                    placement: 'bottom-start',
+                    middleware: [
+                      FloatingUIDOM.offset(4),
+                      FloatingUIDOM.flip(),
+                      FloatingUIDOM.shift({ padding: 8 })
+                    ]
+                  }).then(({ x, y }) => {
+                    Object.assign(dropdown.style, {
+                      left: `${x}px`,
+                      top: `${y}px`,
+                    });
+                  });
+                }
+              },
+              
+              toggleDropdown() {
+                this.isOpen = !this.isOpen;
+                if (this.isOpen) {
+                  this.$nextTick(() => {
+                    this.setupFloating();
+                  });
+                }
+              },
+              
+              closeDropdown() {
+                this.isOpen = false;
+              },
+              
+              selectOption(option) {
+                this.selectedValue = option.value;
+                this.selectedText = option.text;
+                this.closeDropdown();
+                this.validateSelection();
+                
+                // Call form validation directly
+                if (window.validateServiceField) {
+                  window.validateServiceField(this.selectedValue);
+                }
+                
+                // Call global validation function if available
+                if (window.updateSubmitButton) {
+                  window.updateSubmitButton();
+                }
+              },
+              
+              handleBlur() {
+                // Small delay to allow for option selection
+                setTimeout(() => {
+                  if (!this.isOpen) {
+                    this.validateSelection();
+                    
+                    // Mark as blurred for validation
+                    if (window.hasBlurred) {
+                      window.hasBlurred.service = true;
+                    }
+                    
+                    // Call form validation directly
+                    if (window.validateServiceField) {
+                      window.validateServiceField(this.selectedValue);
+                    }
+                    
+                    // Call global validation function if available
+                    if (window.updateSubmitButton) {
+                      window.updateSubmitButton();
+                    }
+                  }
+                }, 150);
+              },
+              
+              validateSelection() {
+                this.hasError = !this.selectedValue;
+                this.isValid = !!this.selectedValue;
+                
+                // Update the hidden select validation state
+                const selectElement = document.getElementById('service');
+                if (selectElement && this.selectedValue) {
+                  selectElement.setCustomValidity('');
+                } else if (selectElement) {
+                  selectElement.setCustomValidity('يرجى اختيار الخدمة المطلوبة');
+                }
+              }
+            }
+          }
+          
+          window.policiesDropdown = function() {
+            return {
+              isOpen: false,
+              selectedValue: 'tab1',
+              selectedText: 'التنفيذ الكامل بدون التزام مستقبلي',
+              
+              options: [
+                { value: 'tab1', text: 'التنفيذ الكامل بدون التزام مستقبلي' },
+                { value: 'tab2', text: 'التنفيذ والدعم الفني المستمر' },
+                { value: 'tab3', text: 'شراكة تشغيلية مع مشاركة الأرباح' },
+                { value: 'tab4', text: 'شراكة ستراتيجية بملكية مشتركة' },
+                { value: 'tab5', text: 'استثمار مباشر من YAS بملكية مسيطرة' }
+              ],
+              
+              init() {
+                // Initialize Floating UI when component mounts
+                this.$nextTick(() => {
+                  this.setupFloating();
+                });
+              },
+              
+              setupFloating() {
+                const button = this.$refs.button;
+                const dropdown = this.$refs.dropdown;
+                
+                if (button && dropdown) {
+                  // Use Floating UI to position the dropdown
+                  FloatingUIDOM.computePosition(button, dropdown, {
+                    placement: 'bottom-start',
+                    middleware: [
+                      FloatingUIDOM.offset(4),
+                      FloatingUIDOM.flip(),
+                      FloatingUIDOM.shift({ padding: 8 })
+                    ]
+                  }).then(({ x, y }) => {
+                    Object.assign(dropdown.style, {
+                      left: `${x}px`,
+                      top: `${y}px`,
+                    });
+                  });
+                }
+              },
+              
+              toggleDropdown() {
+                this.isOpen = !this.isOpen;
+                if (this.isOpen) {
+                  this.$nextTick(() => {
+                    this.setupFloating();
+                  });
+                }
+              },
+              
+              closeDropdown() {
+                this.isOpen = false;
+              },
+              
+              selectOption(option) {
+                this.selectedValue = option.value;
+                this.selectedText = option.text;
+                this.closeDropdown();
+                
+                // Trigger tab change
+                this.switchTab(option.value);
+              },
+              
+              handleBlur() {
+                // Small delay to allow for option selection
+                setTimeout(() => {
+                  if (!this.isOpen) {
+                    // Tab switching is handled in selectOption
+                  }
+                }, 150);
+              },
+              
+              switchTab(tabId) {
+                // Hide all tab cards
+                const allTabs = document.querySelectorAll('.tab-card');
+                allTabs.forEach(tab => {
+                  tab.classList.remove('active');
+                });
+                
+                // Show selected tab
+                const selectedTab = document.getElementById(tabId);
+                if (selectedTab) {
+                  selectedTab.classList.add('active');
+                }
+              }
+            }
+          }
 
           
           window.whyYasData = function() {
@@ -3543,6 +3848,265 @@
               }
             }
           }
+        </script>
+        
+        <!-- Form Validation Script -->
+        <script>
+          // Contact Form Validation
+          document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
+            const serviceField = document.getElementById('service');
+            const messageField = document.getElementById('message');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // Validation rules
+            const validators = {
+              name: {
+                required: true,
+                minLength: 2,
+                pattern: /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-zA-Z\s]+$/,
+                messages: {
+                  required: 'الاسم مطلوب',
+                  minLength: 'الاسم يجب أن يكون على الأقل حرفين',
+                  pattern: 'الاسم يجب أن يحتوي على أحرف فقط'
+                }
+              },
+              email: {
+                required: true,
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                messages: {
+                  required: 'البريد الإلكتروني مطلوب',
+                  pattern: 'يرجى إدخال بريد إلكتروني صحيح'
+                }
+              },
+              service: {
+                required: true,
+                messages: {
+                  required: 'يرجى اختيار الخدمة المطلوبة'
+                }
+              },
+              message: {
+                required: false,
+                messages: {
+                  required: 'الرسالة مطلوبة'
+                }
+              }
+            };
+            
+            // Validation state
+            const validationState = {
+              name: false,
+              email: false,
+              service: false,
+              message: true  // Optional field, always valid
+            };
+            
+            // Validate field function
+            function validateField(fieldName, value) {
+              const rules = validators[fieldName];
+              const errorDiv = document.getElementById(`${fieldName}-error`);
+              const field = document.getElementById(fieldName);
+              
+              // Special handling for custom dropdown service field
+              if (fieldName === 'service') {
+                return validateServiceField(value);
+              }
+              
+              // Clear previous styling
+              field.classList.remove('border-red-500', 'border-green-500');
+              errorDiv.classList.add('hidden');
+              errorDiv.textContent = '';
+              
+              // Required validation
+              if (rules.required && (!value || value.trim() === '')) {
+                showError(fieldName, rules.messages.required);
+                return false;
+              }
+              
+              // Skip other validations if field is empty and not required
+              if (!value || value.trim() === '') {
+                validationState[fieldName] = true;
+                field.classList.add('border-green-500');
+                return true;
+              }
+              
+              // MinLength validation
+              if (rules.minLength && value.trim().length < rules.minLength) {
+                showError(fieldName, rules.messages.minLength);
+                return false;
+              }
+              
+              // Pattern validation
+              if (rules.pattern && !rules.pattern.test(value.trim())) {
+                showError(fieldName, rules.messages.pattern);
+                return false;
+              }
+              
+              // Valid field
+              validationState[fieldName] = true;
+              field.classList.add('border-green-500');
+              return true;
+            }
+            
+            // Special validation for custom dropdown service field
+            function validateServiceField(value) {
+              const rules = validators.service;
+              const errorDiv = document.getElementById('service-error');
+              
+              // Always clear previous error state first
+              errorDiv.classList.add('hidden');
+              errorDiv.textContent = '';
+              
+              // Required validation
+              if (rules.required && (!value || value.trim() === '')) {
+                validationState.service = false;
+                errorDiv.textContent = rules.messages.required;
+                errorDiv.classList.remove('hidden');
+                return false;
+              }
+              
+              // Valid field - ensure error is hidden and state is updated
+              validationState.service = true;
+              errorDiv.classList.add('hidden');
+              errorDiv.textContent = '';
+              return true;
+            }
+            
+            // Show error function
+            function showError(fieldName, message) {
+              const errorDiv = document.getElementById(`${fieldName}-error`);
+              const field = document.getElementById(fieldName);
+              
+              validationState[fieldName] = false;
+              
+              // Special handling for custom dropdown service field
+              if (fieldName !== 'service') {
+                field.classList.add('border-red-500');
+              }
+              
+              errorDiv.textContent = message;
+              errorDiv.classList.remove('hidden');
+            }
+            
+            // Update submit button state
+            function updateSubmitButton() {
+              const allValid = Object.values(validationState).every(state => state === true);
+              submitBtn.disabled = !allValid;
+            }
+            
+            // Make functions globally accessible immediately
+            window.updateSubmitButton = updateSubmitButton;
+            window.validateServiceField = validateServiceField;
+            window.validationState = validationState;
+            
+            // Add blur event listeners
+            nameField.addEventListener('blur', function() {
+              validateField('name', this.value);
+              updateSubmitButton();
+            });
+            
+            emailField.addEventListener('blur', function() {
+              validateField('email', this.value);
+              updateSubmitButton();
+            });
+            
+            // Service field validation is handled by Alpine.js component
+            // No need for event listeners on the hidden select element
+            
+            // Message field is optional, no validation needed
+            
+            // Add input event listeners for real-time feedback after initial blur
+            let hasBlurred = {
+              name: false,
+              email: false,
+              service: false,
+              message: true  // Optional field, no validation needed
+            };
+            
+            // Make hasBlurred globally accessible
+            window.hasBlurred = hasBlurred;
+            
+            nameField.addEventListener('blur', () => hasBlurred.name = true);
+            emailField.addEventListener('blur', () => hasBlurred.email = true);
+            serviceField.addEventListener('blur', () => hasBlurred.service = true);
+            
+            nameField.addEventListener('input', function() {
+              if (hasBlurred.name) {
+                validateField('name', this.value);
+                updateSubmitButton();
+              }
+            });
+            
+            emailField.addEventListener('input', function() {
+              if (hasBlurred.email) {
+                validateField('email', this.value);
+                updateSubmitButton();
+              }
+            });
+            
+            // Message field is optional, no input validation needed
+            
+            // Form submit validation
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              // Validate all required fields
+              const nameValid = validateField('name', nameField.value);
+              const emailValid = validateField('email', emailField.value);
+              const serviceValid = validateField('service', serviceField.value);
+              // Message field is optional, no validation needed
+              
+              updateSubmitButton();
+              
+              if (nameValid && emailValid && serviceValid) {
+                // Form is valid, you can submit it here
+                console.log('Form is valid, ready to submit');
+                
+                // Example: Show success message
+                alert('تم إرسال النموذج بنجاح! سنتواصل معك قريباً.');
+                
+                // Reset form
+                form.reset();
+                
+                // Reset validation state
+                Object.keys(validationState).forEach(key => {
+                  // Reset states based on field requirements
+                  if (key === 'message') {
+                    validationState[key] = true;  // Optional field, always valid
+                    hasBlurred[key] = true;
+                  } else {
+                    validationState[key] = false;
+                    hasBlurred[key] = false;
+                  }
+                  
+                  const field = document.getElementById(key);
+                  const errorDiv = document.getElementById(`${key}-error`);
+                  
+                  // Special handling for custom dropdown service field
+                  if (key !== 'service') {
+                    field.classList.remove('border-red-500', 'border-green-500');
+                  }
+                  
+                  errorDiv.classList.add('hidden');
+                  errorDiv.textContent = '';
+                });
+                
+                updateSubmitButton();
+              } else {
+                // Scroll to first error
+                const firstError = form.querySelector('.border-red-500');
+                if (firstError) {
+                  firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  firstError.focus();
+                }
+              }
+            });
+            
+            // Initial button state
+            updateSubmitButton();
+          });
         </script>
         
         <script src="js/main.js"></script>
