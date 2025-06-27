@@ -56,10 +56,13 @@
       href="//cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
       rel="stylesheet"
     />
-
+    <script src="//cdn.jsdelivr.net/npm/@reimujs/aos/dist/aos.umd.js"></script>
     <!-- Tailwind CSS -->
     <script src="//cdn.tailwindcss.com/3.4.16"></script>
-    
+     <link
+     rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/@reimujs/aos/dist/aos.css"
+    />
     <!-- Floating UI -->
     <script src="//cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.1"></script>
     
@@ -156,138 +159,14 @@
         color: white !important;
       }
       
-      /* Policy Tabs Mobile Scrolling */
-      #policy-tabs {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0, 204, 255, 0.3) transparent;
-      }
-      
-      #policy-tabs::-webkit-scrollbar {
-        height: 4px;
-      }
-      
-      #policy-tabs::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      
-      #policy-tabs::-webkit-scrollbar-thumb {
-        background: rgba(0, 204, 255, 0.3);
-        border-radius: 2px;
-      }
-      
-      #policy-tabs::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 204, 255, 0.5);
-      }
-      
-      /* Smooth scroll behavior for policy tabs */
-      @media (max-width: 768px) {
-        #policy-tabs {
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-        }
-        
-        .tab-btn {
-          font-size: 0.875rem !important;
-          line-height: 1.25rem !important;
-        }
-      }
+
     </style>
     <!-- Modern Why YAS Section Styles -->
     <style>
       /* Modern Why YAS Section Styles */
-      .feature-card {
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+
       
-      .feature-card.opacity-100 {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      
-      .feature-card.opacity-0 {
-        transform: translateY(2rem) scale(0.95);
-        opacity: 0;
-      }
-      
-      .progress-dot {
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-      
-      .progress-dot:hover {
-        transform: scale(1.2);
-      }
-      
-      .progress-dot.active {
-        transform: scale(1.3);
-        box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-      }
-      
-      /* Enhanced card hover effects */
-      .feature-card:hover .bg-white {
-        transform: translateY(-2px);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      }
-      
-      /* Gradient animation for titles */
-      .gradient-text {
-        background: linear-gradient(-45deg, #1f2937, #3b82f6, #6366f1, #1f2937);
-        background-size: 400% 400%;
-        animation: gradient-shift 8s ease infinite;
-      }
-      
-      @keyframes gradient-shift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      
-      /* Enhanced floating animations */
-      @keyframes float-gentle {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-10px) rotate(1deg); }
-        66% { transform: translateY(-5px) rotate(-1deg); }
-      }
-      
-      .animate-float-gentle {
-        animation: float-gentle 6s ease-in-out infinite;
-      }
-      
-      /* Smooth fade transitions */
-      .fade-transition {
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-      
-      /* Card entrance animations */
-      @keyframes slideInFromRight {
-        0% {
-          opacity: 0;
-          transform: translateX(50px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-      
-      @keyframes slideInFromLeft {
-        0% {
-          opacity: 0;
-          transform: translateX(-50px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-      
-      .slide-in-right {
-        animation: slideInFromRight 0.8s ease-out forwards;
-      }
-      
-      .slide-in-left {
-        animation: slideInFromLeft 0.8s ease-out forwards;
-      }
+
       
       /* Orientation-Based Layout */
       .orientation-container {
@@ -914,20 +793,7 @@
           width: 100% !important;
         }
         
-        .page-indicators {
-          display: grid !important;
-          grid-template-columns: repeat(3, 1fr) !important;
-          gap: 0.5rem !important;
-          grid-column: 1 / -1 !important;
-          order: 2 !important;
-        }
-        
-        .page-indicator {
-          flex-direction: column !important;
-          min-width: unset !important;
-          width: 100% !important;
-          padding: 0.4rem 0.75rem !important;
-        }
+
         
         .nav-btn {
           width: 100% !important;
@@ -957,15 +823,8 @@
           padding: 0.75rem !important;
         }
         
-        .cards-container {
-          /* height: 50vh !important; */
-        }
         
-        .page-indicator {
-          min-width: unset !important;
-          width: 100% !important;
-          padding: 0.3rem 0.6rem !important;
-        }
+
         
         .page-number {
           width: 1.25rem !important;
@@ -1013,6 +872,9 @@
           line-height: 1.4 !important;
         }
       }
+
+      /* Alpine.js cloak */
+      [x-cloak] { display: none !important; }
     </style>
   </head>
   <body id="top" class="bg-background text-white">
@@ -1022,6 +884,7 @@
       x-init="init()"
       @scroll.window="updateNavbar()"
       @resize.window="updateNavbar()"
+      x-cloak
       class="fixed w-full top-0 right-0 z-50 px-6 py-4 transition-all duration-300"
       id="mainNav"
     >
@@ -1165,7 +1028,7 @@
       <div class="container mx-auto px-6 relative z-10 pt-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="text-right">
-            <div class="inline-block mb-6">
+            <div class="inline-block mb-6" data-aos="fade-down">
               <div
                 class="flex items-center gap-2 text-primary/80 bg-primary/5 rounded-full py-2 px-4 border border-primary/10"
               >
@@ -1176,7 +1039,7 @@
               </div>
             </div>
 
-            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-white">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-white" data-aos="fade-up" data-aos-delay="100">
               نحوّل أفكارك إلى
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary"
@@ -1184,7 +1047,7 @@
               >
             </h1>
 
-            <div class="space-y-6 text-sm text-gray-300 mb-8">
+            <div class="space-y-6 text-sm text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="200">
               <p class="leading-relaxed">
                 في YAS، لا ننتظر أن تصلنا الأفكار مكتملة؛ بل نأخذ رؤية العميل
                 وفكرته، ونحوّلها بخبراتنا التقنية والإبداعية إلى منتج رقمي
@@ -1197,7 +1060,7 @@
               </p>
             </div>
 
-            <div class="flex flex-wrap gap-4 justify-start">
+            <div class="flex flex-wrap gap-4 justify-start" data-aos="fade-up" data-aos-delay="300">
               <a
                 href="#services"
                 class="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white transition-all duration-200 ease-in-out rounded-full overflow-hidden hover:scale-105 text-sm"
@@ -1225,7 +1088,7 @@
           </div>
 
           <!-- Animated Elements -->
-          <div class="relative hidden lg:block">
+          <div class="relative hidden lg:block" data-aos="fade-left" data-aos-delay="400">
             <div
               class="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-full animate-pulse"
             ></div>
@@ -1644,7 +1507,7 @@
           ></div>
 
           <div class="max-w-7xl mx-auto relative">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
   <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black font-bold">كيف نعمل؟</h2>
               <p class="text-gray-700 text-xl max-w-2xl mx-auto">
                 نؤمن أن بناء منتج رقمي ناجح لا يعتمد فقط على البرمجة، بل على التعاون
@@ -1658,6 +1521,8 @@
                 <!-- Step 1 -->
                 <div
                   class="work-step relative"
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
                   <div
                     class="bg-gray-25 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-accent/20 h-full flex flex-col"
@@ -1692,6 +1557,8 @@
                 <!-- Step 2 -->
                 <div
                   class="work-step relative"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
                 >
                   <div
                     class="bg-gray-25 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-accent/20 h-full flex flex-col"
@@ -1726,6 +1593,8 @@
                 <!-- Step 3 -->
                 <div
                   class="work-step relative"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
                 >
                   <div
                     class="bg-gray-25 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-accent/20 h-full flex flex-col"
@@ -1759,6 +1628,8 @@
                 <!-- Step 4 -->
                 <div
                   class="work-step relative"
+                  data-aos="fade-up"
+                  data-aos-delay="300"
                 >
                   <div
                     class="bg-gray-25 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-accent/20 h-full flex flex-col"
@@ -1792,6 +1663,8 @@
                 <!-- Step 5 -->
                 <div
                   class="work-step relative"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
                 >
                   <div
                     class="bg-gray-25 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-accent/20 h-full flex flex-col"
@@ -1825,6 +1698,8 @@
                 <!-- Step 6 -->
                 <div
                   class="work-step relative"
+                  data-aos="fade-up"
+                  data-aos-delay="500"
                 >
                   <div
                     class="bg-gray-25 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-accent/20 h-full flex flex-col"
@@ -1902,7 +1777,7 @@
         <!-- Main Services Section -->
         <section id="services" class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                               <span class="text-gray-900 font-medium">خدماتنا</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 حزمة خدمات متكاملة
@@ -1916,6 +1791,8 @@
               <!-- Service 1 -->
               <div
                 class="service-card bg-gray-25 rounded-xl shadow-lg overflow-hidden border border-accent/20 hover:border-primary/40"
+                data-aos="fade-up"
+                data-aos-delay="0"
               >
                 <div class="h-48 overflow-hidden">
                   <img
@@ -1956,6 +1833,8 @@
               <!-- Service 2 -->
               <div
                 class="service-card bg-gray-25 rounded-xl shadow-lg overflow-hidden border border-accent/20 hover:border-primary/40"
+                data-aos="fade-up"
+                data-aos-delay="100"
               >
                 <div class="h-48 overflow-hidden">
                   <img
@@ -1996,6 +1875,8 @@
               <!-- Service 3 -->
               <div
                 class="service-card bg-gray-25 rounded-xl shadow-lg overflow-hidden border border-accent/20 hover:border-primary/40"
+                data-aos="fade-up"
+                data-aos-delay="200"
               >
                 <div class="h-48 overflow-hidden">
                   <img
@@ -2036,6 +1917,8 @@
               <!-- Service 4 -->
               <div
                 class="service-card bg-gray-25 rounded-xl shadow-lg overflow-hidden border border-accent/20 hover:border-primary/40"
+                data-aos="fade-up"
+                data-aos-delay="300"
               >
                 <div class="h-48 overflow-hidden">
                   <img
@@ -2074,6 +1957,8 @@
               <!-- Service 5 -->
               <div
                 class="service-card bg-gray-25 rounded-xl shadow-lg overflow-hidden border border-accent/20 hover:border-primary/40"
+                data-aos="fade-up"
+                data-aos-delay="400"
               >
                 <div class="h-48 overflow-hidden">
                   <img
@@ -2114,6 +1999,8 @@
               <!-- Service 6 -->
               <div
                 class="service-card bg-gray-25 rounded-xl shadow-lg overflow-hidden border border-accent/20 hover:border-primary/40"
+                data-aos="fade-up"
+                data-aos-delay="500"
               >
                 <div class="h-48 overflow-hidden">
                   <img
@@ -2157,7 +2044,7 @@
         <!-- Policies and Models Section -->
         <section id="policies-models" class="py-20 px-6 bg-white">
           <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
               <span class="text-gray-900 font-medium">سياسات ونماذج</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 سياسات ونماذج العمل في YAS
@@ -2169,7 +2056,7 @@
               </p>
             </div>
             <!-- Responsive Tabs - Redesigned -->
-            <div class="policies-tabs-container">
+            <div class="policies-tabs-container" data-aos="fade-up" data-aos-delay="100">
               <!-- Mobile Tab Selector -->
               <div class="lg:hidden mb-6" x-data="policiesDropdown()">
                 <!-- Hidden Native Select -->
@@ -2472,51 +2359,7 @@
             </div>
           </div>
 
-          <!-- Tab Functionality Script -->
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const mobileSelect = document.getElementById('mobile-tab-select');
-              const desktopTabs = document.querySelectorAll('.desktop-tab-btn');
-              const tabCards = document.querySelectorAll('.tab-card');
 
-              function switchTab(tabId) {
-                // Hide all tab cards
-                tabCards.forEach(card => {
-                  card.classList.remove('active');
-                });
-                
-                // Show selected tab card
-                document.getElementById(tabId).classList.add('active');
-                
-                // Update desktop tabs
-                desktopTabs.forEach(btn => {
-                  if (btn.getAttribute('data-tab') === tabId) {
-                    btn.classList.remove('bg-gray-100', 'text-gray-700');
-                    btn.classList.add('bg-gray-900', 'text-white', 'shadow-lg');
-                  } else {
-                    btn.classList.remove('bg-gray-900', 'text-white', 'shadow-lg');
-                    btn.classList.add('bg-gray-100', 'text-gray-700');
-                  }
-                });
-                
-                // Update mobile select
-                mobileSelect.value = tabId;
-              }
-
-              // Desktop tab click handlers
-              desktopTabs.forEach(btn => {
-                btn.addEventListener('click', () => {
-                  const tabId = btn.getAttribute('data-tab');
-                  switchTab(tabId);
-                });
-              });
-
-              // Mobile select change handler
-              mobileSelect.addEventListener('change', (e) => {
-                switchTab(e.target.value);
-              });
-            });
-          </script>
 
           <style>
             .policies-tabs-container {
@@ -2536,19 +2379,7 @@
               transform: translateY(0);
             }
             
-            .desktop-tab-btn {
-              white-space: nowrap;
-              max-width: 280px;
-              text-align: center;
-            }
-            
-            @media (max-width: 1024px) {
-              .desktop-tab-btn {
-                font-size: 0.8rem;
-                padding: 0.75rem 1rem;
-                max-width: 200px;
-              }
-            }
+
           </style>
         </section>
 
@@ -2646,7 +2477,7 @@
         <!-- Achievements Section -->
         <section id="achievements" class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 مشاريعنا
               </h2>
@@ -2659,7 +2490,7 @@
             <!-- Projects Grid - 2 Columns -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <!-- Project 1: Medical Applications -->
-              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
+              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full" data-aos="fade-up" data-aos-delay="0">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <i class="ri-heart-pulse-line ri-2x text-gray-900"></i>
@@ -2687,7 +2518,7 @@
               </div>
 
               <!-- Project 2: Delivery Platforms -->
-              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
+              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <i class="ri-truck-line ri-2x text-gray-900"></i>
@@ -2714,7 +2545,7 @@
               </div>
 
               <!-- Project 3: Booking Systems -->
-              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
+              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <i class="ri-calendar-check-line ri-2x text-gray-900"></i>
@@ -2741,7 +2572,7 @@
               </div>
 
               <!-- Project 4: E-commerce Applications -->
-              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
+              <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <i class="ri-store-3-line ri-2x text-gray-900"></i>
@@ -2774,12 +2605,14 @@
         <!-- Partners Section -->
         <section class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 feature-fade-in">
+            <div class="text-center mb-16" data-aos="fade-up">
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">شركاؤنا</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               <div
                 class="bg-gray-25 p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300 border border-accent/20"
+                data-aos="fade-up"
+                data-aos-delay="0"
               >
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
@@ -2790,6 +2623,8 @@
               </div>
               <div
                 class="bg-gray-25 p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300 border border-accent/20"
+                data-aos="fade-up"
+                data-aos-delay="100"
               >
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
@@ -2800,6 +2635,8 @@
               </div>
               <div
                 class="bg-gray-25 p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300 border border-accent/20"
+                data-aos="fade-up"
+                data-aos-delay="200"
               >
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
@@ -2810,6 +2647,8 @@
               </div>
               <div
                 class="bg-gray-25 p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300 border border-accent/20"
+                data-aos="fade-up"
+                data-aos-delay="300"
               >
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
@@ -2888,7 +2727,7 @@
         <section id="contact-section" class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div class="bg-gray-25 rounded-xl shadow-lg p-8 border border-accent/20">
+              <div class="bg-gray-25 rounded-xl shadow-lg p-8 border border-accent/20" data-aos="fade-right">
                 <h3 class="text-2xl font-bold mb-6 text-gray-900">طلب خدمة أو استفسار</h3>
                 <form id="contact-form">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -3017,7 +2856,7 @@
                   </button>
                 </form>
               </div>
-              <div>
+              <div data-aos="fade-left">
             <span class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">نحن هنا لمساعدتك</span>
             <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">
                   تواصل معنا
@@ -3068,7 +2907,7 @@
         <!-- FAQ Section -->
         <section class="py-20 px-6 bg-white" dir="rtl">
           <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
               <span class="text-gray-900 font-medium">الأسئلة الشائعة</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 إجابات على استفساراتكم
@@ -3079,7 +2918,7 @@
             </div>
             <div class="space-y-4">
               <!-- FAQ Item 1 -->
-              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="0">
                 <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right">
                     ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟
@@ -3098,7 +2937,7 @@
               </details>
 
               <!-- FAQ Item 2 -->
-              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="100">
                 <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right">
                     هل تقدمون خدمات الصيانة والدعم الفني بعد إطلاق الموقع؟
@@ -3117,7 +2956,7 @@
               </details>
 
               <!-- FAQ Item 3 -->
-              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="200">
                 <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right">
                     كيف يمكنني قياس نجاح حملات التسويق الرقمي؟
@@ -3136,7 +2975,7 @@
               </details>
 
               <!-- FAQ Item 4 -->
-              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="300">
                 <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right">
                     ما هي مميزات الحلول السحابية التي تقدمونها؟
@@ -3156,7 +2995,7 @@
               </details>
 
               <!-- FAQ Item 5 -->
-              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="400">
                 <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right">
                     هل يمكنكم تطوير حلول مخصصة حسب احتياجات شركتنا؟
@@ -3370,7 +3209,7 @@
         </footer>
         
         <!-- AI Assistant Section -->
-        <div x-data="aiAssistantData()" x-init="init()">
+        <div x-data="aiAssistantData()" x-init="init()" x-cloak>
           <!-- Button -->
           <div id="ai-assistant-button" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999]">
             <div class="relative flex items-center">
@@ -4111,6 +3950,18 @@
         
         <script src="js/main.js"></script>
         
+        <!-- Initialize AOS.js -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+              duration: 800,
+              easing: 'ease-out',
+              once: true,
+              offset: 50,
+              delay: 0
+            });
+          });
+        </script>
 
     
     <!-- Status Modal -->
