@@ -60,6 +60,9 @@
     <!-- Tailwind CSS -->
     <script src="//cdn.tailwindcss.com/3.4.16"></script>
     
+    <!-- Alpine.js -->
+    <script defer src="//cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
     <script>
       tailwind.config = {
         theme: {
@@ -877,197 +880,11 @@
         backdrop-filter: blur(10px);
       }
       
-      /* Portrait Orientation - Horizontal Pagination */
-      @media (orientation: portrait) {
-        .slider-pagination {
-          margin-top: 2rem;
-        }
-        
-        .nav-controls {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-        
-        .page-indicators {
-          display: flex;
-          gap: 0.25rem;
-          flex-wrap: wrap;
-          justify-content: center;
-          flex-grow: 1;
-          max-width: 500px;
-        }
-        
-        .page-indicator {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.2rem;
-          padding: 0.5rem 1.25rem;
-          border-radius: 10px;
-          border: 2px solid transparent;
-          background: rgba(0, 0, 0, 0.05);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          min-width: 70px;
-        }
-        
 
-      }
       
-      /* Landscape Orientation - Vertical Pagination */
-      @media (orientation: landscape) {
-        .slider-pagination {
-          margin-top: 0;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          justify-content: space-between;
-          padding: 0.75rem;
-        }
-        
-        .nav-controls {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.5rem;
-          margin-bottom: 0.75rem;
-        }
-        
-        .page-indicators {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          flex-grow: 1;
-          justify-content: center;
-        }
-        
-        .page-indicator {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1rem;
-          border-radius: 8px;
-          border: 2px solid transparent;
-          background: rgba(0, 0, 0, 0.05);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          width: 100%;
-          justify-content: flex-start;
-          position: relative;
-        }
-        
 
-      }
       
-      /* Common Styles */
-      .nav-btn {
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background: rgba(0, 204, 255, 0.9);
-        color: white;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-      }
-      
-      .nav-btn:hover:not(:disabled) {
-        background: rgba(0, 204, 255, 1);
-        transform: scale(1.1);
-      }
-      
-      .nav-btn:disabled {
-        background: rgba(0, 0, 0, 0.3);
-        cursor: not-allowed;
-        transform: scale(1);
-      }
-      
-      .page-indicator:hover {
-        background: rgba(0, 204, 255, 0.1);
-        border-color: rgba(0, 204, 255, 0.3);
-        transform: translateY(-2px);
-      }
-      
-      .page-indicator.active {
-        background: rgba(0, 204, 255, 0.15);
-        border-color: #00CCFF;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(0, 204, 255, 0.2);
-      }
-      
-      .page-number {
-        font-weight: bold;
-        font-size: 1.1rem;
-        color: #00CCFF;
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        background: rgba(0, 204, 255, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-      }
-      
-      .page-indicator.active .page-number {
-        background: #00CCFF;
-        color: white;
-      }
-      
-      .page-title {
-        font-size: 0.75rem;
-        color: #666;
-        font-weight: 500;
-        line-height: 1.2;
-        text-align: center;
-      }
-      
-      @media (orientation: landscape) {
-        .page-title {
-          text-align: right;
-          flex-grow: 1;
-        }
-        
-        .page-number {
-          position: absolute;
-          top: -0.25rem;
-          right: -0.25rem;
-          width: 1.25rem;
-          height: 1.25rem;
-          font-size: 0.75rem;
-          border: 2px solid white;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-          z-index: 10;
-        }
-        
-        .nav-btn {
-          width: 2rem;
-          height: 2rem;
-        }
-      }
-      
-      .page-indicator.active .page-title {
-        color: #00CCFF;
-        font-weight: 600;
-      }
-      
-      .progress-text {
-        font-size: 0.9rem;
-        color: #666;
-        font-weight: 500;
-        white-space: nowrap;
-      }
+
       
       /* Mobile Responsive Design */
       @media (max-width: 768px) {
@@ -1087,15 +904,19 @@
         }
         
         .nav-controls {
-          flex-direction: column !important;
+          display: grid !important;
+          grid-template-columns: 1fr 1fr !important;
+          grid-template-rows: auto auto !important;
           gap: 1rem !important;
+          width: 100% !important;
         }
         
         .page-indicators {
           display: grid !important;
           grid-template-columns: repeat(3, 1fr) !important;
           gap: 0.5rem !important;
-          order: -1 !important;
+          grid-column: 1 / -1 !important;
+          order: 2 !important;
         }
         
         .page-indicator {
@@ -1106,8 +927,12 @@
         }
         
         .nav-btn {
-          width: 2rem !important;
-          height: 2rem !important;
+          width: 100% !important;
+          max-width: 3rem !important;
+          aspect-ratio: 1 / 1 !important;
+          height: auto !important;
+          border-radius: 50% !important;
+          justify-self: center !important;
         }
         
         .page-number {
@@ -1190,12 +1015,17 @@
   <body id="top" class="bg-background text-white">
     <!-- Navigation -->
     <nav
+      x-data="navbarData()"
+      x-init="init()"
+      @scroll.window="updateNavbar()"
+      @resize.window="updateNavbar()"
       class="fixed w-full top-0 right-0 z-50 px-6 py-4 transition-all duration-300"
       id="mainNav"
     >
       <div class="max-w-6xl mx-auto">
         <div
-          class="nav-container bg-background/90 backdrop-blur-md rounded-full border border-primary/20 shadow-lg shadow-black/5 px-6 py-3 flex items-center justify-between transition-all duration-300"
+          :class="navContainerClasses"
+          class="nav-container backdrop-blur-md rounded-full shadow-lg shadow-black/5 px-6 py-3 flex items-center justify-between transition-all duration-300"
         >
           <a href="#top" class="flex items-center">
             <img src="assets/yass logo-05.png" alt="YAS Logo" class="h-14" />
@@ -1241,53 +1071,69 @@
           >
           <!-- Mobile Menu Button -->
           <button
-            class="nav-menu-btn md:hidden w-10 h-10 flex items-center justify-center text-white hover:text-primary transition-colors"
+            @click="toggleMobileMenu()"
+            :class="navButtonClasses"
+            class="nav-menu-btn md:hidden w-10 h-10 flex items-center justify-center hover:text-primary transition-colors"
             id="mobileMenuBtn"
           >
-            <i class="ri-menu-line ri-lg"></i>
+            <i :class="mobileMenuOpen ? 'ri-close-line ri-lg' : 'ri-menu-line ri-lg'"></i>
           </button>
         </div>
 
         <!-- Mobile Menu -->
         <div class="md:hidden" id="mobileMenu">
           <div
-            class="nav-mobile-container hidden bg-background/95 backdrop-blur-md mt-4 rounded-2xl border border-primary/20 shadow-lg shadow-black/5 p-4 transition-all duration-300"
+            x-show="mobileMenuOpen"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="transform -translate-y-2 opacity-0"
+            x-transition:enter-end="transform translate-y-0 opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="transform translate-y-0 opacity-100"
+            x-transition:leave-end="transform -translate-y-2 opacity-0"
+            class="nav-mobile-container bg-background/95 backdrop-blur-md mt-4 rounded-2xl border border-primary/20 shadow-lg shadow-black/5 p-4 transition-all duration-300"
           >
             <div class="flex flex-col space-y-4">
               <a
+                  @click="closeMobileMenu()"
                 href="#why-yas"
                 class="nav-link-mobile text-white hover:text-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-primary/5"
                 >لماذا نحن؟</a
               >
               <a
+                  @click="closeMobileMenu()"
                 href="#how-we-work"
                 class="nav-link-mobile text-white hover:text-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-primary/5"
                 >كيف نعمل؟</a
               >
               <a
+                  @click="closeMobileMenu()"
                 href="#services"
                 class="nav-link-mobile text-white hover:text-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-primary/5"
                 >خدماتنا</a
               >
               <a
+                  @click="closeMobileMenu()"
                 href="#policies-models"
                 class="nav-link-mobile text-white hover:text-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-primary/5"
                 >سياسات ونماذج</a
               >
               <a
+                  @click="closeMobileMenu()"
                 href="#achievements"
                 class="nav-link-mobile text-white hover:text-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-primary/5"
                 >مشاريعنا</a
               >
               <a
+                  @click="closeMobileMenu()"
                 href="#contact-section"
                 class="nav-link-mobile text-white hover:text-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-primary/5"
                 >تواصل معنا</a
               >
               <a
+                  @click="closeMobileMenu()"
                 href="#contact-section"
                 class="bg-gradient-to-r from-primary to-secondary hover:from-primary hover:to-primary text-background font-medium px-4 py-2 rounded-lg text-center transition-all duration-300 hover:shadow-lg"
-                >ناقش فكرتك معنا</a
+                  >ناقش فكرتك معنا</a
               >
             </div>
           </div>
@@ -1295,83 +1141,7 @@
       </div>
     </nav>
 
-    <script>
-      // Navbar scroll behavior
-      document.addEventListener("DOMContentLoaded", function () {
-        const nav = document.getElementById("mainNav");
-        const navContainer = nav.querySelector(".nav-container");
-        const navLinks = nav.querySelectorAll(".nav-link");
-        const navMenuBtn = nav.querySelector(".nav-menu-btn");
-        const heroSection = document.querySelector("section"); // First section is hero
-        const mobileMenu = document.getElementById("mobileMenu");
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mobileMenuContainer = document.querySelector(
-          ".nav-mobile-container"
-        );
 
-        // Mobile menu toggle
-        mobileMenuBtn.addEventListener("click", () => {
-          mobileMenuContainer.classList.toggle("hidden");
-          const isOpen = !mobileMenuContainer.classList.contains("hidden");
-          mobileMenuBtn.innerHTML = isOpen
-            ? '<i class="ri-close-line ri-lg"></i>'
-            : '<i class="ri-menu-line ri-lg"></i>';
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll(".nav-link-mobile").forEach((link) => {
-          link.addEventListener("click", () => {
-            mobileMenuContainer.classList.add("hidden");
-            mobileMenuBtn.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
-          });
-        });
-
-        const updateNavbar = () => {
-          const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-          const scrollPosition = window.scrollY;
-
-          if (scrollPosition > heroBottom - nav.offsetHeight) {
-            // Past hero section - dark background style
-            navContainer.classList.remove("bg-background/90", "border-primary/20");
-            navContainer.classList.add("bg-background", "border-accent/20");
-            navLinks.forEach((link) => {
-              link.classList.remove("text-white");
-              link.classList.add("text-white");
-            });
-            navMenuBtn.classList.remove("text-white");
-            navMenuBtn.classList.add("text-white");
-          } else {
-            // On hero section - transparent style
-            navContainer.classList.add("bg-background/90", "border-primary/20");
-            navContainer.classList.remove("bg-background", "border-accent/20");
-            navLinks.forEach((link) => {
-              link.classList.add("text-white");
-              link.classList.remove("text-white");
-            });
-            navMenuBtn.classList.add("text-white");
-            navMenuBtn.classList.remove("text-white");
-          }
-        };
-
-        // Initial check
-        updateNavbar();
-
-        // Update on scroll
-        window.addEventListener("scroll", updateNavbar);
-
-        // Update on resize
-        window.addEventListener("resize", updateNavbar);
-
-        // Close mobile menu on window resize if open
-        window.addEventListener("resize", () => {
-          if (window.innerWidth >= 768) {
-            // md breakpoint
-            mobileMenuContainer.classList.add("hidden");
-            mobileMenuBtn.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
-          }
-        });
-      });
-    </script>
 
     <!-- Hero Section -->
     <section
@@ -1396,7 +1166,7 @@
               <div
                 class="flex items-center gap-2 text-primary/80 bg-primary/5 rounded-full py-2 px-4 border border-primary/10"
               >
-                <span class="text-lg font-medium">نرحب بأفكاركم المبتكرة</span>
+                <span class="text-xs font-medium">نرحب بأفكاركم المبتكرة</span>
                 <div
                   class="w-2 h-2 rounded-full bg-primary animate-pulse"
                 ></div>
@@ -1411,7 +1181,7 @@
               >
             </h1>
 
-            <div class="space-y-6 text-lg text-gray-300 mb-8">
+            <div class="space-y-6 text-sm text-gray-300 mb-8">
               <p class="leading-relaxed">
                 في YAS، لا ننتظر أن تصلنا الأفكار مكتملة؛ بل نأخذ رؤية العميل
                 وفكرته، ونحوّلها بخبراتنا التقنية والإبداعية إلى منتج رقمي
@@ -1427,7 +1197,7 @@
             <div class="flex flex-wrap gap-4 justify-start">
               <a
                 href="#services"
-                class="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white transition-all duration-200 ease-in-out rounded-full overflow-hidden hover:scale-105"
+                class="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white transition-all duration-200 ease-in-out rounded-full overflow-hidden hover:scale-105 text-sm"
               >
                 <div
                   class="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 transition-all duration-200 group-hover:scale-110"
@@ -1441,7 +1211,7 @@
               </a>
               <a
                 href="#contact-section"
-                class="inline-flex items-center gap-2 text-white/80 hover:text-primary transition-colors group"
+                class="inline-flex items-center gap-2 text-white/80 hover:text-primary transition-colors group text-sm"
               >
                 <span>تواصل معنا</span>
                 <i
@@ -1498,7 +1268,7 @@
 
 
         <!-- Why YAS Section -->
-        <section id="why-yas" class="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+        <section x-data="whyYasData()" x-init="init()" id="why-yas" class="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
           <!-- Background Elements -->
           <div class="absolute inset-0 opacity-30 pointer-events-none">
             <div class="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
@@ -1508,7 +1278,7 @@
           <!-- Header Section -->
           <div class="py-12 md:py-16 lg:py-20 px-6 text-center relative z-10">
             <div class="max-w-7xl mx-auto">
-              <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4 md:mb-6">
+              <div class="inline-flex items-center gap-2 bg-primary/10 text-gray-900 px-4 py-2 rounded-full text-sm font-medium mb-4 md:mb-6">
                 <i class="ri-star-line"></i>
                 <span>لماذا نحن؟</span>
               </div>
@@ -1530,12 +1300,12 @@
                 <div class="cards-container" id="cards-container">
                     
                     <!-- Card 1: Market Understanding -->
-                    <div class="card-slide active" data-step="0">
+                    <div class="card-slide" :class="{'active': currentIndex === 0}" data-step="0">
                       <div class="card-content">
                         <!-- Header -->
                         <div class="card-header">
                           <div class="icon-container bg-gradient-to-br from-primary/20 to-primary/10">
-                            <i class="ri-map-pin-user-line text-primary"></i>
+                            <i class="ri-map-pin-user-line text-gray-900"></i>
                           </div>
                           <div class="header-content">
                             <h3 class="card-title">فهم عميق للسوق</h3>
@@ -1552,7 +1322,7 @@
                           <div class="features-list">
                             <div class="feature-item">
                               <div class="feature-icon bg-primary/10">
-                                <i class="ri-line-chart-line text-primary"></i>
+                                <i class="ri-line-chart-line text-gray-900"></i>
                               </div>
                               <div class="feature-content">
                                 <h4 class="feature-title">دراسات السوق الشاملة</h4>
@@ -1562,7 +1332,7 @@
                             
                             <div class="feature-item">
                               <div class="feature-icon bg-primary/10">
-                                <i class="ri-focus-3-line text-primary"></i>
+                                <i class="ri-focus-3-line text-gray-900"></i>
                               </div>
                               <div class="feature-content">
                                 <h4 class="feature-title">تحليل المنافسين</h4>
@@ -1575,14 +1345,14 @@
                         <!-- Visual -->
                         <div class="card-visual bg-gradient-to-br from-primary/5 to-blue-50">
                           <div class="visual-circle">
-                            <i class="ri-map-pin-user-line text-primary"></i>
+                            <i class="ri-map-pin-user-line text-gray-900"></i>
                           </div>
                         </div>
                       </div>
                     </div>
 
                   <!-- Card 2: Quality Execution -->
-                    <div class="card-slide" data-step="1">
+                    <div class="card-slide" :class="{'active': currentIndex === 1}" data-step="1">
                       <div class="card-content">
                         <div class="card-header">
                           <div class="icon-container bg-gradient-to-br from-yellow-200/20 to-yellow-100/10">
@@ -1627,7 +1397,7 @@
                     </div>
 
                   <!-- Card 3: Commitment -->
-                    <div class="card-slide" data-step="2">
+                    <div class="card-slide" :class="{'active': currentIndex === 2}" data-step="2">
                       <div class="card-content">
                         <div class="card-header">
                           <div class="icon-container bg-gradient-to-br from-green-200/20 to-green-100/10">
@@ -1663,7 +1433,7 @@
                     </div>
 
                   <!-- Card 4: Passion -->
-                    <div class="card-slide" data-step="3">
+                    <div class="card-slide" :class="{'active': currentIndex === 3}" data-step="3">
                       <div class="card-content">
                         <div class="card-header">
                           <div class="icon-container bg-gradient-to-br from-red-200/20 to-red-100/10">
@@ -1708,7 +1478,7 @@
                     </div>
 
                   <!-- Card 5: Support -->
-                    <div class="card-slide" data-step="4">
+                    <div class="card-slide" :class="{'active': currentIndex === 4}" data-step="4">
                       <div class="card-content">
                         <div class="card-header">
                           <div class="icon-container bg-gradient-to-br from-purple-200/20 to-purple-100/10">
@@ -1753,7 +1523,7 @@
                     </div>
 
                   <!-- Card 6: Team -->
-                    <div class="card-slide" data-step="5">
+                    <div class="card-slide" :class="{'active': currentIndex === 5}" data-step="5">
                       <div class="card-content">
                         <div class="card-header">
                           <div class="icon-container bg-gradient-to-br from-blue-200/20 to-blue-100/10">
@@ -1773,11 +1543,11 @@
                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
                               <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-code-s-slash-line text-blue-600 text-xl"></i></div>
                               <h5 class="font-bold text-gray-900 text-xs">مطورو الواجهات</h5>
-                            </div>
+                              </div>
                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
                               <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-server-line text-blue-600 text-xl"></i></div>
                               <h5 class="font-bold text-gray-900 text-xs">مطورو الخادم</h5>
-                            </div>
+                              </div>
                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
                               <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-layout-line text-blue-600 text-xl"></i></div>
                               <h5 class="font-bold text-gray-900 text-xs">مصممو التجربة</h5>
@@ -1785,11 +1555,11 @@
                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
                               <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-smartphone-line text-blue-600 text-xl"></i></div>
                               <h5 class="font-bold text-gray-900 text-xs">مطورو الجوال</h5>
-                            </div>
+                              </div>
                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
                               <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-database-2-line text-blue-600 text-xl"></i></div>
                               <h5 class="font-bold text-gray-900 text-xs">علماء البيانات</h5>
-                            </div>
+                              </div>
                             <div class="group bg-gray-25 rounded-xl p-3 text-center border border-blue-100 hover:border-blue-200 transition-all duration-300">
                               <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i class="ri-settings-3-line text-blue-600 text-xl"></i></div>
                               <h5 class="font-bold text-gray-900 text-xs">مهندسو التشغيل</h5>
@@ -1828,44 +1598,34 @@
                 </div>
                 
                 <!-- Slider Pagination -->
-                <div class="slider-pagination">
+                <div class="mt-8 md:mt-0 md:flex md:flex-col md:h-full md:justify-between md:p-3">
                   <!-- Navigation Controls -->
-                  <div class="nav-controls">
-                    <button id="prev-card" class="nav-btn">
-                      <i class="ri-arrow-right-line text-xl"></i>
+                  <div class="grid grid-cols-2 gap-4 mb-4 md:flex md:flex-col md:items-center md:gap-2 md:mb-3">
+                    <button @click="prevCard()" :disabled="currentIndex === 0" 
+                            class="w-full max-w-12 aspect-square rounded-full bg-gray-900 backdrop-blur-xl text-white border-0 cursor-pointer flex items-center justify-center shadow-lg hover:bg-gray-800 hover:scale-110 disabled:bg-black/30 disabled:cursor-not-allowed disabled:scale-100 transition-all duration-300 justify-self-center md:w-8 md:h-8">
+                      <i class="ri-arrow-right-line text-xl md:text-base"></i>
                     </button>
+                    
+                    <button @click="nextCard()" :disabled="currentIndex === cards.length - 1" 
+                            class="w-full max-w-12 aspect-square rounded-full bg-gray-900 backdrop-blur-xl text-white border-0 cursor-pointer flex items-center justify-center shadow-lg hover:bg-gray-800 hover:scale-110 disabled:bg-black/30 disabled:cursor-not-allowed disabled:scale-100 transition-all duration-300 justify-self-center md:w-8 md:h-8">
+                      <i class="ri-arrow-left-line text-xl md:text-base"></i>
+                      </button>
                     
                     <!-- Page Indicators -->
-                    <div class="page-indicators">
-                      <button class="page-indicator active" data-page="0">
-                        <span class="page-number">1</span>
-                        <span class="page-title">فهم السوق</span>
-                      </button>
-                      <button class="page-indicator" data-page="1">
-                        <span class="page-number">2</span>
-                        <span class="page-title">جودة التنفيذ</span>
-                      </button>
-                      <button class="page-indicator" data-page="2">
-                        <span class="page-number">3</span>
-                        <span class="page-title">الالتزام</span>
-                      </button>
-                      <button class="page-indicator" data-page="3">
-                        <span class="page-number">4</span>
-                        <span class="page-title">الشغف</span>
-                      </button>
-                      <button class="page-indicator" data-page="4">
-                        <span class="page-number">5</span>
-                        <span class="page-title">الدعم</span>
-                      </button>
-                      <button class="page-indicator" data-page="5">
-                        <span class="page-number">6</span>
-                        <span class="page-title">الفريق</span>
-                      </button>
-                    </div>
-                    
-                    <button id="next-card" class="nav-btn">
-                      <i class="ri-arrow-left-line text-xl"></i>
+                    <div class="grid grid-cols-3 gap-2 col-span-2 md:flex md:flex-col md:gap-2 md:flex-grow md:justify-center">
+                      <template x-for="(card, index) in cards" :key="index">
+                        <button @click="goToCard(index)" 
+                                :class="{'bg-primary/15 border-primary shadow-lg -translate-y-0.5': currentIndex === index}"
+                                class="flex flex-col items-center gap-1 p-2 px-5 rounded-xl border-2 border-transparent bg-black/5 cursor-pointer transition-all duration-300 min-w-0 w-full md:flex-row md:gap-2 md:p-2 md:px-4 md:justify-start md:relative hover:bg-primary/10 hover:border-primary/30 hover:-translate-y-0.5">
+                          <span :class="{'bg-gray-900 text-white': currentIndex === index}"
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-gray-900 font-bold text-lg transition-all duration-300 flex-shrink-0 md:absolute md:-top-1 md:-right-1 md:w-5 md:h-5 md:text-xs md:border-2 md:border-white md:shadow-md md:z-10" 
+                                x-text="index + 1"></span>
+                          <span :class="{'text-gray-900 font-semibold': currentIndex === index}"
+                                class="text-xs text-gray-600 font-medium leading-tight text-center md:text-right md:flex-grow" 
+                                x-text="card.title"></span>
                     </button>
+                      </template>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -1903,12 +1663,12 @@
                       class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center mb-6 mx-auto relative group cursor-pointer hover:from-primary/10 hover:to-primary/30 transition-all duration-300"
                     >
                       <div
-                        class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
+                        class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
                       >
                         1
                       </div>
                       <i
-                        class="ri-customer-service-line ri-xl text-primary transform group-hover:scale-110 transition-transform duration-300"
+                        class="ri-customer-service-line ri-xl text-gray-900 transform group-hover:scale-110 transition-transform duration-300"
                       ></i>
                     </div>
                     <h3
@@ -1937,12 +1697,12 @@
                       class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center mb-6 mx-auto relative group cursor-pointer hover:from-primary/10 hover:to-primary/30 transition-all duration-300"
                     >
                       <div
-                        class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
+                        class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
                       >
                         2
                       </div>
                       <i
-                        class="ri-flow-chart ri-xl text-primary transform group-hover:scale-110 transition-transform duration-300"
+                        class="ri-flow-chart ri-xl text-gray-900 transform group-hover:scale-110 transition-transform duration-300"
                       ></i>
                     </div>
                     <h3
@@ -1971,12 +1731,12 @@
                       class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center mb-6 mx-auto relative group cursor-pointer hover:from-primary/10 hover:to-primary/30 transition-all duration-300"
                     >
                       <div
-                        class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
+                        class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
                       >
                         3
                       </div>
                       <i
-                        class="ri-code-box-line ri-xl text-primary transform group-hover:scale-110 transition-transform duration-300"
+                        class="ri-code-box-line ri-xl text-gray-900 transform group-hover:scale-110 transition-transform duration-300"
                       ></i>
                     </div>
                     <h3
@@ -2004,12 +1764,12 @@
                       class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center mb-6 mx-auto relative group cursor-pointer hover:from-primary/10 hover:to-primary/30 transition-all duration-300"
                     >
                       <div
-                        class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
+                        class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
                       >
                         4
                       </div>
                       <i
-                        class="ri-test-tube-line ri-xl text-primary transform group-hover:scale-110 transition-transform duration-300"
+                        class="ri-test-tube-line ri-xl text-gray-900 transform group-hover:scale-110 transition-transform duration-300"
                       ></i>
                     </div>
                     <h3
@@ -2037,12 +1797,12 @@
                       class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center mb-6 mx-auto relative group cursor-pointer hover:from-primary/10 hover:to-primary/30 transition-all duration-300"
                     >
                       <div
-                        class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
+                        class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
                       >
                         5
                       </div>
                       <i
-                        class="ri-rocket-line ri-xl text-primary transform group-hover:scale-110 transition-transform duration-300"
+                        class="ri-rocket-line ri-xl text-gray-900 transform group-hover:scale-110 transition-transform duration-300"
                       ></i>
                     </div>
                     <h3
@@ -2070,12 +1830,12 @@
                       class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center mb-6 mx-auto relative group cursor-pointer hover:from-primary/10 hover:to-primary/30 transition-all duration-300"
                     >
                       <div
-                        class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
+                        class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center absolute -top-2 -right-2 transform group-hover:rotate-12 transition-transform duration-300 text-sm"
                       >
                         6
                       </div>
                       <i
-                        class="ri-customer-service-2-line ri-xl text-primary transform group-hover:scale-110 transition-transform duration-300"
+                        class="ri-customer-service-2-line ri-xl text-gray-900 transform group-hover:scale-110 transition-transform duration-300"
                       ></i>
                     </div>
                     <h3
@@ -2140,7 +1900,7 @@
         <section id="services" class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-              <span class="text-primary font-medium">خدماتنا</span>
+                              <span class="text-gray-900 font-medium">خدماتنا</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 حزمة خدمات متكاملة
               </h2>
@@ -2170,15 +1930,15 @@
                   </p>
                   <ul class="space-y-2 mb-6">
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تطبيقات iOS المتقدمة</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تطبيقات Android الاحترافية</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">واجهات مستخدم عصرية</span>
                     </li>
                   </ul>
@@ -2210,15 +1970,15 @@
                   </p>
                   <ul class="space-y-2 mb-6">
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">مواقع إلكترونية احترافية</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">أنظمة إدارية متكاملة</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تطوير Back-end APIs</span>
                     </li>
                   </ul>
@@ -2250,15 +2010,15 @@
                   </p>
                   <ul class="space-y-2 mb-6">
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تطوير APIs متقدمة</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">قواعد بيانات آمنة</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">معمارية برمجية متطورة</span>
                     </li>
                   </ul>
@@ -2288,15 +2048,15 @@
                   </p>
                   <ul class="space-y-2 mb-6">
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تكامل بوابات الدفع</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">خدمات الرسائل والإشعارات</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">أنظمة التحليلات والتقارير</span>
                     </li>
                   </ul>
@@ -2328,15 +2088,15 @@
                   </p>
                   <ul class="space-y-2 mb-6">
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تصميم واجهات جذابة</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تجربة مستخدم سلسة</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">تصميم متجاوب</span>
                     </li>
                   </ul>
@@ -2368,15 +2128,15 @@
                   </p>
                   <ul class="space-y-2 mb-6">
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">دعم فني متواصل</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">صيانة وتحديثات دورية</span>
                     </li>
                     <li class="flex items-center gap-2">
-                      <i class="ri-check-line ri-sm text-primary"></i>
+                      <i class="ri-check-line ri-sm text-gray-900"></i>
                       <span class="text-gray-700">استشارات تقنية متخصصة</span>
                     </li>
                   </ul>
@@ -2395,7 +2155,7 @@
         <section id="policies-models" class="py-20 px-6 bg-white">
           <div class="max-w-3xl mx-auto">
             <div class="text-center mb-16">
-              <span class="text-primary font-medium">سياسات ونماذج</span>
+              <span class="text-gray-900 font-medium">سياسات ونماذج</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 سياسات ونماذج العمل في YAS
               </h2>
@@ -2426,21 +2186,21 @@
               <!-- Desktop Tab Navigation -->
               <div class="hidden lg:block mb-8">
                 <div class="flex flex-wrap justify-center gap-2">
-                  <button class="desktop-tab-btn active px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-primary text-white shadow-lg" data-tab="tab1">
-                    التنفيذ الكامل بدون التزام مستقبلي
-                  </button>
+                  <button class="desktop-tab-btn active px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-900 text-white shadow-lg" data-tab="tab1">
+                  التنفيذ الكامل بدون التزام مستقبلي
+                </button>
                   <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab2">
-                    التنفيذ والدعم الفني المستمر
-                  </button>
+                  التنفيذ والدعم الفني المستمر
+                </button>
                   <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab3">
-                    شراكة تشغيلية مع مشاركة الأرباح
-                  </button>
+                  شراكة تشغيلية مع مشاركة الأرباح
+                </button>
                   <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab4">
-                    شراكة ستراتيجية بملكية مشتركة
-                  </button>
+                  شراكة ستراتيجية بملكية مشتركة
+                </button>
                   <button class="desktop-tab-btn px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="tab5">
-                    استثمار مباشر من YAS بملكية مسيطرة
-                  </button>
+                  استثمار مباشر من YAS بملكية مسيطرة
+                </button>
                 </div>
               </div>
               <!-- Tab Content Cards -->
@@ -2450,11 +2210,11 @@
                   <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-blue-100">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <i class="ri-shield-check-line text-2xl sm:text-3xl text-primary"></i>
+                        <i class="ri-shield-check-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
-                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
-                        التنفيذ الكامل بدون التزام مستقبلي
-                      </h3>
+                                              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
+                          التنفيذ الكامل بدون التزام مستقبلي
+                        </h3>
                     </div>
                     <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
                       تسليم المشروع للعميل مع الكود المصدري دون أي التزام دعم مستقبلي.
@@ -2473,9 +2233,9 @@
                         <div class="text-gray-600 text-sm sm:text-base">
                           <ul class="list-disc list-inside space-y-1">
                             <li>تسليم الكود المصدري والتأكد من بناء التطبيق وفق متطلبات العميل</li>
-                            <li>لا يشمل أي دعم فني لاحق.</li>
-                          </ul>
-                        </div>
+                          <li>لا يشمل أي دعم فني لاحق.</li>
+                        </ul>
+                      </div>
                       </div>
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
@@ -2493,9 +2253,9 @@
                   <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-green-100">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <i class="ri-customer-service-2-line text-2xl sm:text-3xl text-primary"></i>
+                        <i class="ri-customer-service-2-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
-                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
+                      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
                         التنفيذ والدعم الفني المستمر
                       </h3>
                     </div>
@@ -2515,19 +2275,19 @@
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
                         <div class="text-gray-600 text-sm sm:text-base">
                           <ul class="list-disc list-inside space-y-1">
-                            <li>دعم فني (أعطال، تحديثات، مراقبة أداء).</li>
-                            <li>مدة الدعم حسب الاتفاق.</li>
-                          </ul>
-                        </div>
+                          <li>دعم فني (أعطال، تحديثات، مراقبة أداء).</li>
+                          <li>مدة الدعم حسب الاتفاق.</li>
+                        </ul>
+                      </div>
                       </div>
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
                         <div class="text-gray-600 text-sm sm:text-base">
                           <ol class="list-decimal list-inside space-y-1">
-                            <li>تكلفة تطوير التطبيق.</li>
-                            <li>رسوم دعم فني دورية.</li>
-                          </ol>
-                        </div>
+                          <li>تكلفة تطوير التطبيق.</li>
+                          <li>رسوم دعم فني دورية.</li>
+                        </ol>
+                      </div>
                       </div>
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
@@ -2541,9 +2301,9 @@
                   <div class="bg-gradient-to-br from-yellow-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-yellow-100">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <i class="ri-hand-coin-line text-2xl sm:text-3xl text-primary"></i>
+                        <i class="ri-hand-coin-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
-                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
+                      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
                         شراكة تشغيلية مع مشاركة الأرباح
                       </h3>
                     </div>
@@ -2563,10 +2323,10 @@
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
                         <div class="text-gray-600 text-sm sm:text-base">
                           <ul class="list-disc list-inside space-y-1">
-                            <li>YAS مسؤولة عن التشغيل والدعم والخبرة التقنية.</li>
+                          <li>YAS مسؤولة عن التشغيل والدعم والخبرة التقنية.</li>
                             <li>يتم تحديد نسبة مشاركة الأرباح (مثال: YAS 20% - الشريك 80%).</li>
-                          </ul>
-                        </div>
+                        </ul>
+                      </div>
                       </div>
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
@@ -2584,9 +2344,9 @@
                   <div class="bg-gradient-to-br from-purple-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-purple-100">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <i class="ri-hand-heart-line text-2xl sm:text-3xl text-primary"></i>
+                        <i class="ri-hand-heart-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
-                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
+                      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
                         شراكة ستراتيجية بملكية مشتركة
                       </h3>
                     </div>
@@ -2606,10 +2366,10 @@
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
                         <div class="text-gray-600 text-sm sm:text-base">
                           <ul class="list-disc list-inside space-y-1">
-                            <li>YAS مسؤولة عن التطوير التقني.</li>
+                          <li>YAS مسؤولة عن التطوير التقني.</li>
                             <li>يتم الاتفاق على الجانب الإداري والتسويقي ضمن بنود الشراكة.</li>
-                          </ul>
-                        </div>
+                        </ul>
+                      </div>
                       </div>
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
@@ -2618,9 +2378,9 @@
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">مناسب لـ:</span>
                         <span class="text-gray-600 text-sm sm:text-base">المشاريع الطموحة التي تحتاج إلى تكامل بين التقنية والإدارة.</span>
-                      </div>
                     </div>
                   </div>
+                </div>
                 </div>
 
                 <!-- Tab 5 Content -->
@@ -2628,9 +2388,9 @@
                   <div class="bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-xl p-6 lg:p-8 border border-red-100">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                       <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <i class="ri-bar-chart-grouped-line text-2xl sm:text-3xl text-primary"></i>
+                        <i class="ri-bar-chart-grouped-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
-                      <h3 class="text-xl sm:text-2xl font-bold text-primary leading-tight">
+                      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
                         استثمار مباشر من YAS بملكية مسيطرة
                       </h3>
                     </div>
@@ -2650,10 +2410,10 @@
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">الالتزامات:</span>
                         <div class="text-gray-600 text-sm sm:text-base">
                           <ul class="list-disc list-inside space-y-1">
-                            <li>YAS مسؤولة عن التطوير والإدارة التقنية.</li>
-                            <li>الشريك يساهم في التمويل أو التسويق.</li>
-                          </ul>
-                        </div>
+                          <li>YAS مسؤولة عن التطوير والإدارة التقنية.</li>
+                          <li>الشريك يساهم في التمويل أو التسويق.</li>
+                        </ul>
+                      </div>
                       </div>
                       <div class="flex flex-col sm:flex-row sm:items-start gap-2">
                         <span class="font-bold text-gray-900 text-sm sm:text-base min-w-[80px]">التكلفة:</span>
@@ -2690,9 +2450,9 @@
                 desktopTabs.forEach(btn => {
                   if (btn.getAttribute('data-tab') === tabId) {
                     btn.classList.remove('bg-gray-100', 'text-gray-700');
-                    btn.classList.add('bg-primary', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-gray-900', 'text-white', 'shadow-lg');
                   } else {
-                    btn.classList.remove('bg-primary', 'text-white', 'shadow-lg');
+                    btn.classList.remove('bg-gray-900', 'text-white', 'shadow-lg');
                     btn.classList.add('bg-gray-100', 'text-gray-700');
                   }
                 });
@@ -2772,7 +2532,7 @@
                   <!-- Principle 1 -->
                   <div class="flex items-start gap-4 p-4 rounded-lg bg-white">
                     <div class="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
-                      <i class="ri-file-shield-line text-primary text-xl"></i>
+                      <i class="ri-file-shield-line text-gray-900 text-xl"></i>
                     </div>
                     <div>
                       <h4 class="text-lg font-bold text-black mb-2">عقود قانونية واضحة</h4>
@@ -2785,7 +2545,7 @@
                   <!-- Principle 2 -->
                   <div class="flex items-start gap-4 p-4 rounded-lg bg-white">
                     <div class="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
-                      <i class="ri-user-settings-line text-primary text-xl"></i>
+                      <i class="ri-user-settings-line text-gray-900 text-xl"></i>
                     </div>
                     <div>
                       <h4 class="text-lg font-bold text-black mb-2">تحديد المسؤوليات</h4>
@@ -2798,7 +2558,7 @@
                   <!-- Principle 3 -->
                   <div class="flex items-start gap-4 p-4 rounded-lg bg-white">
                     <div class="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
-                      <i class="ri-shield-check-line text-primary text-xl"></i>
+                      <i class="ri-shield-check-line text-gray-900 text-xl"></i>
                     </div>
                     <div>
                       <h4 class="text-lg font-bold text-black mb-2">آليات فض النزاعات</h4>
@@ -2811,7 +2571,7 @@
                   <!-- Principle 4 -->
                   <div class="flex items-start gap-4 p-4 rounded-lg bg-white">
                     <div class="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
-                      <i class="ri-exchange-dollar-line text-primary text-xl"></i>
+                      <i class="ri-exchange-dollar-line text-gray-900 text-xl"></i>
                     </div>
                     <div>
                       <h4 class="text-lg font-bold text-black mb-2">الشفافية المالية</h4>
@@ -2825,7 +2585,7 @@
                 <!-- Principle 5 - Full Width -->
                 <div class="flex items-start gap-4 p-4 rounded-lg bg-white mt-6">
                   <div class="w-12 h-12 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
-                    <i class="ri-refresh-line text-primary text-xl"></i>
+                    <i class="ri-refresh-line text-gray-900 text-xl"></i>
                   </div>
                   <div>
                     <h4 class="text-lg font-bold text-black mb-2">المراجعة والتطوير المستمر</h4>
@@ -2860,7 +2620,7 @@
               <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <i class="ri-heart-pulse-line ri-2x text-primary"></i>
+                    <i class="ri-heart-pulse-line ri-2x text-gray-900"></i>
                   </div>
                   <h3 class="text-2xl font-bold text-gray-900">تطبيقات طبية وعيادات ذكية</h3>
                 </div>
@@ -2870,15 +2630,15 @@
                 </p>
                 <div class="space-y-3">
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">نظام حجز المواعيد</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">متابعة الملفات الطبية</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">التواصل مع الأطباء</span>
                   </div>
                 </div>
@@ -2888,7 +2648,7 @@
               <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <i class="ri-truck-line ri-2x text-primary"></i>
+                    <i class="ri-truck-line ri-2x text-gray-900"></i>
                   </div>
                   <h3 class="text-2xl font-bold text-gray-900">منصات توصيل وخدمات لوجستية</h3>
                 </div>
@@ -2897,15 +2657,15 @@
                 </p>
                 <div class="space-y-3">
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">تتبع الطلبات في الوقت الفعلي</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">إدارة المندوبين والمسارات</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">تحليلات الأداء والتقارير</span>
                   </div>
                 </div>
@@ -2915,7 +2675,7 @@
               <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <i class="ri-calendar-check-line ri-2x text-primary"></i>
+                    <i class="ri-calendar-check-line ri-2x text-gray-900"></i>
                   </div>
                   <h3 class="text-2xl font-bold text-gray-900">أنظمة حجوزات ومدفوعات إلكترونية</h3>
                 </div>
@@ -2924,15 +2684,15 @@
                 </p>
                 <div class="space-y-3">
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">دفع إلكتروني آمن</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">حجز متقدم ومرن</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">إدارة المواعيد والتذكيرات</span>
                   </div>
                 </div>
@@ -2942,7 +2702,7 @@
               <div class="bg-gray-25 rounded-2xl shadow-lg p-8 border border-accent/20 flex flex-col h-full">
                 <div class="flex items-center gap-4 mb-6">
                   <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <i class="ri-store-3-line ri-2x text-primary"></i>
+                    <i class="ri-store-3-line ri-2x text-gray-900"></i>
                   </div>
                   <h3 class="text-2xl font-bold text-gray-900">تطبيقات تجارية للسوق السعودي</h3>
                 </div>
@@ -2952,15 +2712,15 @@
                 </p>
                 <div class="space-y-3">
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">دعم اللغة العربية الكامل</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">تكامل مع الأنظمة المحلية</span>
                   </div>
                   <div class="flex items-center gap-3">
-                    <i class="ri-check-line ri-sm text-primary"></i>
+                    <i class="ri-check-line ri-sm text-gray-900"></i>
                     <span class="text-gray-700">دعم العملات المحلية</span>
                   </div>
                 </div>
@@ -2982,7 +2742,7 @@
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
                 >
-                  <i class="ri-building-2-line ri-2x text-primary"></i>
+                  <i class="ri-building-2-line ri-2x text-gray-900"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-gray-900">شركات سعودية وخليجية</h3>
               </div>
@@ -2992,7 +2752,7 @@
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
                 >
-                  <i class="ri-government-line ri-2x text-primary"></i>
+                  <i class="ri-government-line ri-2x text-gray-900"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-gray-900">جهات حكومية وخاصة</h3>
               </div>
@@ -3002,7 +2762,7 @@
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
                 >
-                  <i class="ri-rocket-line ri-2x text-primary"></i>
+                  <i class="ri-rocket-line ri-2x text-gray-900"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-gray-900">رواد أعمال وشركات ناشئة</h3>
               </div>
@@ -3012,7 +2772,7 @@
                 <div
                   class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto"
                 >
-                  <i class="ri-hospital-line ri-2x text-primary"></i>
+                  <i class="ri-hospital-line ri-2x text-gray-900"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-gray-900">مؤسسات تعليمية وطبية وخدمية</h3>
               </div>
@@ -3024,7 +2784,7 @@
      <!-- <section class="py-20 px-6 bg-background">
           <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-              <span class="text-primary font-medium">آراء العملاء</span>
+              <span class="text-gray-900 font-medium">آراء العملاء</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">
                 ماذا يقول عملاؤنا عنا
               </h2>
@@ -3151,7 +2911,7 @@
                   </div>
                   <button
                     type="submit"
-                    class="w-full py-3 px-6 bg-primary text-white rounded-lg transition-colors duration-300 hover:bg-primary/90 !rounded-button whitespace-nowrap font-medium"
+                    class="w-full py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors duration-300 hover:bg-gray-800 !rounded-button whitespace-nowrap font-medium"
                   >
                     إرسال الطلب
                   </button>
@@ -3171,7 +2931,7 @@
                     <div
                       class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
                     >
-                      <i class="ri-map-pin-line ri-lg text-primary"></i>
+                      <i class="ri-map-pin-line ri-lg text-gray-900"></i>
                     </div>
                     <div>
                       <h4 class="font-bold mb-1 text-gray-900">العنوان</h4>
@@ -3182,7 +2942,7 @@
                     <div
                       class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
                     >
-                      <i class="ri-mail-line ri-lg text-primary"></i>
+                      <i class="ri-mail-line ri-lg text-gray-900"></i>
                     </div>
                     <div>
                       <h4 class="font-bold mb-1 text-gray-900">البريد الإلكتروني</h4>
@@ -3193,7 +2953,7 @@
                     <div
                       class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
                     >
-                      <i class="ri-phone-line ri-lg text-primary"></i>
+                      <i class="ri-phone-line ri-lg text-gray-900"></i>
                     </div>
                     <div>
                       <h4 class="font-bold mb-1 text-gray-900">الهاتف</h4>
@@ -3209,7 +2969,7 @@
         <section class="py-20 px-6 bg-white" dir="rtl">
           <div class="max-w-3xl mx-auto">
             <div class="text-center mb-16">
-              <span class="text-primary font-medium">الأسئلة الشائعة</span>
+              <span class="text-gray-900 font-medium">الأسئلة الشائعة</span>
               <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
                 إجابات على استفساراتكم
               </h2>
@@ -3217,18 +2977,27 @@
                 نجيب على الأسئلة الشائعة حول خدماتنا وكيفية عملنا
               </p>
             </div>
-            <div class="space-y-4" id="faq-container">
+            <div x-data="faqData()" class="space-y-4" id="faq-container">
               <!-- FAQ Item 1 -->
               <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
                 <button
+                  @click="toggle(0)"
                   class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
                 >
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right"
                     >ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟</span
                   >
-                  <i class="ri-add-line ri-lg faq-icon text-primary mr-4"></i>
+                  <i :class="openItems[0] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
                 </button>
-                <div class="faq-content hidden px-6 pb-6">
+                <div 
+                  x-show="openItems[0]"
+                  x-transition:enter="transition ease-out duration-200"
+                  x-transition:enter-start="opacity-0 transform -translate-y-2"
+                  x-transition:enter-end="opacity-100 transform translate-y-0"
+                  x-transition:leave="transition ease-in duration-150"
+                  x-transition:leave-start="opacity-100 transform translate-y-0"
+                  x-transition:leave-end="opacity-0 transform -translate-y-2"
+                  class="faq-content px-6 pb-6">
                   <p class="text-gray-700">
                     تختلف مدة تنفيذ المشروع حسب حجمه وتعقيده، ولكن بشكل عام تتراوح
                     مدة تطوير موقع إلكتروني بسيط من 2-4 أسابيع، بينما قد تستغرق
@@ -3240,14 +3009,23 @@
               <!-- FAQ Item 2 -->
               <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
                 <button
+                  @click="toggle(1)"
                   class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
                 >
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right"
                     >هل تقدمون خدمات الصيانة والدعم الفني بعد إطلاق الموقع؟</span
                   >
-                  <i class="ri-add-line ri-lg faq-icon text-primary mr-4"></i>
+                  <i :class="openItems[1] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
                 </button>
-                <div class="faq-content hidden px-6 pb-6">
+                <div 
+                  x-show="openItems[1]"
+                  x-transition:enter="transition ease-out duration-200"
+                  x-transition:enter-start="opacity-0 transform -translate-y-2"
+                  x-transition:enter-end="opacity-100 transform translate-y-0"
+                  x-transition:leave="transition ease-in duration-150"
+                  x-transition:leave-start="opacity-100 transform translate-y-0"
+                  x-transition:leave-end="opacity-0 transform -translate-y-2"
+                  class="faq-content px-6 pb-6">
                   <p class="text-gray-700">
                     نعم، نقدم خدمات صيانة ودعم فني شاملة بعد إطلاق الموقع. لدينا
                     باقات دعم فني مختلفة تشمل تحديثات دورية، إصلاح الأخطاء، تحسينات
@@ -3259,14 +3037,23 @@
               <!-- FAQ Item 3 -->
               <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
                 <button
+                  @click="toggle(2)"
                   class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
                 >
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right"
                     >كيف يمكنني قياس نجاح حملات التسويق الرقمي؟</span
                   >
-                  <i class="ri-add-line ri-lg faq-icon text-primary mr-4"></i>
+                  <i :class="openItems[2] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
                 </button>
-                <div class="faq-content hidden px-6 pb-6">
+                <div 
+                  x-show="openItems[2]"
+                  x-transition:enter="transition ease-out duration-200"
+                  x-transition:enter-start="opacity-0 transform -translate-y-2"
+                  x-transition:enter-end="opacity-100 transform translate-y-0"
+                  x-transition:leave="transition ease-in duration-150"
+                  x-transition:leave-start="opacity-100 transform translate-y-0"
+                  x-transition:leave-end="opacity-0 transform -translate-y-2"
+                  class="faq-content px-6 pb-6">
                   <p class="text-gray-700">
                     نقدم تقارير تحليلية دورية مفصلة تتضمن مؤشرات الأداء الرئيسية مثل
                     عدد الزيارات، معدل التحويل، معدل الارتداد، تكلفة الاستحواذ على
@@ -3278,14 +3065,23 @@
               <!-- FAQ Item 4 -->
               <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
                 <button
+                  @click="toggle(3)"
                   class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
                 >
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right"
                     >ما هي مميزات الحلول السحابية التي تقدمونها؟</span
                   >
-                  <i class="ri-add-line ri-lg faq-icon text-primary mr-4"></i>
+                  <i :class="openItems[3] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
                 </button>
-                <div class="faq-content hidden px-6 pb-6">
+                <div 
+                  x-show="openItems[3]"
+                  x-transition:enter="transition ease-out duration-200"
+                  x-transition:enter-start="opacity-0 transform -translate-y-2"
+                  x-transition:enter-end="opacity-100 transform translate-y-0"
+                  x-transition:leave="transition ease-in duration-150"
+                  x-transition:leave-start="opacity-100 transform translate-y-0"
+                  x-transition:leave-end="opacity-0 transform -translate-y-2"
+                  class="faq-content px-6 pb-6">
                   <p class="text-gray-700">
                     تتميز حلولنا السحابية بالمرونة العالية، حيث يمكن توسيعها أو
                     تقليصها حسب احتياجات عملك. توفر مستوى عالٍ من الأمان مع تشفير
@@ -3298,14 +3094,23 @@
               <!-- FAQ Item 5 -->
               <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
                 <button
+                  @click="toggle(4)"
                   class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
                 >
                   <span class="text-lg font-medium text-gray-900 flex-1 text-right"
                     >هل يمكنكم تطوير حلول مخصصة حسب احتياجات شركتنا؟</span
                   >
-                  <i class="ri-add-line ri-lg faq-icon text-primary mr-4"></i>
+                  <i :class="openItems[4] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
                 </button>
-                <div class="faq-content hidden px-6 pb-6">
+                <div 
+                  x-show="openItems[4]"
+                  x-transition:enter="transition ease-out duration-200"
+                  x-transition:enter-start="opacity-0 transform -translate-y-2"
+                  x-transition:enter-end="opacity-100 transform translate-y-0"
+                  x-transition:leave="transition ease-in duration-150"
+                  x-transition:leave-start="opacity-100 transform translate-y-0"
+                  x-transition:leave-end="opacity-0 transform -translate-y-2"
+                  class="faq-content px-6 pb-6">
                   <p class="text-gray-700">
                     نعم، نحن متخصصون في تطوير حلول مخصصة تلبي الاحتياجات الفريدة لكل
                     عميل. نبدأ بتحليل متطلبات عملك وتحدياته، ثم نصمم ونطور حلولاً
@@ -3511,152 +3316,292 @@
         </footer>
         
         <!-- AI Assistant Section -->
-        <div id="ai-assistant-button" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999]">
-          <div class="relative flex items-center">
-            <!-- Chip -->
-            <div class="absolute -bottom-[24px] -translate-y-1/2 right-10 bg-white text-gray-900 text-xs font-semibold px-4 py-2 rounded-full shadow-lg transition-opacity duration-300 whitespace-nowrap">
-              اسألنا
-            </div>
-            <!-- Button -->
-            <button id="toggle-chat" class="bg-primary text-white size-12 aspect-square flex items-center justify-center rounded-full shadow-lg hover:bg-primary/90 transition-all cursor-pointer">
-              <i class="ri-chat-3-line ri-xl"></i>
-            </button>
-          </div>
-        </div>
-        <div id="chat-window" class="hidden fixed bottom-[72px] right-4 md:bottom-[88px] md:right-8 w-[calc(100vw-32px)] md:w-96 rounded-2xl shadow-2xl bg-white overflow-hidden flex flex-col max-h-[70vh] z-[9998]">
-          <!-- Header -->
-          <div class="p-4 bg-primary text-white flex justify-between items-center flex-shrink-0">
-            <div class="flex items-center gap-2">
-              <i class="ri-robot-line ri-lg"></i>
-              <span class="font-bold">مساعد YAS</span>
-            </div>
-            <button id="close-chat" class="text-white hover:text-white/80 cursor-pointer">
-              <i class="ri-close-line ri-lg"></i>
-            </button>
-          </div>
-          <!-- Messages -->
-          <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
-            <!-- Welcome Message -->
-            <div class="flex justify-start">
-              <div class="bg-gray-100 text-black p-3 rounded-lg max-w-xs">
-                أهلاً بك! كيف يمكنني مساعدتك اليوم؟
+        <div x-data="aiAssistantData()" x-init="init()">
+          <!-- Button -->
+          <div id="ai-assistant-button" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999]">
+            <div class="relative flex items-center">
+              <!-- Chip -->
+              <div class="absolute -bottom-[24px] -translate-y-1/2 right-10 bg-white text-gray-900 text-xs font-semibold px-4 py-2 rounded-full shadow-lg transition-opacity duration-300 whitespace-nowrap">
+                اسألنا
               </div>
+              <!-- Button -->
+              <button @click="toggleChat()" class="bg-gray-900 text-white size-12 aspect-square flex items-center justify-center rounded-full shadow-lg hover:bg-gray-800 transition-all cursor-pointer">
+                <i class="ri-chat-3-line ri-xl"></i>
+          </button>
             </div>
           </div>
-          <!-- Input -->
-          <div class="p-2 md:p-4 border-t border-gray-100 flex-shrink-0 bg-white">
-            <div class="flex items-center gap-2">
-              <input type="text" id="user-input" class="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-black text-sm" placeholder="اكتب سؤالك...">
-              <button id="send-message" class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors !rounded-button cursor-pointer">
-                <i class="ri-send-plane-line"></i>
+          
+          <!-- Chat Window -->
+          <div 
+            x-show="chatOpen"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="transform translate-y-4 opacity-0 scale-95"
+            x-transition:enter-end="transform translate-y-0 opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="transform translate-y-0 opacity-100 scale-100"
+            x-transition:leave-end="transform translate-y-4 opacity-0 scale-95"
+            id="chat-window" 
+            class="fixed bottom-[72px] right-4 md:bottom-[88px] md:right-8 w-[calc(100vw-32px)] md:w-96 rounded-2xl shadow-2xl bg-white overflow-hidden flex flex-col max-h-[70vh] z-[9998]">
+            <!-- Header -->
+            <div class="p-4 bg-gray-900 text-white flex justify-between items-center flex-shrink-0">
+              <div class="flex items-center gap-2">
+                <i class="ri-robot-line ri-lg"></i>
+        <span class="font-bold">مساعد YAS</span>
+              </div>
+              <button @click="closeChat()" class="text-white hover:text-white/80 cursor-pointer">
+                <i class="ri-close-line ri-lg"></i>
               </button>
             </div>
-            <div class="mt-2 text-xs text-gray-500 text-center">يمكنك سؤالي عن خدماتنا، مواعيد العمل، وكيفية التواصل معنا</div>
+            <!-- Messages -->
+            <div x-ref="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4">
+              <template x-for="message in messages" :key="message.id">
+                <div :class="message.isUser ? 'flex justify-end' : 'flex justify-start'">
+                  <div :class="message.isUser ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'" class="max-w-[80%] rounded-lg px-4 py-2" x-html="message.text">
+                  </div>
+                </div>
+              </template>
+            </div>
+            <!-- Input -->
+            <div class="p-2 md:p-4 border-t border-gray-100 flex-shrink-0 bg-white">
+              <div class="flex items-center gap-2">
+                <input 
+                  x-model="userInput" 
+                  @keydown.enter="sendMessage()"
+                  type="text" 
+                  class="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-black text-sm" 
+                  placeholder="اكتب سؤالك...">
+                <button @click="sendMessage()" class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors !rounded-button cursor-pointer">
+                  <i class="ri-send-plane-line"></i>
+                </button>
+              </div>
+              <div class="mt-2 text-xs text-gray-500 text-center">يمكنك سؤالي عن خدماتنا، مواعيد العمل، وكيفية التواصل معنا</div>
+            </div>
+            </div>
           </div>
         </div>
-      </div>
         
-        <script src="js/main.js"></script>
-        
-        <!-- Simple Card Switcher -->
+        <!-- Alpine.js Data Components -->
         <script>
-                     // Why YAS Section - Slider with Pagination
-          document.addEventListener("DOMContentLoaded", function () {
-            const whyYasSection = document.getElementById("why-yas");
-             const cardsContainer = document.getElementById("cards-container");
-             const cardSlides = document.querySelectorAll(".card-slide");
-             const pageIndicators = document.querySelectorAll(".page-indicator");
-            const prevButton = document.getElementById("prev-card");
-            const nextButton = document.getElementById("next-card");
-
-             
-             let currentIndex = 0;
-             const totalCards = cardSlides.length;
-             
-             // Show specific card
-             function showCard(index) {
-               // Hide all cards
-               cardSlides.forEach((card, i) => {
-                 if (i === index) {
-                   card.classList.add("active");
-                } else {
-                   card.classList.remove("active");
-                 }
-               });
-               
-               currentIndex = index;
-               updatePagination();
-               updateNavigationButtons();
-             }
-             
-             // Update page indicators
-             function updatePagination() {
-               pageIndicators.forEach((indicator, index) => {
-                 if (index === currentIndex) {
-                   indicator.classList.add("active");
-                 } else {
-                   indicator.classList.remove("active");
-                 }
-               });
-               
-
-             }
-             
-
-             
-             // Update navigation buttons
-            function updateNavigationButtons() {
-               if (prevButton) {
-                 prevButton.disabled = currentIndex === 0;
-               }
-               if (nextButton) {
-                 nextButton.disabled = currentIndex === totalCards - 1;
-               }
-             }
-             
-             // Page indicator clicks
-             pageIndicators.forEach((indicator, index) => {
-               indicator.addEventListener("click", () => {
-                 showCard(index);
-              });
-            });
-            
-            // Navigation button clicks
-             if (prevButton) {
-            prevButton.addEventListener("click", () => {
-                 if (currentIndex > 0) {
-                   showCard(currentIndex - 1);
+          // Alpine.js Data Components
+          window.navbarData = function() {
+            return {
+              mobileMenuOpen: false,
+              pastHero: false,
+              
+              init() {
+                this.updateNavbar();
+                // Auto close mobile menu on window resize
+                window.addEventListener('resize', () => {
+                  if (window.innerWidth >= 768) {
+                    this.mobileMenuOpen = false;
+                  }
+                });
+              },
+              
+              toggleMobileMenu() {
+                this.mobileMenuOpen = !this.mobileMenuOpen;
+              },
+              
+              closeMobileMenu() {
+                this.mobileMenuOpen = false;
+              },
+              
+              updateNavbar() {
+                const heroSection = document.querySelector("section");
+                if (heroSection) {
+                  const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                  const scrollPosition = window.scrollY;
+                  this.pastHero = scrollPosition > heroBottom - 80;
+                }
+              },
+              
+              get navContainerClasses() {
+                return this.pastHero 
+                  ? 'bg-background border-accent/20'
+                  : 'bg-background/90 border-primary/20';
+              },
+              
+              get navButtonClasses() {
+                return 'text-white';
               }
-            });
-             }
-            
-             if (nextButton) {
-            nextButton.addEventListener("click", () => {
-                 if (currentIndex < totalCards - 1) {
-                   showCard(currentIndex + 1);
-                 }
-               });
-             }
-             
-             // Keyboard navigation (RTL)
-            document.addEventListener("keydown", (e) => {
-              if (whyYasSection.getBoundingClientRect().top < window.innerHeight && 
-                  whyYasSection.getBoundingClientRect().bottom > 0) {
-                 if (e.key === "ArrowLeft" && currentIndex < totalCards - 1) {
+            }
+          }
+          
+          window.aiAssistantData = function() {
+            return {
+              chatOpen: false,
+              userInput: '',
+              messages: [],
+              messageId: 0,
+              
+              knowledgeBase: {
+                'ما هي خدماتكم؟': 'نقدم مجموعة شاملة من الخدمات الرقمية تشمل: تطوير تطبيقات الجوال، تطوير المواقع الإلكترونية، برمجة الأنظمة الخلفية، حلول التكامل بين الأنظمة، تصميم واجهات المستخدم وتجربة المستخدم (UI/UX)، الدعم الفني والاستشارات التقنية.',
+                'خدمات': 'تشمل خدمات YAS: تصميم وتطوير المواقع، برمجة تطبيقات الجوال، تطوير الأنظمة الخلفية، خدمات الـ API والتكامل، تحسين تجربة المستخدم، وخدمات ما بعد الإطلاق مثل الدعم الفني والصيانة.',
+                'هل تطورون تطبيقات جوال؟': 'نعم، نقوم بتطوير تطبيقات مخصصة تعمل على أنظمة iOS وAndroid باستخدام تقنيات حديثة مثل Flutter وReact Native وSwift. نحن نهتم بجودة الأداء وتجربة المستخدم.',
+                'كيف يمكنني التواصل معكم؟': 'يمكنك التواصل معنا عبر:<br>📧 البريد الإلكتروني: info@yastech.com.sa<br>📞 الهاتف: +966 50 195 0787<br>🌐 أو عبر نموذج التواصل على موقعنا الرسمي وسنرد خلال 24 ساعة.',
+                'تواصل': 'راسلنا على info@yastech.com.sa أو اتصل على +966 50 195 0787، أو عبر نموذج التواصل على موقعنا.',
+                'من هي YAS؟': 'YAS هي شركة تقنية سعودية متخصصة في تطوير الحلول الرقمية المبتكرة للشركات والجهات الحكومية والناشئة. نركز على الجودة، السرعة، والمرونة.',
+                'ما هي تكلفة الخدمات؟': 'التكلفة تعتمد على متطلبات المشروع. نوفر عروض أسعار شفافة حسب المدة، التقنيات المطلوبة، وحجم العمل. تواصل معنا للحصول على عرض مفصل.',
+                'ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟': 'مدة تطوير الموقع تعتمد على مدى تعقيده. المواقع الصغيرة تستغرق 2-4 أسابيع، المتوسطة 6-8 أسابيع، والمشاريع الكبرى تصل إلى 12 أسبوع أو أكثر.'
+              },
+              
+              init() {
+                this.addMessage('أهلاً بك! كيف يمكنني مساعدتك اليوم؟ يمكنك سؤالي عن خدماتنا، مدة التنفيذ، التكلفة، أو أي استفسار آخر.', false);
+              },
+              
+              toggleChat() {
+                this.chatOpen = !this.chatOpen;
+              },
+              
+              closeChat() {
+                this.chatOpen = false;
+              },
+              
+              addMessage(text, isUser) {
+                this.messages.push({
+                  id: this.messageId++,
+                  text: text,
+                  isUser: isUser,
+                  timestamp: new Date()
+                });
+                
+                this.$nextTick(() => {
+                  if (this.$refs.chatMessages) {
+                    this.$refs.chatMessages.scrollTop = this.$refs.chatMessages.scrollHeight;
+                  }
+                });
+              },
+              
+              sendMessage() {
+                if (!this.userInput.trim()) return;
+                
+                const question = this.userInput.trim();
+                this.addMessage(question, true);
+                
+                // Process the question
+                const answer = this.processUserInput(question);
+                
+                // Add bot response with delay
+                setTimeout(() => {
+                  this.addMessage(answer, false);
+                }, 500);
+                
+                this.userInput = '';
+              },
+              
+              processUserInput(input) {
+                const question = input.toLowerCase();
+                let answer = 'عذراً، لم أجد إجابة محددة لسؤالك. يمكنك التواصل معنا مباشرة عبر نموذج الاتصال أو الهاتف: <span dir="ltr">+966 50 195 0787</span> للحصول على المساعدة المطلوبة.';
+                
+                // Check for exact matches or partial matches
+                for (const [key, value] of Object.entries(this.knowledgeBase)) {
+                  if (question.includes(key.toLowerCase()) ||
+                      key.toLowerCase().includes(question) ||
+                      this.containsKeywords(question, key)) {
+                    answer = value;
+                    break;
+                  }
+                }
+                
+                return answer;
+              },
+              
+              containsKeywords(userInput, faqQuestion) {
+                const userWords = userInput.toLowerCase().split(' ');
+                const faqWords = faqQuestion.toLowerCase().split(' ');
+                
+                let matchCount = 0;
+                for (const word of userWords) {
+                  if (word.length > 2 && faqWords.some(faqWord => faqWord.includes(word) || word.includes(faqWord))) {
+                    matchCount++;
+                  }
+                }
+                return matchCount >= 2;
+              }
+            }
+          }
+          
+          window.faqData = function() {
+            return {
+              openItems: [false, false, false, false, false],
+              
+              toggle(index) {
+                this.openItems[index] = !this.openItems[index];
+              }
+            }
+          }
+          
+          window.whyYasData = function() {
+            return {
+              currentIndex: 0,
+              
+              cards: [
+                { title: 'فهم السوق' },
+                { title: 'جودة التنفيذ' },
+                { title: 'الالتزام' },
+                { title: 'الشغف' },
+                { title: 'الدعم' },
+                { title: 'الفريق' }
+              ],
+              
+              init() {
+                this.setupKeyboardNavigation();
+              },
+              
+              goToCard(index) {
+                this.currentIndex = index;
+                
+                // Scroll card into view smoothly
+                this.$nextTick(() => {
+                  const section = document.getElementById('why-yas');
+                  if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                });
+              },
+              
+              nextCard() {
+                if (this.currentIndex < this.cards.length - 1) {
+                  this.goToCard(this.currentIndex + 1);
+                } else {
+                  this.goToCard(0); // Loop back to first card
+                }
+              },
+              
+              prevCard() {
+                if (this.currentIndex > 0) {
+                  this.goToCard(this.currentIndex - 1);
+                } else {
+                  this.goToCard(this.cards.length - 1); // Loop to last card
+                }
+              },
+              
+              setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                  const section = document.getElementById('why-yas');
+                  if (section && this.isInViewport(section)) {
+                    if (e.key === 'ArrowLeft') {
                    e.preventDefault();
-                   showCard(currentIndex + 1);
-                 } else if (e.key === "ArrowRight" && currentIndex > 0) {
+                      this.nextCard();
+                    } else if (e.key === 'ArrowRight') {
                    e.preventDefault();
-                   showCard(currentIndex - 1);
+                      this.prevCard();
                 }
               }
             });
-            
-            // Initialize
-             updatePagination();
-             updateNavigationButtons();
-          });
+              },
+              
+              isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return rect.top < window.innerHeight && rect.bottom > 0;
+              }
+            }
+          }
         </script>
+        
+        <script src="js/main.js"></script>
+        
+
     
     <!-- Status Modal -->
     <div id="status-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[10000]">
