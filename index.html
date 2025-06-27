@@ -163,6 +163,62 @@
     </style>
     <!-- Modern Why YAS Section Styles -->
     <style>
+      /* Base UI Inspired Scroll Area */
+      .scroll-area-root {
+        position: relative;
+        overflow: hidden;
+        background: white;
+        border-radius: 8px;
+      }
+      
+      .scroll-area-viewport {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Hide native scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      
+      .scroll-area-viewport::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scroll-area-scrollbar {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        width: 8px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+        z-index: 100;
+      }
+      
+      .scroll-area-thumb {
+        position: relative;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 4px;
+        width: 100%;
+        min-height: 20px;
+        transition: background-color 0.2s ease;
+      }
+      
+      .scroll-area-scrollbar:hover .scroll-area-thumb {
+        background: rgba(0, 0, 0, 0.6);
+      }
+      
+      /* Show scrollbar only when needed */
+      .scroll-area-scrollbar[data-state="hidden"] {
+        opacity: 0;
+        pointer-events: none;
+      }
+
       /* Modern Why YAS Section Styles */
 
       
@@ -793,7 +849,7 @@
           width: 100% !important;
         }
         
-
+        
         
         .nav-btn {
           width: 100% !important;
@@ -1088,7 +1144,7 @@
           </div>
 
           <!-- Animated Elements -->
-          <div class="relative hidden lg:block" data-aos="fade-left" data-aos-delay="400">
+          <div class="relative hidden lg:block" data-aos="fade-up" data-aos-delay="400">
             <div
               class="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-full animate-pulse"
             ></div>
@@ -1545,8 +1601,7 @@
                       الاستماع والتحليل
                     </h3>
                     <p class="text-gray-600 text-center text-sm flex-grow">
-                      نبدأ بالاستماع لفكرتك وتحليلها بعمق، لفهم احتياجاتك وأهدافك
-                      بشكل دقيق
+                      نبدأ بالاستماع لفكرتك وتحليلها بعمق، لفهم احتياجاتك وأهدافك بشكل دقيق
                     </p>
                     <div
                       class="h-1 w-0 bg-primary mt-4 mx-auto group-hover:w-1/2 transition-all duration-500"
@@ -2075,7 +2130,7 @@
                 <!-- Custom Dropdown -->
                 <div class="relative">
                   <!-- Dropdown Button -->
-                  <button
+                <button
                     type="button"
                     x-ref="button"
                     @click="toggleDropdown()"
@@ -2083,15 +2138,15 @@
                     class="w-full p-4 rounded-xl border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-right flex items-center justify-between"
                   >
                     <span x-text="selectedText" class="flex-1 text-right">
-                      التنفيذ الكامل بدون التزام مستقبلي
+                  التنفيذ الكامل بدون التزام مستقبلي
                     </span>
                     <i 
                       :class="isOpen ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" 
                       class="text-xl text-gray-500 transition-transform duration-200 flex-shrink-0"
                     ></i>
-                  </button>
+                </button>
 
-                  <!-- Dropdown Menu -->
+                  <!-- Dropdown Menu with Scroll Area -->
                   <div
                     x-ref="dropdown"
                     x-show="isOpen"
@@ -2101,19 +2156,37 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-0 scale-95"
-                    class="absolute z-50 w-full bg-white border border-gray-300 rounded-xl shadow-lg max-h-60 overflow-y-auto"
+                    class="absolute z-50 w-full border border-gray-300 rounded-xl shadow-lg max-h-60"
                     style="display: none;"
                     @click.outside="closeDropdown()"
                   >
-                    <template x-for="option in options" :key="option.value">
-                      <button
-                        type="button"
-                        @click="selectOption(option)"
-                        :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
-                        class="w-full p-4 text-right text-gray-900 transition-colors duration-150 first:rounded-t-xl last:rounded-b-xl"
-                        x-text="option.text"
-                      ></button>
-                    </template>
+                    <div class="scroll-area-root h-full">
+                      <div 
+                        x-ref="scrollViewport"
+                        class="scroll-area-viewport max-h-60"
+                        @scroll="updateScrollbar"
+                      >
+                        <template x-for="option in options" :key="option.value">
+                    <button
+                            type="button"
+                            @click="selectOption(option)"
+                            :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
+                            class="w-full p-4 text-right text-gray-900 transition-colors duration-150 first:rounded-t-xl last:rounded-b-xl border-0 bg-transparent"
+                            x-text="option.text"
+                          ></button>
+                        </template>
+                      </div>
+                      <div 
+                        x-ref="scrollbar"
+                        class="scroll-area-scrollbar"
+                        data-state="visible"
+                      >
+                        <div 
+                          x-ref="scrollThumb"
+                          class="scroll-area-thumb"
+                        ></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2122,7 +2195,7 @@
               <div class="hidden lg:block mb-8" x-data="policiesDropdown()">
                 <div class="flex flex-wrap justify-center gap-2">
                   <template x-for="option in options" :key="option.value">
-                    <button 
+                <button
                       type="button"
                       @click="selectOption(option)"
                       :class="selectedValue === option.value ? 'bg-gray-900 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
@@ -2142,8 +2215,8 @@
                         <i class="ri-shield-check-line text-2xl sm:text-3xl text-gray-900"></i>
                       </div>
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
-                          التنفيذ الكامل بدون التزام مستقبلي
-                        </h3>
+                        التنفيذ الكامل بدون التزام مستقبلي
+                      </h3>
                     </div>
                     <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
                       تسليم المشروع للعميل مع الكود المصدري دون أي التزام دعم مستقبلي.
@@ -2661,73 +2734,12 @@
 
           </div>
         </section>
-        <!-- Testimonials Section -->
-     <!-- <section class="py-20 px-6 bg-background">
-          <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-              <span class="text-gray-900 font-medium">آراء العملاء</span>
-              <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">
-                ماذا يقول عملاؤنا عنا
-              </h2>
-              <p class="text-white/80 max-w-2xl mx-auto">
-                نفخر بثقة عملائنا وشهاداتهم التي تعكس جودة خدماتنا والتزامنا بتحقيق
-                أهدافهم
-              </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <!-- Testimonial 1 -->
-             <!-- <div class="bg-gray-25 rounded-xl shadow-lg p-8 card-hover border border-accent/20">
-                <div class="flex items-center mb-6">
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                </div>
-                <p class="text-white/80 italic mb-6">
-                  "تعاملنا مع فريق ياس كان تجربة رائعة. قدموا لنا حلولاً مبتكرة
-                  ساعدتنا على تطوير أعمالنا وزيادة مبيعاتنا بشكل ملحوظ. أنصح بشدة
-                  بالتعامل معهم."
-                </p>
-              </div>
-              <!-- Testimonial 2 -->
-              <!-- <div class="bg-gray-25 rounded-xl shadow-lg p-8 card-hover border border-accent/20">
-                <div class="flex items-center mb-6">
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                </div>
-                <p class="text-white/80 italic mb-6">
-                  "الاحترافية والالتزام بالمواعيد من أهم ما يميز فريق ياس. قاموا
-                  بتطوير موقعنا الإلكتروني بشكل احترافي وبتصميم عصري جذاب، مما ساهم
-                  في تحسين صورتنا وزيادة عملائنا."
-                </p>
-              </div>
-              <!-- Testimonial 3 -->
-              <!-- <div class="bg-gray-25 rounded-xl shadow-lg p-8 card-hover border border-accent/20">
-                <div class="flex items-center mb-6">
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                  <i class="ri-star-fill ri-sm text-yellow-400"></i>
-                </div>
-                <p class="text-white/80 italic mb-6">
-                  "حلول الذكاء الاصطناعي التي قدمها فريق ياس ساعدتنا على أتمتة
-                  العديد من العمليات وتحسين خدمة العملاء. النتائج كانت مذهلة والعائد
-                  على الاستثمار كان أكثر مما توقعنا."
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
         <!-- Contact Section -->
         <section id="contact-section" class="py-20 px-6 bg-white">
           <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div class="bg-gray-25 rounded-xl shadow-lg p-8 border border-accent/20" data-aos="fade-right">
+              <div class="bg-gray-25 rounded-xl shadow-lg p-8 border border-accent/20" data-aos="fade-up">
                 <h3 class="text-2xl font-bold mb-6 text-gray-900">طلب خدمة أو استفسار</h3>
                 <form id="contact-form">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -2762,13 +2774,15 @@
                     </div>
                   </div>
                   <div class="mb-6" x-data="customDropdown()">
-                    <label for="service" class="block text-gray-900 mb-2 font-medium"
+                    <label 
+                      class="block text-gray-900 mb-2 font-medium cursor-pointer"
+                      @click.prevent="toggleDropdown(); $refs.button.focus()"
                       >الخدمة المطلوبة <span class="text-red-500">*</span></label
                     >
                     
                     <!-- Hidden Native Select -->
-                    <select
-                      id="service"
+                      <select
+                        id="service"
                       name="service"
                       required
                       class="sr-only"
@@ -2782,7 +2796,7 @@
                       <option value="ui-ux">تصميم واجهات المستخدم</option>
                       <option value="support">الدعم والاستشارات</option>
                       <option value="other">أخرى</option>
-                    </select>
+                      </select>
 
                     <!-- Custom Dropdown -->
                     <div class="relative">
@@ -2790,8 +2804,15 @@
                       <button
                         type="button"
                         x-ref="button"
+                        id="service-dropdown"
+                        aria-haspopup="listbox"
+                        :aria-expanded="isOpen"
+                        aria-label="الخدمة المطلوبة"
                         @click="toggleDropdown()"
                         @blur="handleBlur()"
+                        @keydown.enter.prevent="toggleDropdown()"
+                        @keydown.space.prevent="toggleDropdown()"
+                        @keydown.escape="closeDropdown()"
                         :class="{'border-red-500': hasError, 'border-green-500': isValid && selectedValue, 'border-gray-300': !hasError && (!isValid || !selectedValue)}"
                         class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-right flex items-center justify-between"
                       >
@@ -2804,7 +2825,7 @@
                         ></i>
                       </button>
 
-                      <!-- Dropdown Menu -->
+                      <!-- Dropdown Menu with Scroll Area -->
                       <div
                         x-ref="dropdown"
                         x-show="isOpen"
@@ -2814,19 +2835,37 @@
                         x-transition:leave="transition ease-in duration-150"
                         x-transition:leave-start="opacity-100 scale-100"
                         x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute z-50 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+                        class="absolute z-50 w-full border border-gray-300 rounded-lg shadow-lg max-h-60"
                         style="display: none;"
                         @click.outside="closeDropdown()"
                       >
-                        <template x-for="option in options" :key="option.value">
-                          <button
-                            type="button"
-                            @click="selectOption(option)"
-                            :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
-                            class="w-full px-4 py-3 text-right text-gray-900 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
-                            x-text="option.text"
-                          ></button>
-                        </template>
+                        <div class="scroll-area-root h-full">
+                          <div 
+                            x-ref="scrollViewport"
+                            class="scroll-area-viewport max-h-60"
+                            @scroll="updateScrollbar"
+                          >
+                            <template x-for="option in options" :key="option.value">
+                              <button
+                                type="button"
+                                @click="selectOption(option)"
+                                :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
+                                class="w-full px-4 py-3 text-right text-gray-900 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg border-0 bg-transparent"
+                                x-text="option.text"
+                              ></button>
+                            </template>
+                          </div>
+                          <div 
+                            x-ref="scrollbar"
+                            class="scroll-area-scrollbar"
+                            data-state="visible"
+                          >
+                            <div 
+                              x-ref="scrollThumb"
+                              class="scroll-area-thumb"
+                            ></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
@@ -2856,9 +2895,9 @@
                   </button>
                 </form>
               </div>
-              <div data-aos="fade-left">
-            <span class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">نحن هنا لمساعدتك</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">
+              <div data-aos="fade-up">
+                <span class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">نحن هنا لمساعدتك</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">
                   تواصل معنا
                 </h2>
                 <p class="text-gray-700 mb-8">
@@ -2866,7 +2905,7 @@
                   خلال النموذج أو عبر وسائل الاتصال المباشرة.
                 </p>
                 <div class="space-y-6 mb-8">
-                <div class="flex items-start gap-4">
+                  <div class="flex items-start gap-4">
                     <div
                       class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
                     >
@@ -2904,6 +2943,158 @@
             </div>
           </div>
         </section>
+        
+        <!-- FAQ Section -->
+        <section class="py-20 px-6 bg-white" dir="rtl">
+
+// ... rest of the code ...
+
+                    <!-- Custom Dropdown -->
+                    <div class="relative">
+                      <!-- Dropdown Button -->
+                      <button
+                        type="button"
+                        x-ref="button"
+                        id="service-dropdown"
+                        aria-haspopup="listbox"
+                        :aria-expanded="isOpen"
+                        aria-label="الخدمة المطلوبة"
+                        @click="toggleDropdown()"
+                        @blur="handleBlur()"
+                        @keydown.enter.prevent="toggleDropdown()"
+                        @keydown.space.prevent="toggleDropdown()"
+                        @keydown.escape="closeDropdown()"
+                        :class="{'border-red-500': hasError, 'border-green-500': isValid && selectedValue, 'border-gray-300': !hasError && (!isValid || !selectedValue)}"
+                        class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-right flex items-center justify-between"
+                      >
+                        <span x-text="selectedText" :class="{'text-gray-500': !selectedValue}" class="flex-1 text-right">
+                          اختر الخدمة
+                        </span>
+                        <i 
+                          :class="isOpen ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" 
+                          class="ri-lg text-gray-500 transition-transform duration-200 flex-shrink-0"
+                        ></i>
+                      </button>
+
+                      <!-- Dropdown Menu with Scroll Area -->
+                      <div
+                        x-ref="dropdown"
+                        x-show="isOpen"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute z-50 w-full border border-gray-300 rounded-lg shadow-lg max-h-60"
+                        style="display: none;"
+                        @click.outside="closeDropdown()"
+                      >
+                        <div class="scroll-area-root h-full">
+                          <div 
+                            x-ref="scrollViewport"
+                            class="scroll-area-viewport max-h-60"
+                            @scroll="updateScrollbar"
+                          >
+                            <template x-for="option in options" :key="option.value">
+                              <button
+                                type="button"
+                                @click="selectOption(option)"
+                                :class="{'bg-primary/10 text-primary': selectedValue === option.value, 'hover:bg-gray-50': selectedValue !== option.value}"
+                                class="w-full px-4 py-3 text-right text-gray-900 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg border-0 bg-transparent"
+                                x-text="option.text"
+                              ></button>
+                            </template>
+                          </div>
+                          <div 
+                            x-ref="scrollbar"
+                            class="scroll-area-scrollbar"
+                            data-state="visible"
+                          >
+                            <div 
+                              x-ref="scrollThumb"
+                              class="scroll-area-thumb"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div id="service-error" class="text-red-500 text-sm mt-1 hidden"></div>
+                  </div>
+                  <div class="mb-6">
+                    <label for="message" class="block text-gray-900 mb-2 font-medium"
+                      >الرسالة <span class="text-gray-400 text-xs">(اختياري)</span></label
+                    >
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="4"
+                      required
+                      minlength="10"
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-500"
+                      placeholder="اكتب رسالتك هنا..."
+                    ></textarea>
+                    <div id="message-error" class="text-red-500 text-sm mt-1 hidden"></div>
+                  </div>
+                  <button
+                    type="submit"
+                    id="submit-btn"
+                    class="w-full py-3 px-6 bg-gray-900 text-white rounded-lg transition-colors duration-300 hover:bg-gray-800 !rounded-button whitespace-nowrap font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    إرسال الطلب
+                  </button>
+                </form>
+              </div>
+              <div data-aos="fade-up">
+                <span class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">نحن هنا لمساعدتك</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-900">
+                  تواصل معنا
+                </h2>
+                <p class="text-gray-700 mb-8">
+                  نسعد بالتواصل معك والإجابة على استفساراتك. يمكنك التواصل معنا من
+                  خلال النموذج أو عبر وسائل الاتصال المباشرة.
+                </p>
+                <div class="space-y-6 mb-8">
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
+                    >
+                      <i class="ri-map-pin-line ri-lg text-gray-900"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold mb-1 text-gray-900">العنوان</h4>
+                      <a class="text-gray-700 underline" href="https://maps.app.goo.gl/pMAb81aNjTrLeCSG9" data-geo="21.4357496, 39.7971043">مكة المكرمة - حي الضيافة حسين عرب</a>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
+                    >
+                      <i class="ri-mail-line ri-lg text-gray-900"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold mb-1 text-gray-900">البريد الإلكتروني</h4>
+                      <a href="mailto:info@yastech.com.sa" class="text-gray-700 underline">info@yastech.com.sa</a>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
+                    >
+                      <i class="ri-phone-line ri-lg text-gray-900"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold mb-1 text-gray-900">الهاتف</h4>
+                      <a class="text-gray-700 underline" href="tel:+966501950787"><span dir="ltr">+966 50 195 0787</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
         <!-- FAQ Section -->
         <section class="py-20 px-6 bg-white" dir="rtl">
           <div class="max-w-3xl mx-auto">
@@ -3444,20 +3635,28 @@
                 const dropdown = this.$refs.dropdown;
                 
                 if (button && dropdown) {
-                  // Use Floating UI to position the dropdown
-                  FloatingUIDOM.computePosition(button, dropdown, {
-                    placement: 'bottom-start',
-                    middleware: [
-                      FloatingUIDOM.offset(4),
-                      FloatingUIDOM.flip(),
-                      FloatingUIDOM.shift({ padding: 8 })
-                    ]
-                  }).then(({ x, y }) => {
-                    Object.assign(dropdown.style, {
-                      left: `${x}px`,
-                      top: `${y}px`,
-                    });
-                  });
+                  // Simple positioning - dropdown appears below button
+                  const rect = button.getBoundingClientRect();
+                  const viewportHeight = window.innerHeight;
+                  const dropdownHeight = 240; // max-h-60 = 15rem = 240px
+                  
+                  // Check if there's enough space below
+                  const spaceBelow = viewportHeight - rect.bottom;
+                  const shouldShowAbove = spaceBelow < dropdownHeight && rect.top > dropdownHeight;
+                  
+                  if (shouldShowAbove) {
+                    // Position above the button
+                    dropdown.style.bottom = '100%';
+                    dropdown.style.top = 'auto';
+                    dropdown.style.marginBottom = '4px';
+                    dropdown.style.marginTop = '0';
+                  } else {
+                    // Position below the button (default)
+                    dropdown.style.top = '100%';
+                    dropdown.style.bottom = 'auto';
+                    dropdown.style.marginTop = '4px';
+                    dropdown.style.marginBottom = '0';
+                  }
                 }
               },
               
@@ -3949,6 +4148,169 @@
         </script>
         
         <script src="js/main.js"></script>
+        
+        <!-- Enhanced Dynamic Scrollbar Script -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Base UI Inspired Scroll Area Implementation
+            class ScrollArea {
+              constructor(container) {
+                this.container = container;
+                this.viewport = container.querySelector('.scroll-area-viewport');
+                this.scrollbar = container.querySelector('.scroll-area-scrollbar');
+                this.thumb = container.querySelector('.scroll-area-thumb');
+                
+                if (!this.viewport || !this.scrollbar || !this.thumb) {
+                  console.warn('ScrollArea: Required elements not found');
+                  return;
+                }
+                
+                this.hideTimeout = null;
+                this.init();
+              }
+              
+              init() {
+                this.bindEvents();
+                this.update();
+                
+                // Use ResizeObserver for better performance
+                if (window.ResizeObserver) {
+                  this.resizeObserver = new ResizeObserver(() => this.update());
+                  this.resizeObserver.observe(this.viewport);
+                  this.resizeObserver.observe(this.container);
+                }
+                
+                // Use MutationObserver for content changes
+                this.mutationObserver = new MutationObserver(() => this.update());
+                this.mutationObserver.observe(this.viewport, {
+                  childList: true,
+                  subtree: true,
+                  attributes: true
+                });
+              }
+              
+              bindEvents() {
+                this.viewport.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+                this.scrollbar.addEventListener('mouseenter', () => this.handleMouseEnter());
+                this.scrollbar.addEventListener('mouseleave', () => this.handleMouseLeave());
+              }
+              
+              handleScroll() {
+                this.updateThumbPosition();
+                this.showScrollbar();
+                
+                clearTimeout(this.hideTimeout);
+                this.hideTimeout = setTimeout(() => {
+                  if (this.needsScrollbar()) {
+                    this.scrollbar.style.opacity = '1'; // Always visible when content overflows
+                  }
+                }, 1000);
+              }
+              
+              handleMouseEnter() {
+                if (this.needsScrollbar()) {
+                  this.scrollbar.style.opacity = '1';
+                  this.thumb.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+                }
+              }
+              
+              handleMouseLeave() {
+                if (this.needsScrollbar()) {
+                  this.scrollbar.style.opacity = '1'; // Keep visible
+                  this.thumb.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+                }
+              }
+              
+              needsScrollbar() {
+                return this.viewport.scrollHeight > this.viewport.clientHeight;
+              }
+              
+              showScrollbar() {
+                if (this.needsScrollbar()) {
+                  this.scrollbar.style.opacity = '1';
+                  this.scrollbar.setAttribute('data-state', 'visible');
+                }
+              }
+              
+              hideScrollbar() {
+                this.scrollbar.style.opacity = '0';
+                this.scrollbar.setAttribute('data-state', 'hidden');
+              }
+              
+              updateThumbPosition() {
+                const { scrollTop, scrollHeight, clientHeight } = this.viewport;
+                const scrollbarHeight = this.scrollbar.clientHeight - 4; // Account for padding
+                
+                if (!this.needsScrollbar()) return;
+                
+                // Calculate thumb height (minimum 20px)
+                const thumbHeight = Math.max(20, (clientHeight / scrollHeight) * scrollbarHeight);
+                
+                // Calculate thumb position
+                const maxScroll = scrollHeight - clientHeight;
+                const scrollRatio = maxScroll > 0 ? scrollTop / maxScroll : 0;
+                const maxThumbTop = scrollbarHeight - thumbHeight;
+                const thumbTop = scrollRatio * maxThumbTop;
+                
+                // Apply transform for better performance
+                this.thumb.style.height = `${thumbHeight}px`;
+                this.thumb.style.transform = `translateY(${thumbTop}px)`;
+                
+                console.log('ScrollArea updated:', {
+                  scrollRatio: scrollRatio.toFixed(2),
+                  thumbTop: thumbTop.toFixed(2),
+                  thumbHeight: thumbHeight.toFixed(2)
+                });
+              }
+              
+              update() {
+                if (this.needsScrollbar()) {
+                  this.updateThumbPosition();
+                  this.showScrollbar();
+                } else {
+                  this.hideScrollbar();
+                }
+              }
+              
+              destroy() {
+                if (this.resizeObserver) {
+                  this.resizeObserver.disconnect();
+                }
+                if (this.mutationObserver) {
+                  this.mutationObserver.disconnect();
+                }
+                clearTimeout(this.hideTimeout);
+              }
+            }
+            
+            // Initialize scroll areas when DOM is ready
+            function initScrollAreas() {
+              const scrollAreas = document.querySelectorAll('.scroll-area-root');
+              const instances = [];
+              
+              console.log(`Found ${scrollAreas.length} scroll area(s)`);
+              
+              scrollAreas.forEach((container, index) => {
+                const instance = new ScrollArea(container);
+                instances.push(instance);
+                console.log(`Initialized scroll area ${index + 1}`);
+              });
+              
+              // Add global updateScrollbar method for Alpine.js
+              window.updateScrollbar = function() {
+                instances.forEach(instance => instance.update());
+              };
+              
+              return instances;
+            }
+            
+            // Initialize when Alpine.js is ready
+            setTimeout(() => {
+              console.log('Initializing scroll areas...');
+              window.scrollAreaInstances = initScrollAreas();
+            }, 500);
+          });
+        </script>
         
         <!-- Initialize AOS.js -->
         <script>
