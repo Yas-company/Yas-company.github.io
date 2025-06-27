@@ -2977,27 +2977,17 @@
                 نجيب على الأسئلة الشائعة حول خدماتنا وكيفية عملنا
               </p>
             </div>
-            <div x-data="faqData()" class="space-y-4" id="faq-container">
+            <div class="space-y-4">
               <!-- FAQ Item 1 -->
-              <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
-                <button
-                  @click="toggle(0)"
-                  class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
-                >
-                  <span class="text-lg font-medium text-gray-900 flex-1 text-right"
-                    >ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟</span
-                  >
-                  <i :class="openItems[0] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
-                </button>
-                <div 
-                  x-show="openItems[0]"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="opacity-0 transform -translate-y-2"
-                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="opacity-100 transform translate-y-0"
-                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                  class="faq-content px-6 pb-6">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+                <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+                  <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                    ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟
+                  </span>
+                  <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+                  <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+                </summary>
+                <div class="px-6 pb-6 animate-fadeIn">
                   <p class="text-gray-700">
                     تختلف مدة تنفيذ المشروع حسب حجمه وتعقيده، ولكن بشكل عام تتراوح
                     مدة تطوير موقع إلكتروني بسيط من 2-4 أسابيع، بينما قد تستغرق
@@ -3005,27 +2995,18 @@
                     دقيق بعد دراسة متطلبات المشروع.
                   </p>
                 </div>
-              </div>
+              </details>
+
               <!-- FAQ Item 2 -->
-              <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
-                <button
-                  @click="toggle(1)"
-                  class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
-                >
-                  <span class="text-lg font-medium text-gray-900 flex-1 text-right"
-                    >هل تقدمون خدمات الصيانة والدعم الفني بعد إطلاق الموقع؟</span
-                  >
-                  <i :class="openItems[1] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
-                </button>
-                <div 
-                  x-show="openItems[1]"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="opacity-0 transform -translate-y-2"
-                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="opacity-100 transform translate-y-0"
-                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                  class="faq-content px-6 pb-6">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+                <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+                  <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                    هل تقدمون خدمات الصيانة والدعم الفني بعد إطلاق الموقع؟
+                  </span>
+                  <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+                  <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+                </summary>
+                <div class="px-6 pb-6 animate-fadeIn">
                   <p class="text-gray-700">
                     نعم، نقدم خدمات صيانة ودعم فني شاملة بعد إطلاق الموقع. لدينا
                     باقات دعم فني مختلفة تشمل تحديثات دورية، إصلاح الأخطاء، تحسينات
@@ -3033,27 +3014,18 @@
                     موقعك بكفاءة وأمان.
                   </p>
                 </div>
-              </div>
+              </details>
+
               <!-- FAQ Item 3 -->
-              <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
-                <button
-                  @click="toggle(2)"
-                  class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
-                >
-                  <span class="text-lg font-medium text-gray-900 flex-1 text-right"
-                    >كيف يمكنني قياس نجاح حملات التسويق الرقمي؟</span
-                  >
-                  <i :class="openItems[2] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
-                </button>
-                <div 
-                  x-show="openItems[2]"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="opacity-0 transform -translate-y-2"
-                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="opacity-100 transform translate-y-0"
-                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                  class="faq-content px-6 pb-6">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+                <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+                  <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                    كيف يمكنني قياس نجاح حملات التسويق الرقمي؟
+                  </span>
+                  <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+                  <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+                </summary>
+                <div class="px-6 pb-6 animate-fadeIn">
                   <p class="text-gray-700">
                     نقدم تقارير تحليلية دورية مفصلة تتضمن مؤشرات الأداء الرئيسية مثل
                     عدد الزيارات، معدل التحويل، معدل الارتداد، تكلفة الاستحواذ على
@@ -3061,27 +3033,18 @@
                     أداء الحملات وتقديم رؤى قيمة لتحسينها باستمرار.
                   </p>
                 </div>
-              </div>
+              </details>
+
               <!-- FAQ Item 4 -->
-              <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
-                <button
-                  @click="toggle(3)"
-                  class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
-                >
-                  <span class="text-lg font-medium text-gray-900 flex-1 text-right"
-                    >ما هي مميزات الحلول السحابية التي تقدمونها؟</span
-                  >
-                  <i :class="openItems[3] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
-                </button>
-                <div 
-                  x-show="openItems[3]"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="opacity-0 transform -translate-y-2"
-                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="opacity-100 transform translate-y-0"
-                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                  class="faq-content px-6 pb-6">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+                <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+                  <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                    ما هي مميزات الحلول السحابية التي تقدمونها؟
+                  </span>
+                  <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+                  <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+                </summary>
+                <div class="px-6 pb-6 animate-fadeIn">
                   <p class="text-gray-700">
                     تتميز حلولنا السحابية بالمرونة العالية، حيث يمكن توسيعها أو
                     تقليصها حسب احتياجات عملك. توفر مستوى عالٍ من الأمان مع تشفير
@@ -3090,27 +3053,18 @@
                     والكفاءة.
                   </p>
                 </div>
-              </div>
+              </details>
+
               <!-- FAQ Item 5 -->
-              <div class="border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
-                <button
-                  @click="toggle(4)"
-                  class="faq-button w-full flex items-center justify-between p-6 text-right focus:outline-none"
-                >
-                  <span class="text-lg font-medium text-gray-900 flex-1 text-right"
-                    >هل يمكنكم تطوير حلول مخصصة حسب احتياجات شركتنا؟</span
-                  >
-                  <i :class="openItems[4] ? 'ri-subtract-line' : 'ri-add-line'" class="ri-lg text-gray-900 mr-4"></i>
-                </button>
-                <div 
-                  x-show="openItems[4]"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="opacity-0 transform -translate-y-2"
-                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="opacity-100 transform translate-y-0"
-                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                  class="faq-content px-6 pb-6">
+              <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25">
+                <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+                  <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                    هل يمكنكم تطوير حلول مخصصة حسب احتياجات شركتنا؟
+                  </span>
+                  <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+                  <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+                </summary>
+                <div class="px-6 pb-6 animate-fadeIn">
                   <p class="text-gray-700">
                     نعم، نحن متخصصون في تطوير حلول مخصصة تلبي الاحتياجات الفريدة لكل
                     عميل. نبدأ بتحليل متطلبات عملك وتحدياته، ثم نصمم ونطور حلولاً
@@ -3118,7 +3072,7 @@
                     مخصص، تطبيق جوال، أو منصة متكاملة، يمكننا تقديم الحل المناسب لك.
                   </p>
                 </div>
-              </div>
+              </details>
             </div>
           </div>
         </section>
@@ -3521,15 +3475,7 @@
             }
           }
           
-          window.faqData = function() {
-            return {
-              openItems: [false, false, false, false, false],
-              
-              toggle(index) {
-                this.openItems[index] = !this.openItems[index];
-              }
-            }
-          }
+
           
           window.whyYasData = function() {
             return {
