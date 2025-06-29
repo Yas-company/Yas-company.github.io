@@ -123,4 +123,51 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
+  // Modal State Management
+  window.modalState = {
+    open(title, message, type = 'success') {
+      const modal = document.getElementById('status-modal');
+      if (!modal) return;
+
+      // Get Alpine.js component instance
+      const modalComponent = Alpine.evaluate(modal, 'isOpen');
+      if (!modalComponent) return;
+
+      // Update modal content
+      const contentDiv = modal.querySelector('#modal-content');
+      if (contentDiv) {
+        contentDiv.innerHTML = `
+          <div class="mb-4" id="status-icon">
+            ${type === 'success' ? '<i class="ri-checkbox-circle-line text-4xl text-green-500"></i>' : '<i class="ri-error-warning-line text-4xl text-red-500"></i>'}
+          </div>
+          <h3 class="text-2xl font-bold mb-2" id="status-title">${title}</h3>
+          <p class="text-gray-300" id="status-message">${message}</p>
+        `;
+      }
+
+      // Show modal using Alpine.js state
+      modal.__x.$data.isOpen = true;
+      modal.style.display = 'flex';
+    },
+
+    close() {
+      const modal = document.getElementById('status-modal');
+      if (!modal) return;
+
+      // Hide modal using Alpine.js state
+      modal.__x.$data.isOpen = false;
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 200); // Match the transition duration
+    }
+  };
+
+  // Initialize modal close button
+  document.addEventListener('DOMContentLoaded', function() {
+    const closeBtn = document.getElementById('close-modal');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => window.modalState.close());
+    }
+  });
 }); 
