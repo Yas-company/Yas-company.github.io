@@ -4074,10 +4074,8 @@
                     phone: document.getElementById('phone').value.trim()
                   };
                   
-                  // Send to YAS API endpoint using AllOrigins proxy to handle CORS
-                  const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://yastech.io/api/request');
-                  
-                  const response = await fetch(proxyUrl, {
+                  // Send to YAS API endpoint directly
+                  const response = await fetch('https://yastech.io/api/request', {
                     method: 'POST',
                     headers: {
                       'accept': '*/*',
