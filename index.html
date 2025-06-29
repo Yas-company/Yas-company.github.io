@@ -2742,7 +2742,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div class="bg-gray-25 rounded-xl shadow-lg p-8 border border-accent/20" data-aos="fade-up">
                 <h3 class="text-2xl font-bold mb-6 text-gray-900">طلب خدمة أو استفسار</h3>
-                <form id="contact-form">
+                <form id="contact-form" novalidate>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label for="name" class="block text-gray-900 mb-2 font-medium"
@@ -2773,6 +2773,19 @@
                       />
                       <div id="email-error" class="text-red-500 text-sm mt-1 hidden"></div>
                     </div>
+                  </div>
+                  <div class="mb-6">
+                    <label for="phone" class="block text-gray-900 mb-2 font-medium"
+                      >رقم الهاتف <span class="text-gray-400 text-xs">(اختياري)</span></label
+                    >
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-500"
+                      placeholder="أدخل رقم هاتفك"
+                    />
+                    <div id="phone-error" class="text-red-500 text-sm mt-1 hidden"></div>
                   </div>
                   <div class="mb-6" x-data="customDropdown()">
                     <label 
@@ -2880,8 +2893,6 @@
                       id="message"
                       name="message"
                       rows="4"
-                      required
-                      minlength="10"
                       class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-500"
                       placeholder="اكتب رسالتك هنا..."
                     ></textarea>
@@ -2944,6 +2955,67 @@
             </div>
           </div>
         </section>
+
+        <!-- Form Response Modal -->
+        <div 
+          x-data="{ 
+            isOpen: false, 
+            title: '', 
+            message: '', 
+            type: 'success',
+            show(newTitle, newMessage, newType = 'success') {
+              this.title = newTitle;
+              this.message = newMessage;
+              this.type = newType;
+              this.isOpen = true;
+            },
+            hide() {
+              this.isOpen = false;
+            }
+          }" 
+          x-show="isOpen"
+          @click.self="hide()"
+          @keydown.escape.window="hide()"
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave="transition ease-in duration-200"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[10000]"
+          style="display: none;"
+          id="form-response-modal"
+        >
+          <div 
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative shadow-2xl border border-gray-200"
+            @click.stop
+          >
+            <div class="text-center">
+              <!-- Success Icon -->
+              <div x-show="type === 'success'" class="mb-6">
+                <i class="ri-checkbox-circle-line text-green-500 text-5xl"></i>
+              </div>
+              
+              <!-- Error Icon -->
+              <div x-show="type === 'error'" class="mb-6">
+                <i class="ri-error-warning-line text-red-500 text-5xl"></i>
+              </div>
+              
+              <h3 x-text="title" class="text-2xl font-bold mb-4 text-gray-900"></h3>
+              <p x-text="message" class="text-gray-600 text-lg leading-relaxed"></p>
+            </div>
+            
+            <button @click="hide()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+              <i class="ri-close-line ri-xl"></i>
+            </button>
+          </div>
+        </div>
         
         <!-- FAQ Section -->
         <section class="py-20 px-6 bg-white" dir="rtl">
@@ -3739,6 +3811,17 @@
           }
         </script>
         
+        <!-- Form Response Modal Script -->
+        <script>
+          // Form Response Modal Functions using Alpine.js
+          function showModal(title, message, type = 'success') {
+            const modal = document.getElementById('form-response-modal');
+            if (modal && modal._x_dataStack && modal._x_dataStack[0]) {
+              modal._x_dataStack[0].show(title, message, type);
+            }
+          }
+        </script>
+
         <!-- Form Validation Script -->
         <script>
           // Contact Form Validation
@@ -3748,6 +3831,7 @@
             const emailField = document.getElementById('email');
             const serviceField = document.getElementById('service');
             const messageField = document.getElementById('message');
+            const phoneField = document.getElementById('phone');
             const submitBtn = document.getElementById('submit-btn');
             
             // Validation rules
@@ -3755,7 +3839,7 @@
               name: {
                 required: true,
                 minLength: 2,
-                pattern: /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-zA-Z\s]+$/,
+                pattern: /^[\u0600-\u06FFa-zA-Z\s]+$/,
                 messages: {
                   required: 'الاسم مطلوب',
                   minLength: 'الاسم يجب أن يكون على الأقل حرفين',
@@ -3781,6 +3865,14 @@
                 messages: {
                   required: 'الرسالة مطلوبة'
                 }
+              },
+              phone: {
+                required: false,
+                pattern: /^[\+]?[0-9\s\-\(\)]+$/,
+                messages: {
+                  required: 'رقم الهاتف مطلوب',
+                  pattern: 'يرجى إدخال رقم هاتف صحيح'
+                }
               }
             };
             
@@ -3789,7 +3881,8 @@
               name: false,
               email: false,
               service: false,
-              message: true  // Optional field, always valid
+              message: true,  // Optional field, always valid
+              phone: true     // Optional field, always valid
             };
             
             // Validate field function
@@ -3911,7 +4004,8 @@
               name: false,
               email: false,
               service: false,
-              message: true  // Optional field, no validation needed
+              message: true,  // Optional field, no validation needed
+              phone: true     // Optional field, no validation needed
             };
             
             // Make hasBlurred globally accessible
@@ -3920,6 +4014,15 @@
             nameField.addEventListener('blur', () => hasBlurred.name = true);
             emailField.addEventListener('blur', () => hasBlurred.email = true);
             serviceField.addEventListener('blur', () => hasBlurred.service = true);
+            
+            // Add phone field validation
+            phoneField.addEventListener('blur', function() {
+              if (this.value.trim()) {  // Only validate if not empty (since it's optional)
+                validateField('phone', this.value);
+                updateSubmitButton();
+              }
+              hasBlurred.phone = true;
+            });
             
             nameField.addEventListener('input', function() {
               if (hasBlurred.name) {
@@ -3935,10 +4038,17 @@
               }
             });
             
+            phoneField.addEventListener('input', function() {
+              if (hasBlurred.phone && this.value.trim()) {  // Only validate if not empty (since it's optional)
+                validateField('phone', this.value);
+                updateSubmitButton();
+              }
+            });
+            
             // Message field is optional, no input validation needed
             
-            // Form submit validation
-            form.addEventListener('submit', function(e) {
+            // Form submit validation and submission
+            form.addEventListener('submit', async function(e) {
               e.preventDefault();
               
               // Validate all required fields
@@ -3950,39 +4060,89 @@
               updateSubmitButton();
               
               if (nameValid && emailValid && serviceValid) {
-                // Form is valid, you can submit it here
-                console.log('Form is valid, ready to submit');
+                // Disable submit button and show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>جاري الإرسال...';
                 
-                // Example: Show success message
-                alert('تم إرسال النموذج بنجاح! سنتواصل معك قريباً.');
-                
-                // Reset form
-                form.reset();
-                
-                // Reset validation state
-                Object.keys(validationState).forEach(key => {
-                  // Reset states based on field requirements
-                  if (key === 'message') {
-                    validationState[key] = true;  // Optional field, always valid
-                    hasBlurred[key] = true;
+                try {
+                  // Prepare form data
+                  const formData = {
+                    name: nameField.value.trim(),
+                    email: emailField.value.trim(),
+                    service: serviceField.value,
+                    message: messageField.value.trim(),
+                    phone: document.getElementById('phone').value.trim()
+                  };
+                  
+                  // Send to YAS API endpoint using AllOrigins proxy to handle CORS
+                  const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://yastech.io/api/request');
+                  
+                  const response = await fetch(proxyUrl, {
+                    method: 'POST',
+                    headers: {
+                      'accept': '*/*',
+                      'accept-language': 'ar,en-US;q=0.9,en;q=0.8,ar-SA;q=0.7,eo;q=0.6',
+                      'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                  });
+                  
+                  if (response.ok) {
+                    // Success - show success modal
+                    showModal(
+                      'تم إرسال طلبك بنجاح!',
+                      'شكراً لك على تواصلك معنا. سنقوم بالرد عليك في أقرب وقت ممكن.',
+                      'success'
+                    );
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Reset validation state
+                    Object.keys(validationState).forEach(key => {
+                      // Reset states based on field requirements
+                      if (key === 'message' || key === 'phone') {
+                        validationState[key] = true;  // Optional fields, always valid
+                        hasBlurred[key] = true;
+                      } else {
+                        validationState[key] = false;
+                        hasBlurred[key] = false;
+                      }
+                      
+                      const field = document.getElementById(key);
+                      const errorDiv = document.getElementById(`${key}-error`);
+                      
+                      // Special handling for custom dropdown service field
+                      if (key !== 'service') {
+                        field.classList.remove('border-red-500', 'border-green-500');
+                      }
+                      
+                      errorDiv.classList.add('hidden');
+                      errorDiv.textContent = '';
+                    });
+                    
                   } else {
-                    validationState[key] = false;
-                    hasBlurred[key] = false;
+                    // Error response from server
+                    const errorData = await response.text();
+                    throw new Error(`Server error: ${response.status}`);
                   }
                   
-                  const field = document.getElementById(key);
-                  const errorDiv = document.getElementById(`${key}-error`);
+                } catch (error) {
+                  console.error('Form submission error:', error);
                   
-                  // Special handling for custom dropdown service field
-                  if (key !== 'service') {
-                    field.classList.remove('border-red-500', 'border-green-500');
-                  }
-                  
-                  errorDiv.classList.add('hidden');
-                  errorDiv.textContent = '';
-                });
+                  // Show error modal
+                  showModal(
+                    'حدث خطأ في الإرسال',
+                    'عذراً، حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.',
+                    'error'
+                  );
+                }
                 
+                // Reset submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'إرسال الطلب';
                 updateSubmitButton();
+                
               } else {
                 // Scroll to first error
                 const firstError = form.querySelector('.border-red-500');
