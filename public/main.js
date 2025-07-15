@@ -97,6 +97,20 @@ document.addEventListener("DOMContentLoaded", function () {
         if (serviceDropdown && serviceValue) {
           serviceDropdown.value = serviceValue;
           
+          // Trigger validation for the service field
+          if (window.validateServiceField) {
+            window.validateServiceField(serviceValue);
+          }
+          
+          // Update submit button state
+          if (window.updateSubmitButton) {
+            window.updateSubmitButton();
+          }
+          
+          // Trigger change event to notify any other listeners
+          const changeEvent = new Event('change', { bubbles: true });
+          serviceDropdown.dispatchEvent(changeEvent);
+          
           // Add a visual indication that the service was selected
           serviceDropdown.style.borderColor = '#00CCFF';
           serviceDropdown.style.boxShadow = '0 0 0 2px rgba(0, 204, 255, 0.2)';
@@ -118,6 +132,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const serviceDropdown = document.getElementById('service');
       if (serviceDropdown) {
         serviceDropdown.value = storedService;
+        
+        // Trigger validation for the service field
+        if (window.validateServiceField) {
+          window.validateServiceField(storedService);
+        }
+        
+        // Update submit button state
+        if (window.updateSubmitButton) {
+          window.updateSubmitButton();
+        }
+        
+        // Trigger change event
+        const changeEvent = new Event('change', { bubbles: true });
+        serviceDropdown.dispatchEvent(changeEvent);
+        
         // Clear the stored service after using it
         sessionStorage.removeItem('selectedService');
       }
@@ -171,3 +200,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 }); 
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Helper function to get all computed styles
+  function getComputedStylesInfo(element) {
+    const computed = window.getComputedStyle(element);
+    return {
+      background: computed.background,
+      backgroundImage: computed.backgroundImage,
+      backgroundColor: computed.backgroundColor,
+      opacity: computed.opacity,
+      color: computed.color
+    };
+  }
+
+  // Debug specific elements
+  const heroSection = document.querySelector('section');
+  const gradientElements = document.querySelectorAll('[class*="gradient"], [class*="bg-"]');
+  
+  console.group('🎨 Hero Gradient Debug');
+  console.log('Hero Section Styles:', getComputedStylesInfo(heroSection));
+  
+  gradientElements.forEach((el, index) => {
+    console.group(`Element ${index + 1}`);
+    console.log('Classes:', el.className);
+    console.log('Computed Styles:', getComputedStylesInfo(el));
+    console.groupEnd();
+  });
+  console.groupEnd();
+});

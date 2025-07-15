@@ -1,0 +1,553 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import WhyYAS from '../components/WhyYAS.astro';
+import HowWeWork from '../components/HowWeWork.astro';
+import Services from '../components/Services.astro';
+import PoliciesModels from '../components/PoliciesModels.astro';
+import GeneralPrinciples from '../components/GeneralPrinciples.astro';
+import Achievements from '../components/Achievements.astro';
+import Partners from '../components/Partners.astro';
+import Styles from '../components/Styles.astro';
+---
+
+<Layout title="خدماتنا - YAS - حلول تقنية سعودية">
+  <body id="top" class="bg-background text-white">
+    <Navigation />
+    
+    <Hero />
+    
+    <WhyYAS />
+    
+    <HowWeWork />
+    
+    <Services />
+    
+    <PoliciesModels />
+    
+    <GeneralPrinciples />
+    
+    <Achievements />
+    
+    <Partners />
+    
+    <!-- Contact Section -->
+    <section id="contact-section" class="py-24 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      <!-- Background Decorations -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-primary/5 to-transparent rounded-full -translate-y-36 translate-x-36"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-secondary/5 to-transparent rounded-full translate-y-40 -translate-x-40"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="inline-block px-4 py-2 bg-primary/10 text-primary font-semibold text-sm rounded-full mb-4">تواصل معنا</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            نحن هنا <span class="text-gradient bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">لمساعدتك</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            تواصل معنا لطلب خدمة أو الاستفسار عن أي شيء، نسعد بالرد عليك في أسرع وقت ممكن
+          </p>
+        </div>
+        
+        <!-- Two Column Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16">
+          
+          <!-- Left Column: Contact Form (8/12 on large screens) -->
+          <div class="lg:col-span-7 order-2 lg:order-1" data-aos="fade-right" data-aos-delay="100">
+            <div class="bg-white rounded-3xl shadow-2xl shadow-gray-200/20 border border-gray-100 p-8 lg:p-10 xl:p-12 relative overflow-hidden">
+              <!-- Card Background Pattern -->
+              <div class="absolute inset-0 opacity-[0.02]">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+              </div>
+              
+              <!-- Card Header -->
+              <div class="flex items-center gap-4 mb-8 relative z-10">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-primary to-secondary flex items-center justify-center shadow-lg">
+                  <i class="ri-mail-send-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl lg:text-3xl font-bold text-gray-900">أرسل لنا رسالة</h3>
+                  <p class="text-gray-600 mt-1">سنرد عليك خلال 24 ساعة</p>
+                </div>
+              </div>
+              
+              <!-- Contact Form -->
+              <form id="contact-form" novalidate class="space-y-6 relative z-10">
+                <!-- Name and Email Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label for="name" class="block text-gray-900 mb-3 font-semibold">
+                      الاسم <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      minlength="2"
+                      class="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-transparent focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all duration-300 placeholder:text-gray-400 text-gray-900 text-lg"
+                      placeholder="أدخل اسمك"
+                    />
+                    <div id="name-error" class="text-red-500 text-sm mt-2 hidden"></div>
+                  </div>
+                  <div>
+                    <label for="email" class="block text-gray-900 mb-3 font-semibold">
+                      البريد الإلكتروني <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      class="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-transparent focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all duration-300 placeholder:text-gray-400 text-gray-900 text-lg"
+                      placeholder="أدخل بريدك الإلكتروني"
+                    />
+                    <div id="email-error" class="text-red-500 text-sm mt-2 hidden"></div>
+                  </div>
+                </div>
+                
+                <!-- Phone and Service Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label for="phone" class="block text-gray-900 mb-3 font-semibold">
+                      رقم الهاتف <span class="text-gray-400 text-sm">(اختياري)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-transparent focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all duration-300 placeholder:text-gray-400 text-gray-900 text-lg"
+                      placeholder="05xxxxxxxx"
+                    />
+                    <div id="phone-error" class="text-red-500 text-sm mt-2 hidden"></div>
+                  </div>
+                  <div>
+                    <label for="service" class="block text-gray-900 mb-3 font-semibold">
+                      نوع الخدمة <span class="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      required
+                      class="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-transparent focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all duration-300 text-gray-900 text-lg cursor-pointer"
+                    >
+                      <option value="" class="text-gray-400">اختر نوع الخدمة</option>
+                      <option value="mobile-app">تطوير تطبيقات الجوال</option>
+                      <option value="web-development">تطوير المواقع والأنظمة</option>
+                      <option value="backend">تطوير الأنظمة الخلفية</option>
+                      <option value="integration">خدمات التكامل</option>
+                      <option value="ui-ux">تصميم واجهات المستخدم</option>
+                      <option value="support">الدعم والاستشارات</option>
+                      <option value="other">أخرى</option>
+                    </select>
+                    <div id="service-error" class="text-red-500 text-sm mt-2 hidden"></div>
+                  </div>
+                </div>
+                
+                <!-- Message Field -->
+                <div>
+                  <label for="message" class="block text-gray-900 mb-3 font-semibold">
+                    الرسالة <span class="text-gray-400 text-sm">(اختياري)</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    class="w-full px-5 py-4 bg-gray-50 rounded-xl border-2 border-transparent focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all duration-300 placeholder:text-gray-400 text-gray-900 text-lg resize-none"
+                    placeholder="اكتب رسالتك هنا..."
+                  ></textarea>
+                  <div id="message-error" class="text-red-500 text-sm mt-2 hidden"></div>
+                </div>
+                
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="w-full py-5 px-8 bg-gradient-to-r from-primary to-secondary hover:from-primary hover:to-primary text-white rounded-xl transition-all duration-300 font-bold text-lg shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <span class="flex items-center justify-center gap-3">
+                    <i class="ri-send-plane-line text-xl"></i>
+                    إرسال الطلب
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Right Column: Contact Information (4/12 on large screens) -->
+          <div class="lg:col-span-5 order-1 lg:order-2" data-aos="fade-left" data-aos-delay="200">
+            <div class="lg:pl-8 xl:pl-12">
+              <!-- Contact Info Header -->
+              <div class="mb-12">
+                <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                  معلومات <span class="text-gradient bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">التواصل</span>
+                </h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                  نسعد بالتواصل معك والإجابة على استفساراتك. يمكنك التواصل معنا من خلال النموذج أو عبر وسائل الاتصال المباشرة.
+                </p>
+              </div>
+              
+              <!-- Contact Cards -->
+              <div class="space-y-6">
+                <!-- Address Card -->
+                <div class="group bg-white rounded-2xl p-6 shadow-lg shadow-gray-200/50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-300 hover:-translate-y-1">
+                  <div class="flex items-start gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
+                      <i class="ri-map-pin-line text-2xl text-primary"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="font-bold mb-2 text-gray-900 text-lg">العنوان</h4>
+                      <a 
+                        class="text-gray-700 hover:text-primary transition-colors duration-300 text-base leading-relaxed block" 
+                        href="https://maps.app.goo.gl/pMAb81aNjTrLeCSG9" 
+                        data-geo="21.4357496, 39.7971043"
+                      >
+                        مكة المكرمة - المملكة العربية السعودية
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Email Card -->
+                <div class="group bg-white rounded-2xl p-6 shadow-lg shadow-gray-200/50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-300 hover:-translate-y-1">
+                  <div class="flex items-start gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
+                      <i class="ri-mail-line text-2xl text-primary"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="font-bold mb-2 text-gray-900 text-lg">البريد الإلكتروني</h4>
+                      <a 
+                        href="mailto:info@yastech.com.sa" 
+                        class="text-gray-700 hover:text-primary transition-colors duration-300 text-base"
+                      >
+                        info@yastech.com.sa
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Phone Card -->
+                <div class="group bg-white rounded-2xl p-6 shadow-lg shadow-gray-200/50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-300 hover:-translate-y-1">
+                  <div class="flex items-start gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
+                      <i class="ri-phone-line text-2xl text-primary"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="font-bold mb-2 text-gray-900 text-lg">الهاتف</h4>
+                      <a 
+                        class="text-gray-700 hover:text-primary transition-colors duration-300 text-base" 
+                        href="tel:+966506564275"
+                      >
+                        <span dir="ltr">+966 50 656 4275</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-6 bg-white" dir="rtl">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="text-gray-900 font-medium">الأسئلة الشائعة</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-black">
+            إجابات على استفساراتكم
+          </h2>
+          <p class="text-gray-700">
+            نجيب على الأسئلة الشائعة حول خدماتنا وكيفية عملنا
+          </p>
+        </div>
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="0">
+            <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                ما هي مدة تنفيذ مشروع تطوير موقع إلكتروني؟
+              </span>
+              <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+              <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+            </summary>
+            <div class="px-6 pb-6 animate-fadeIn">
+              <p class="text-gray-700">
+                تختلف مدة تنفيذ المشروع حسب حجمه وتعقيده، ولكن بشكل عام تتراوح
+                مدة تطوير موقع إلكتروني بسيط من 2-4 أسابيع، بينما قد تستغرق
+                المواقع المتوسطة والكبيرة من 6-12 أسبوع. نقوم بتحديد جدول زمني
+                دقيق بعد دراسة متطلبات المشروع.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 2 -->
+          <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="100">
+            <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                هل تقدمون خدمات الصيانة والدعم الفني بعد إطلاق الموقع؟
+              </span>
+              <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+              <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+            </summary>
+            <div class="px-6 pb-6 animate-fadeIn">
+              <p class="text-gray-700">
+                نعم، نقدم خدمات صيانة ودعم فني شاملة بعد إطلاق الموقع. لدينا
+                باقات دعم فني مختلفة تشمل تحديثات دورية، إصلاح الأخطاء، تحسينات
+                الأداء، والمساعدة الفنية على مدار الساعة. نضمن استمرارية عمل
+                موقعك بكفاءة وأمان.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 3 -->
+          <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="200">
+            <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                كيف يمكنني قياس نجاح حملات التسويق الرقمي؟
+              </span>
+              <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+              <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+            </summary>
+            <div class="px-6 pb-6 animate-fadeIn">
+              <p class="text-gray-700">
+                نقدم تقارير تحليلية دورية مفصلة تتضمن مؤشرات الأداء الرئيسية مثل
+                عدد الزيارات، معدل التحويل، معدل الارتداد، تكلفة الاستحواذ على
+                العميل، والعائد على الاستثمار. نستخدم أدوات تحليلية متقدمة لقياس
+                أداء الحملات وتقديم رؤى قيمة لتحسينها باستمرار.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 4 -->
+          <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="300">
+            <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                ما هي مميزات الحلول السحابية التي تقدمونها؟
+              </span>
+              <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+              <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+            </summary>
+            <div class="px-6 pb-6 animate-fadeIn">
+              <p class="text-gray-700">
+                تتميز حلولنا السحابية بالمرونة العالية، حيث يمكن توسيعها أو
+                تقليصها حسب احتياجات عملك. توفر مستوى عالٍ من الأمان مع تشفير
+                البيانات ونسخ احتياطية منتظمة. كما أنها توفر إمكانية الوصول من
+                أي مكان وأي جهاز، وتقلل من تكاليف البنية التحتية وتحسن الأداء
+                والكفاءة.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 5 -->
+          <details name="faq" class="group border border-accent/20 rounded-lg overflow-hidden bg-gray-25" data-aos="fade-up" data-aos-delay="400">
+            <summary class="flex items-center justify-between p-6 text-right cursor-pointer list-none focus:outline-none hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-medium text-gray-900 flex-1 text-right">
+                هل يمكنكم تطوير حلول مخصصة حسب احتياجات شركتنا؟
+              </span>
+              <i class="ri-add-line ri-lg text-gray-900 mr-4 group-open:hidden"></i>
+              <i class="ri-subtract-line ri-lg text-gray-900 mr-4 hidden group-open:block"></i>
+            </summary>
+            <div class="px-6 pb-6 animate-fadeIn">
+              <p class="text-gray-700">
+                نعم، نحن متخصصون في تطوير حلول مخصصة تلبي الاحتياجات الفريدة لكل
+                عميل. نبدأ بتحليل متطلبات عملك وتحدياته، ثم نصمم ونطور حلولاً
+                مبتكرة تناسب طبيعة نشاطك وأهدافك. سواء كنت تحتاج إلى نظام إدارة
+                مخصص، تطبيق جوال، أو منصة متكاملة، يمكننا تقديم الحل المناسب لك.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-10 px-6 text-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div class="md:col-span-1">
+            <a href="#top" class="inline-block mb-4">
+              <img src="assets/yass logo-05.png" alt="YAS Logo" class="h-16" />
+            </a>
+            <p class="text-gray-400 mb-4">
+              YAS شركة تقدم الحلول التقنية المتكاملة للشركات
+              والمؤسسات في المملكة العربية السعودية والشرق الأوسط.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="https://x.com/YASTechSA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-twitter-x-line ri-lg"></i>
+              </a>
+              <a
+                href="https://linkedin.com/company/yas-tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hidden w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-linkedin-line ri-lg"></i>
+              </a>
+              <a
+                href="https://www.snapchat.com/add/yastechsa"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-snapchat-line ri-lg"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/yastechsa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a
+                href="https://www.tiktok.com/@yastechsa?lang=ar"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 aspect-square rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-tiktok-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h5 class="font-bold mb-4">خدماتنا</h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >تطوير تطبيقات الجوال</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >تطوير المواقع والأنظمة</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >تطوير الأنظمة الخلفية</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >خدمات التكامل</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >تصميم واجهات المستخدم</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >الدعم والاستشارات</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-bold mb-4">روابط سريعة</h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#why-yas"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >لماذا نحن؟</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#how-we-work"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >كيف نعمل؟</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >خدماتنا</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#policies-models"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >سياسات ونماذج</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#achievements"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >
+                  مشاريعنا
+                  </a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact-section"
+                  class="text-gray-400 hover:text-primary transition-colors text-xs"
+                  >تواصل معنا</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-bold mb-4">تواصل معنا</h5>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-3">
+                <i class="ri-map-pin-line ri-lg text-primary mt-1"></i>
+                <a class="text-gray-400 underline text-xs" href="https://maps.app.goo.gl/pMAb81aNjTrLeCSG9" data-geo="21.4357496, 39.7971043">مكة المكرمة - المملكة العربية السعودية</a>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="ri-mail-line ri-lg text-primary mt-1"></i>
+                <a class="text-gray-400 underline text-xs" href="mailto:info@yastech.com.sa">info@yastech.com.sa</a>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-[22px] stroke-primary fill-primary" viewBox="0 0 14 14"><!-- Icon from Streamline by Streamline - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7 .88C3.665.88.88 3.67.88 7.002a6.14 6.14 0 0 0 1.025 3.39L.877 13.127l3.439-.622A6.1 6.1 0 0 0 7 13.121c3.338.002 6.127-2.784 6.127-6.118c0-3.33-2.79-6.126-6.127-6.124Z"/><path d="M7.337 9.7c.829.531 1.692.144 2.294-.305c.415-.31.402-.907.047-1.285l-.7-.745c-.265.265-.783.397-1.142.287c-.773-.235-1.097-.637-1.36-1.047c-.301-.47.04-1.172.305-1.437l-.78-.712c-.329-.3-.828-.35-1.115-.01c-.568.673-.92 1.696-.503 2.347c.75 1.169 1.785 2.156 2.954 2.906Z"/></g>
+                </svg>
+                <a class="text-gray-400 underline text-xs" href="https://wa.me/966506564275"><span dir="ltr">+966 50 656 4275</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 mb-4 md:mb-0">
+            © 2025 YAS Tech. جميع الحقوق محفوظة.
+          </p>
+        </div>
+      </div>
+    </footer>
+    
+    <Styles />
+  </body>
+  
+  <script src="/main.js" is:inline></script>
+</Layout>

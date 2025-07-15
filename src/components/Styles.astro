@@ -1,0 +1,805 @@
+---
+// No props needed for this component
+---
+
+<!-- Social Media Hover Styles -->
+<style>
+  /* LinkedIn hover */
+  a[href*="linkedin"]:hover {
+    background-color: #0077B5 !important;
+  }
+  a[href*="linkedin"]:hover .ri-linkedin-line {
+    color: white !important;
+  }
+  
+  /* Twitter/X hover */
+  a[href*="twitter"]:hover,
+  a[href*="x.com"]:hover {
+    background-color: #000000 !important;
+  }
+  a[href*="twitter"]:hover .ri-twitter-x-line,
+  a[href*="x.com"]:hover .ri-twitter-x-line {
+    color: white !important;
+  }
+  
+  /* Instagram hover */
+  a[href*="instagram"]:hover {
+    background-color: #E4405F !important;
+  }
+  a[href*="instagram"]:hover .ri-instagram-line {
+    color: white !important;
+  }
+  
+  /* Snapchat hover */
+  a[href*="snapchat"]:hover {
+    background-color: #FFFC00 !important;
+  }
+  a[href*="snapchat"]:hover .ri-snapchat-line {
+    color: #000000 !important;
+  }
+  
+  /* TikTok hover */
+  a[href*="tiktok"]:hover {
+    background-color: #000000 !important;
+  }
+  a[href*="tiktok"]:hover .ri-tiktok-line {
+    color: white !important;
+  }
+</style>
+
+<!-- Modern Why YAS Section Styles -->
+<style>
+  /* Base UI Inspired Scroll Area */
+  .scroll-area-root {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+  }
+  
+  .scroll-area-viewport {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Hide native scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scroll-area-viewport::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scroll-area-scrollbar {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    width: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+  }
+  
+  .scroll-area-thumb {
+    position: relative;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    width: 100%;
+    min-height: 20px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .scroll-area-scrollbar:hover .scroll-area-thumb {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Show scrollbar only when needed */
+  .scroll-area-scrollbar[data-state="hidden"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Modern Why YAS Section Styles */
+  
+  /* Orientation-Based Layout */
+  .orientation-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  /* Portrait: Horizontal layout */
+  @media (orientation: portrait) {
+    .orientation-container {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .cards-container {
+      width: 100%;
+      order: 1;
+    }
+    
+    .slider-pagination {
+      width: 100%;
+      order: 2;
+    }
+  }
+  
+  /* Landscape: Vertical layout */
+  @media (orientation: landscape) {
+    .orientation-container {
+      flex-direction: row;
+      gap: 2rem;
+      align-items: stretch;
+    }
+    
+    .cards-container {
+      flex: 1;
+      order: 1;
+    }
+    
+    .slider-pagination {
+      width: 250px;
+      order: 2;
+      height: fit-content;
+    }
+  }
+  
+  /* Cards Container */
+  .cards-container {
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    min-height: 320px;
+  }
+  
+  .card-slide {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    display: none;
+    align-items: stretch;
+    justify-content: center;
+  }
+  
+  .card-slide.active {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .card-slide .card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 20px;
+    overflow: visible;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+    max-height: calc(100% - 2rem);
+  }
+  
+  /* Card Header */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2rem 1rem 2rem;
+    flex-shrink: 0;
+  }
+  
+  .icon-container {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .icon-container i {
+    font-size: 2rem;
+  }
+  
+  .header-content {
+    flex: 1;
+  }
+  
+  .card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .title-underline {
+    width: 4rem;
+    height: 0.25rem;
+    border-radius: 0.125rem;
+  }
+  
+  /* Card Body */
+  .card-body {
+    flex: 1;
+    padding: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+  }
+  
+  .card-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #4b5563;
+  }
+  
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-item:hover {
+    background: #f3f4f6;
+    transform: translateY(-2px);
+  }
+  
+  .feature-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .feature-icon i {
+    font-size: 1.25rem;
+  }
+  
+  .feature-content {
+    flex: 1;
+  }
+  
+  .feature-title {
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+  }
+  
+  .feature-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  /* Card Visual */
+  .card-visual {
+    flex-shrink: 0;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .visual-circle {
+    width: 5rem;
+    height: 5rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .visual-circle i {
+    font-size: 2.5rem;
+  }
+  
+  /* Responsive Card Design */
+  @media (max-width: 768px) {
+    .card-content {
+      margin: 0.5rem;
+      max-width: calc(100% - 1rem);
+      max-height: calc(100% - 1rem);
+    }
+    
+    .card-header {
+      padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+      gap: 1rem;
+    }
+    
+    .icon-container {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .icon-container i {
+      font-size: 1.5rem;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+    }
+    
+    .title-underline {
+      width: 3rem;
+      height: 0.2rem;
+    }
+    
+    .card-body {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      gap: 1rem;
+    }
+    
+    .card-description {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .feature-item {
+      padding: 0.75rem;
+      gap: 0.75rem;
+    }
+    
+    .feature-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    
+    .feature-icon i {
+      font-size: 1rem;
+    }
+    
+    .feature-title {
+      font-size: 0.9rem;
+    }
+    
+    .feature-desc {
+      font-size: 0.8rem;
+    }
+    
+    .card-visual {
+      height: 6rem;
+    }
+    
+    .visual-circle {
+      width: 4rem;
+      height: 4rem;
+    }
+    
+    .visual-circle i {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cards-container {
+      min-height: 400px;
+    }
+    
+    .card-header {
+      padding: 1rem 1rem 0.5rem 1rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+    }
+    
+    .card-body {
+      padding: 0 1rem 1rem 1rem;
+      gap: 0.75rem;
+    }
+    
+    .card-description {
+      font-size: 0.9rem;
+    }
+    
+    .feature-item {
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+    
+    .feature-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .feature-icon i {
+      font-size: 0.875rem;
+    }
+    
+    .feature-title {
+      font-size: 0.8rem;
+    }
+    
+    .feature-desc {
+      font-size: 0.75rem;
+    }
+  }
+  
+  /* Landscape orientation card adjustments */
+  @media (orientation: landscape) and (max-height: 600px) {
+    .cards-container {
+      min-height: 300px;
+    }
+    
+    .card-content {
+      margin: 0.5rem;
+    }
+    
+    .card-header {
+      padding: 1rem 1.5rem 0.5rem 1.5rem;
+      gap: 0.75rem;
+    }
+    
+    .icon-container {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    
+    .icon-container i {
+      font-size: 1.25rem;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+    }
+    
+    .card-body {
+      padding: 0 1.5rem 1rem 1.5rem;
+      gap: 0.75rem;
+    }
+    
+    .card-description {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .features-list {
+      gap: 0.5rem;
+    }
+    
+    .feature-item {
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+    
+    .feature-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .feature-title {
+      font-size: 0.8rem;
+    }
+    
+    .feature-desc {
+      font-size: 0.7rem;
+    }
+    
+    .card-visual {
+      height: 4rem;
+    }
+    
+    .visual-circle {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .visual-circle i {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Responsive card content */
+  @media (max-width: 1024px) {
+    .cards-container {
+      min-height: 280px;
+    }
+    
+    .card-slide .grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    
+    .card-slide .p-8 {
+      padding: 1.25rem !important;
+    }
+    
+    .card-slide .lg\\:p-12 {
+      padding: 1.25rem !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cards-container {
+      min-height: 250px;
+    }
+    
+    .card-slide .p-6 {
+      padding: 1rem !important;
+    }
+    
+    .card-slide .p-8 {
+      padding: 1rem !important;
+    }
+    
+    .card-slide .text-3xl {
+      font-size: 1.4rem !important;
+    }
+    
+    .card-slide .text-lg {
+      font-size: 1rem !important;
+    }
+    
+    .card-slide .mb-8 {
+      margin-bottom: 0.75rem !important;
+    }
+    
+    .card-slide .mb-6 {
+      margin-bottom: 0.5rem !important;
+    }
+  }
+  
+  /* Landscape orientation fixes - Card Height Optimization */
+  @media (max-height: 600px) and (orientation: landscape) {
+    .cards-container {
+      min-height: 200px !important;
+    }
+    
+    /* Make cards more compact */
+    .card-slide .bg-white {
+      max-height: 300px !important;
+    overflow: hidden;
+  }
+  
+    .card-slide .grid {
+      gap: 0.75rem !important;
+      align-items: center !important;
+    }
+    
+    .card-slide .p-6,
+    .card-slide .p-8,
+    .card-slide .lg\\:p-12 {
+      padding: 0.75rem 1rem !important;
+    }
+    
+    .card-slide .text-3xl {
+      font-size: 1.25rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    .card-slide .text-lg {
+      font-size: 0.9rem !important;
+      line-height: 1.4 !important;
+    }
+    
+    .card-slide .text-base {
+      font-size: 0.85rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    .card-slide .mb-8,
+    .card-slide .mb-6,
+    .card-slide .mb-4 {
+      margin-bottom: 0.5rem !important;
+    }
+    
+    .card-slide .space-y-4 > * + *,
+    .card-slide .space-y-3 > * + *,
+    .card-slide .space-y-2 > * + * {
+      margin-top: 0.25rem !important;
+    }
+    
+    /* Compact list items */
+    .card-slide .flex.items-center {
+      padding: 0.5rem !important;
+    }
+    
+    /* Hide or compress decorative elements */
+    .card-slide .w-80.h-80,
+    .card-slide .w-40.h-40,
+    .card-slide .w-32.h-32 {
+      width: 120px !important;
+      height: 120px !important;
+    }
+    
+    /* Compress icon containers */
+    .card-slide .w-20.h-20 {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+    
+    .card-slide .w-16.h-16 {
+      width: 2.5rem !important;
+      height: 2.5rem !important;
+    }
+    
+    .card-slide .w-14.h-14 {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
+    
+    .card-slide .w-12.h-12 {
+      width: 1.75rem !important;
+      height: 1.75rem !important;
+    }
+  }
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    .cards-container {
+      min-height: 180px !important;
+    }
+    
+    /* Even more compact cards for very short screens */
+    .card-slide .bg-white {
+      max-height: 250px !important;
+    }
+    
+    .card-slide .p-6,
+    .card-slide .p-8,
+    .card-slide .lg\\:p-12 {
+      padding: 0.5rem 0.75rem !important;
+    }
+    
+    .card-slide .text-3xl {
+      font-size: 1.1rem !important;
+    }
+    
+    .card-slide .text-lg {
+      font-size: 0.8rem !important;
+    }
+    
+    .card-slide .grid {
+      gap: 0.5rem !important;
+    }
+    
+    /* Hide large decorative images on very short screens */
+    .card-slide .w-80.h-80,
+    .card-slide .w-40.h-40 {
+      display: none !important;
+    }
+  }
+  
+  /* Slider Pagination Base */
+  .slider-pagination {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Mobile Responsive Design */
+  @media (max-width: 768px) {
+    .orientation-container {
+      flex-direction: column !important;
+      gap: 1.5rem !important;
+    }
+    
+    .slider-pagination {
+      width: 100% !important;
+      order: 2 !important;
+      padding: 1rem !important;
+    }
+    
+    .cards-container {
+      order: 1 !important;
+    }
+    
+    .nav-controls {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto auto !important;
+      gap: 1rem !important;
+      width: 100% !important;
+    }
+    
+    .nav-btn {
+      width: 100% !important;
+      max-width: 3rem !important;
+      aspect-ratio: 1 / 1 !important;
+      height: auto !important;
+      border-radius: 50% !important;
+      justify-self: center !important;
+    }
+    
+    .page-number {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+      font-size: 0.85rem !important;
+    }
+    
+    .page-title {
+      font-size: 0.65rem !important;
+      text-align: center !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slider-pagination {
+      padding: 0.75rem !important;
+    }
+    
+    .page-number {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+      font-size: 0.75rem !important;
+    }
+    
+    .page-title {
+      font-size: 0.6rem !important;
+    }
+    
+    .progress-text {
+      font-size: 0.8rem !important;
+    }
+  }
+  
+  /* Ensure text content is properly sized */
+  .card-slide .text-3xl {
+    font-size: clamp(1.2rem, 4vw, 3rem);
+  }
+  
+  .card-slide .text-lg {
+    font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+  }
+  
+  /* Additional landscape fixes for browsers without landscape: modifier */
+  @media screen and (max-height: 600px) and (min-width: 768px) {
+    #why-yas .py-12 {
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+    }
+    
+    #why-yas .mb-4,
+    #why-yas .mb-6,
+    #why-yas .mb-8 {
+      margin-bottom: 0.75rem !important;
+    }
+    
+    #why-yas h2 {
+      font-size: 2rem !important;
+    }
+    
+    #why-yas p {
+      font-size: 1rem !important;
+      line-height: 1.4 !important;
+    }
+  }
+
+  /* Alpine.js cloak */
+  [x-cloak] { display: none !important; }
+</style> 

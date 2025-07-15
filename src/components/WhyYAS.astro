@@ -1,0 +1,196 @@
+---
+// No props needed for this component
+---
+
+<section x-data="whyYasData()" x-init="init()" id="why-yas" class="relative overflow-hidden bg-gray-50 py-20">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 opacity-30 pointer-events-none">
+    <div class="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl"></div>
+  </div>
+  
+  <!-- Header Section -->
+  <div class="py-12 md:py-16 lg:py-20 px-6 text-center relative z-10">
+    <div class="max-w-7xl mx-auto">
+      <!-- <div class="inline-flex items-center gap-2 bg-primary/10 text-gray-900 px-4 py-2 rounded-full text-sm font-medium mb-4 md:mb-6">
+        <i class="ri-star-line"></i>
+        <span>لماذا نحن؟</span>
+      </div> -->
+      <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 text-black">
+        نحن شريكك الموثوق
+      </h2>
+      <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed mb-6 md:mb-8">
+        في رحلة التحول الرقمي، نقدم حلولاً مبتكرة تجمع بين الخبرة العملية والتقنيات المتطورة
+      </p>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <!-- Main Content Cards -->
+      <div class="w-full lg:w-3/4">
+        
+        <!-- Card 1: Market Understanding -->
+        <div x-show="currentIndex === 0" x-transition class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 lg:p-12">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><i class="ri-map-pin-user-line text-3xl text-gray-700"></i></div>
+            <div>
+              <h3 class="text-3xl lg:text-4xl font-bold text-gray-900">فهم عميق للسوق</h3>
+              <div class="w-24 h-1.5 bg-blue-500 rounded-full mt-2"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">نمتلك فهماً عميقاً للسوق المحلي واحتياجات المستخدمين، مما يمكننا من تقديم حلول مناسبة وفعالة تلبي توقعات العملاء وتتماشى مع الثقافة المحلية.</p>
+            <div class="space-y-4">
+              <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-line-chart-line text-2xl text-blue-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">دراسات السوق الشاملة</h4><p class="text-gray-500">تحليل عميق لاتجاهات السوق والفرص</p></div></div>
+              <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-focus-3-line text-2xl text-blue-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">تحليل المنافسين</h4><p class="text-gray-500">دراسة متعمقة للمنافسة والتميز</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Quality Execution -->
+        <div x-show="currentIndex === 1" x-transition class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 lg:p-12">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><i class="ri-award-line text-3xl text-gray-700"></i></div>
+            <div>
+              <h3 class="text-3xl lg:text-4xl font-bold text-gray-900">جودة تنفيذ عالية</h3>
+              <div class="w-24 h-1.5 bg-yellow-500 rounded-full mt-2"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">نقدم جودة تنفيذ عالية مع مرونة تناسب كل مشروع وتلبي متطلباته الخاصة، باستخدام أحدث التقنيات وأفضل الممارسات العالمية.</p>
+            <div class="space-y-4">
+              <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-global-line text-2xl text-yellow-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">معايير عالمية</h4><p class="text-gray-500">نتبع أفضل المعايير العالمية في التطوير والبرمجة</p></div></div>
+              <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-test-tube-line text-2xl text-yellow-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">اختبارات شاملة</h4><p class="text-gray-500">نجري اختبارات مكثفة لضمان جودة المنتج النهائي</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Commitment -->
+        <div x-show="currentIndex === 2" x-transition class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 lg:p-12">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><i class="ri-time-line text-3xl text-gray-700"></i></div>
+                <div>
+                    <h3 class="text-3xl lg:text-4xl font-bold text-gray-900">التزام بالمواعيد</h3>
+                    <div class="w-24 h-1.5 bg-green-500 rounded-full mt-2"></div>
+                </div>
+            </div>
+            <div>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">نلتزم بالوقت دون التفريط في جودة العمل، مع ضمان تسليم المشاريع في موعدها المحدد والحفاظ على أعلى معايير الجودة.</p>
+                <div class="space-y-4">
+                    <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-calendar-check-line text-2xl text-green-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">التزامنا بالمواعيد</h4><p class="text-gray-500">نحرص على الالتزام بالمواعيد المحددة دون التفريط في جودة العمل</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Passion -->
+        <div x-show="currentIndex === 3" x-transition class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 lg:p-12">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><i class="ri-heart-line text-3xl text-gray-700"></i></div>
+                <div>
+                    <h3 class="text-3xl lg:text-4xl font-bold text-gray-900">شغف وتفاني</h3>
+                    <div class="w-24 h-1.5 bg-red-500 rounded-full mt-2"></div>
+                </div>
+            </div>
+            <div>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">نتعامل مع كل مشروع وكأنه مشروعنا الخاص، ونضع كل خبراتنا وإمكانياتنا لإنجازه بأفضل شكل ممكن.</p>
+                <div class="space-y-4">
+                    <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-focus-3-line text-2xl text-red-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">تركيز على التفاصيل</h4><p class="text-gray-500">نهتم بأدق التفاصيل في كل مشروع لضمان أفضل النتائج</p></div></div>
+                    <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-shield-star-line text-2xl text-red-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">التزام بالجودة</h4><p class="text-gray-500">نسعى دائماً لتقديم أعلى مستويات الجودة في كل ما نقوم به</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Support -->
+        <div x-show="currentIndex === 4" x-transition class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 lg:p-12">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><i class="ri-customer-service-2-line text-3xl text-gray-700"></i></div>
+                <div>
+                    <h3 class="text-3xl lg:text-4xl font-bold text-gray-900">دعم مستمر</h3>
+                    <div class="w-24 h-1.5 bg-purple-500 rounded-full mt-2"></div>
+                </div>
+            </div>
+            <div>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">نواصل دعم عملائنا بعد الإطلاق وننمو معهم باستمرار، ونقدم خدمات متابعة وتطوير مستمرة.</p>
+                <div class="space-y-4">
+                    <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-24-hours-line text-2xl text-purple-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">دعم فني متواصل</h4><p class="text-gray-500">نقدم الدعم الفني والمساعدة عند الحاجة</p></div></div>
+                    <div class="bg-gray-100/80 rounded-2xl p-6 flex items-center gap-6"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><i class="ri-refresh-line text-2xl text-purple-600"></i></div><div><h4 class="font-bold text-lg text-gray-800">تحديثات دورية</h4><p class="text-gray-500">نحافظ على تحديث الأنظمة وتطويرها باستمرار</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Team -->
+        <div x-show="currentIndex === 5" x-transition class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 lg:p-12">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><i class="ri-team-line text-3xl text-gray-700"></i></div>
+                <div>
+                    <h3 class="text-3xl lg:text-4xl font-bold text-gray-900">فريق متكامل</h3>
+                    <div class="w-24 h-1.5 bg-blue-500 rounded-full mt-2"></div>
+                </div>
+            </div>
+            <div>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8 text-center">نضم نخبة من الخبراء المتخصصين في مختلف المجالات التقنية لضمان تقديم حلول متكاملة ومبتكرة.</p>
+                <h4 class="text-xl font-bold text-gray-800 mb-4 text-center">تخصصاتنا المتنوعة</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-code-s-slash-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">مطورو الواجهات</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-server-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">مطورو الخادم</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-layout-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">مصممو التجربة</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-smartphone-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">مطورو الجوال</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-database-2-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">علماء البيانات</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-settings-3-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">مهندسو التشغيل</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-bug-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">مهندسو الجودة</h5></div>
+                    <div class="text-center p-4 bg-gray-100/80 rounded-2xl"><div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center mx-auto mb-2 shadow-sm"><i class="ri-customer-service-2-line text-blue-600 text-2xl"></i></div><h5 class="font-bold text-gray-800 text-sm">الدعم الفني</h5></div>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-4 text-center">التقنيات التي نستخدمها</h4>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700">React</span>
+                    <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700">Node.js</span>
+                    <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700">Python</span>
+                    <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700">Flutter</span>
+                    <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700">AWS</span>
+                    <span class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700">Docker</span>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+      <!-- Vertical Navigation -->
+      <div class="w-full lg:w-1/4">
+        <div class="sticky top-28">
+          <!-- Nav Controls -->
+          <div class="flex justify-center lg:justify-end gap-3 mb-4">
+            <button @click="prevCard()" class="w-12 h-12 rounded-full bg-white shadow-md hover:bg-gray-100 transition flex items-center justify-center">
+              <i class="ri-arrow-right-s-line text-2xl text-gray-600"></i>
+            </button>
+            <button @click="nextCard()" class="w-12 h-12 rounded-full bg-white shadow-md hover:bg-gray-100 transition flex items-center justify-center">
+              <i class="ri-arrow-left-s-line text-2xl text-gray-600"></i>
+            </button>
+          </div>
+          
+          <!-- Nav Items -->
+          <div class="space-y-2">
+            <template x-for="(card, index) in cards" :key="index">
+              <button
+                @click="goToCard(index)"
+                :class="{ 'bg-white shadow-lg': currentIndex === index, 'bg-gray-100/70 hover:bg-gray-200': currentIndex !== index }"
+                class="w-full text-right flex items-center gap-4 p-3 rounded-xl transition-all duration-300"
+              >
+                <span
+                  :class="{ 'bg-gray-800 text-white': currentIndex === index, 'bg-gray-300 text-gray-700': currentIndex !== index }"
+                  class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 shrink-0"
+                  x-text="index + 1"
+                ></span>
+                <span
+                  :class="{ 'text-gray-900 font-bold': currentIndex === index, 'text-gray-600': currentIndex !== index }"
+                  class="transition-colors duration-300"
+                  x-text="card.title"
+                ></span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
