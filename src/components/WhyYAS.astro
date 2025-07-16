@@ -27,6 +27,43 @@
 
   <div class="container mx-auto px-6">
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <!-- Vertical Navigation -->
+      <div class="w-full lg:w-1/4">
+        <div class="sticky top-28">
+          <!-- Nav Controls -->
+          <div class="flex justify-center lg:justify-end gap-3 mb-4">
+            <button @click="prevCard()" class="w-12 h-12 rounded-full bg-white shadow-md hover:bg-gray-100 transition flex items-center justify-center">
+              <i class="ri-arrow-right-s-line text-2xl text-gray-600"></i>
+            </button>
+            <button @click="nextCard()" class="w-12 h-12 rounded-full bg-white shadow-md hover:bg-gray-100 transition flex items-center justify-center">
+              <i class="ri-arrow-left-s-line text-2xl text-gray-600"></i>
+            </button>
+          </div>
+          
+          <!-- Nav Items -->
+          <div class="space-y-2">
+            <template x-for="(card, index) in cards" :key="index">
+              <button
+                @click="goToCard(index)"
+                :class="{ 'bg-white shadow-lg': currentIndex === index, 'bg-gray-100/70 hover:bg-gray-200': currentIndex !== index }"
+                class="w-full text-right flex items-center gap-4 p-3 rounded-xl transition-all duration-300"
+              >
+                <span
+                  :class="{ 'bg-gray-800 text-white': currentIndex === index, 'bg-gray-300 text-gray-700': currentIndex !== index }"
+                  class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 shrink-0"
+                  x-text="index + 1"
+                ></span>
+                <span
+                  :class="{ 'text-gray-900 font-bold': currentIndex === index, 'text-gray-600': currentIndex !== index }"
+                  class="transition-colors duration-300"
+                  x-text="card.title"
+                ></span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+
       <!-- Main Content Cards -->
       <div class="w-full lg:w-3/4">
         
@@ -153,43 +190,6 @@
             </div>
         </div>
 
-      </div>
-
-      <!-- Vertical Navigation -->
-      <div class="w-full lg:w-1/4">
-        <div class="sticky top-28">
-          <!-- Nav Controls -->
-          <div class="flex justify-center lg:justify-end gap-3 mb-4">
-            <button @click="prevCard()" class="w-12 h-12 rounded-full bg-white shadow-md hover:bg-gray-100 transition flex items-center justify-center">
-              <i class="ri-arrow-right-s-line text-2xl text-gray-600"></i>
-            </button>
-            <button @click="nextCard()" class="w-12 h-12 rounded-full bg-white shadow-md hover:bg-gray-100 transition flex items-center justify-center">
-              <i class="ri-arrow-left-s-line text-2xl text-gray-600"></i>
-            </button>
-          </div>
-          
-          <!-- Nav Items -->
-          <div class="space-y-2">
-            <template x-for="(card, index) in cards" :key="index">
-              <button
-                @click="goToCard(index)"
-                :class="{ 'bg-white shadow-lg': currentIndex === index, 'bg-gray-100/70 hover:bg-gray-200': currentIndex !== index }"
-                class="w-full text-right flex items-center gap-4 p-3 rounded-xl transition-all duration-300"
-              >
-                <span
-                  :class="{ 'bg-gray-800 text-white': currentIndex === index, 'bg-gray-300 text-gray-700': currentIndex !== index }"
-                  class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 shrink-0"
-                  x-text="index + 1"
-                ></span>
-                <span
-                  :class="{ 'text-gray-900 font-bold': currentIndex === index, 'text-gray-600': currentIndex !== index }"
-                  class="transition-colors duration-300"
-                  x-text="card.title"
-                ></span>
-              </button>
-            </template>
-          </div>
-        </div>
       </div>
     </div>
   </div>
